@@ -26,7 +26,7 @@
 						placeholder="영문시작 6~20자리의 영문or숫자">
 					</div>
 					<div>
-					<label for="id"><span class="footSpan">아이디를 입력하세요</span></label>
+					<label for="id"><span class="footSpan" id="idSpan">아이디를 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -36,7 +36,7 @@
 						placeholder="영문, 숫자, 특수문자 모두 포함 6~20자리">
 					</div>
 					<div>
-					<label for="pass"><span class="footSpan">비밀번호를 입력하세요</span></label>
+					<label for="pass"><span class="footSpan" id="passSpan">비밀번호를 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -46,7 +46,7 @@
 						placeholder="비밀번호를 다시 입력하세요">
 					</div>
 					<div>
-					<label for="passcheck"><span class="footSpan">비밀번호를 다시 입력하세요</span></label>
+					<label for="passcheck"><span class="footSpan" id="passcheckSpan">비밀번호를 다시 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -56,7 +56,7 @@
 						placeholder="한글로 입력하세요">
 					</div>
 					<div>
-					<label for="name"><span class="footSpan">이름을 입력하세요</span></label>
+					<label for="name"><span class="footSpan" id="nameSpan">이름을 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -66,7 +66,7 @@
 						placeholder="이메일 주소를 입력하세요">
 					</div>
 					<div>
-					<label for="email"><span class="footSpan">이메일을 입력하세요</span></label>
+					<label for="email"><span class="footSpan" id="emailSpan">이메일을 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -80,7 +80,7 @@
 						placeholder="4자리">
 					</div>
 					<div>
-					<label for="phone1"><span class="footSpan">연락처를 입력하세요</span></label>
+					<label for="phone1"><span class="footSpan"  id="phoneSpan">연락처를 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -94,7 +94,7 @@
 						placeholder="1~2자리">일
 					</div>
 					<div>
-					<label for="birth1"><span class="footSpan">생년월일을 입력하세요</span></label>
+					<label for="birth1"><span class="footSpan" id="birthSpan">생년월일을 입력하세요</span></label>
 					</div>
 				</div>
 			</form>

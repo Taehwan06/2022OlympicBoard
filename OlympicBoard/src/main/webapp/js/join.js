@@ -45,7 +45,7 @@ function onBlurFn(obj){
 					}
 				}
 			}
-		});		
+		});
 	}else if(id =="pass"){			
 		reg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
 		if(value == ""){
@@ -208,6 +208,21 @@ function joinSubmitFn(){
 	var value = document.getElementById("id").value;
 	var span = document.getElementById("idSpan");
 	var reg = /^[a-z]+[a-z0-9]{5,19}$/g;
+		
+	$.ajax({
+		url: "idcheck.jsp",
+		type: "post",
+		data: "value="+value,
+		success: function(data){
+			var json = JSON.parse(data.trim());				
+			if(json.length != 0){
+				document.getElementById("idSpan").style.visibility = "visible";
+				document.getElementById("idSpan").textContent = "중복된 아이디입니다";
+				document.getElementById("idSpan").style.color = "red";
+				result = false;
+			}
+		}
+	});
 	if(value == ""){
 		span.style.visibility = "visible";
 		span.textContent = "아이디를 입력하세요";
