@@ -1,8 +1,21 @@
 function onBlurFn(obj){
-	var value = obj.value;		
+	var value = obj.value;
 	var span = obj.parentElement.parentElement.getElementsByTagName("span")[1];
 	var id = obj.id;
-	var reg = "";		
+	var reg = "";
+	var passValue = document.getElementById("pass").value;
+	var ph1val = document.getElementById("phone1").value;
+	var ph2val = document.getElementById("phone2").value;
+	var ph3val = document.getElementById("phone3").value;
+	var ph1reg = /\d{2,3}/;
+	var ph2reg = /\d{3,4}/;
+	var ph3reg = /\d{4}/;
+	var bir1val = document.getElementById("birth1").value;
+	var bir2val = document.getElementById("birth2").value;
+	var bir3val = document.getElementById("birth3").value;
+	var bir1reg = /\d{4}/;
+	var bir2reg = /\d{1,2}/;
+	var bir3reg = /\d{1,2}/;
 
 	if(id =="id"){			
 		reg = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -16,22 +29,23 @@ function onBlurFn(obj){
 					span.style.visibility = "visible";
 					span.textContent = "중복된 아이디입니다";
 					span.style.color = "red";
+				}else{
+					if(value == ""){
+						span.style.visibility = "visible";
+						span.textContent = "아이디를 입력하세요";
+						span.style.color = "red";
+					}else if(!reg.test(value)){
+						span.style.visibility = "visible";
+						span.textContent = "영문으로 시작하는 6~20자리의 영문or숫자만 가능합니다";
+						span.style.color = "red";
+					}else{
+						span.style.visibility = "visible";
+						span.textContent = "사용 가능한 아이디입니다";
+						span.style.color = "green";
+					}
 				}
 			}
-		});
-		if(value == ""){
-			span.style.visibility = "visible";
-			span.textContent = "아이디를 입력하세요";
-			span.style.color = "red";
-		}else if(!reg.test(value)){
-			span.style.visibility = "visible";
-			span.textContent = "영문으로 시작하는 6~20자리의 영문or숫자만 가능합니다";
-			span.style.color = "red";
-		}else{
-			span.style.visibility = "visible";
-			span.textContent = "사용 가능한 아이디입니다";
-			span.style.color = "green";
-		}
+		});		
 	}else if(id =="pass"){			
 		reg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
 		if(value == ""){
@@ -69,7 +83,7 @@ function onBlurFn(obj){
 			span.style.color = "red";
 		}else if(!reg.test(value)){
 			span.style.visibility = "visible";
-			span.textContent = "한글만 입력 가능합니다";
+			span.textContent = "2~20자 한글만 입력 가능합니다";
 			span.style.color = "red";
 		}else{
 			span.style.visibility = "visible";
