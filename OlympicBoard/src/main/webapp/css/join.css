@@ -4,8 +4,7 @@
 	padding:0px;
 }
 body{
-	width: 800px;
-	height: 90vh;
+	width: 800px;	
 	min-height: 500px;
 	margin: auto;
 }
@@ -51,7 +50,7 @@ section{
 	margin: auto;		
 }
 form{
-	margin-top: 100px;
+	margin-top: 70px;
 }		
 .headSpan{
 	width: 120px;
@@ -92,6 +91,7 @@ section input[type=button]{
 }		
 section input[name=joinSubmit]{
 	width: 400px;
+	margin-bottom: 100px;
 }
 section input[type=button]:hover{
 	background: skyblue;
