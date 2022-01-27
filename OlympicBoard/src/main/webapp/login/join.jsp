@@ -14,6 +14,8 @@
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
 </head>
 <body>
+	<%@ include file="/loginHeader.jsp" %>
+	<%@ include file="/nav.jsp" %>
 	<section>
 		<div>
 			<form name="joinFrm">
@@ -101,5 +103,6 @@
 			</div>
 		</div>
 	</section>
+	<%@ include file="/footer.jsp" %>
 </body>
 </html>

@@ -1,0 +1,115 @@
+@charset "UTF-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+body{
+	width: 800px;
+	height: 90vh;
+	min-height: 500px;
+	margin: auto;
+}
+header{
+	height:70px;			
+	text-align:center;
+	position:relative;
+}
+header>h2{
+	padding:20px;
+}
+header>h2>a{
+	text-decoration: none;
+	color: black;
+}
+header>h2>a:hover{
+	color: skyblue;
+}
+nav{
+	height: 30px;
+	width: 800px;
+	background: #EEEEEE;			
+	text-align: center;
+}		
+nav span{
+	background: #EEEEEE;	
+	color: black;
+	height: 27px;
+	width: 100px;
+	padding-top: 3px;			
+	display: inline-block;			
+	text-align: center;
+}
+nav span:hover{
+	background: gray;
+	color: skyblue;
+	cursor: pointer;
+}
+section{			
+	height:70%;
+	text-align: center;
+	padding: 50px 0px;
+	margin: auto;		
+}
+form{
+	margin-top: 100px;
+}		
+.headSpan{
+	width: 80px;
+	height: 25px;
+	font-size: 14px;
+	padding-top: 7px;
+	display: inline-block;
+	border-right: 1px solid lightgray;
+	text-align: center;
+}
+.border{
+	width: 265px;
+	border: 1px solid lightgray;
+	display: inline-block;
+	border-radius: 5px;
+}
+section input{
+	width: 170px;
+	height: 32px;
+	border: none;
+	font-size: 15px;			
+}		
+.footSpan{
+	width: 245px;
+	height: 15px;
+	color: red;
+	margin-bottom: 20px;
+	display: inline-block;
+	padding-left: 50px;
+	text-align: center;
+	visibility: visible;
+	font-size: 11px;
+	visibility: hidden;
+}
+section input[type=button]{	
+	background: lightgray;
+	border-radius: 5px;	
+}
+section input[name=login]{
+	width: 270px;
+}
+section input[type=button]:hover{
+	background: skyblue;
+	cursor: pointer;
+}
+#last{
+	margin: 100px 0px;
+}
+#last input{
+	width: 90px;
+	height: 25px;
+	font-size: 13px;
+}
+footer{
+	height:50px;
+	border-top:1px solid gray;
+	text-align: center;
+}
+footer div{
+	margin: 15px;
+}
