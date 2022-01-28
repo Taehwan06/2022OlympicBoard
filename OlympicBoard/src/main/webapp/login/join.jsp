@@ -7,7 +7,10 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String idcheck = request.getParameter("idcheck");
-	
+	int idcheckI = 0;
+	if(idcheck != null){
+		idcheckI = Integer.parseInt(idcheck);
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -18,10 +21,11 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
 <script>
-	console.log(idcheck);
-	if(<%=idcheck%>=="false"){
-		alert("중복된 아이디입니다. 다시 확인해주세요");
-	}
+	<%	if(idcheckI == 1){
+	%>		alert("이미 존재하는 아이디 입니다. 다시 확인해주세요.");
+	<%		idcheckI = 0;
+		}
+	%>
 </script>
 </head>
 <body>

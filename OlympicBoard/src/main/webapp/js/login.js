@@ -15,10 +15,10 @@ function loginFn(){
 	document.loginFrm.submit();
 }
 function findIdFn(){
-	location.href="join.jsp";
+	location.href="findId.jsp";
 }
 function findPassFn(){
-	location.href="join.jsp";
+	location.href="findPass.jsp";
 }
 function joinFn(){
 	location.href="join.jsp";

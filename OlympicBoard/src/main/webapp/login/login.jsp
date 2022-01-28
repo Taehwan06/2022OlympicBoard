@@ -5,11 +5,17 @@
 	request.setCharacterEncoding("UTF-8");
 
 	String memberid = request.getParameter("memberid");
+	String joinCheck = request.getParameter("joinCheck");
+	int joinCheckI = 0;
 	
 	LoginCheck loginCheck = (LoginCheck)session.getAttribute("LoginCheck");
 	String LC = null;
 	if(loginCheck != null){
 		LC = loginCheck.getLoginCheck();
+	}
+	
+	if(joinCheck != null){
+		joinCheckI = Integer.parseInt(joinCheck);
 	}
 %>
 <!DOCTYPE html>
@@ -20,20 +26,25 @@
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/login.js"></script>
 <script>
-
+	<%	if(joinCheckI == 1){
+	%>		alert("회원가입이 완료되었습니다.");
+	<%	}else if(joinCheckI == 2){
+	%>		alert("회원가입에 실패했습니다.");
+	<%	}
+	%>
+	<%	if(LC == null){
+	%>		
+	<%	}else if(LC.equals("PASS")){
+	%>		alert("비밀번호 오류!");
+	<%	}else if(LC.equals("ALL")){
+	%>		alert("등록된 사용자가 없습니다!");
+	<%	}
+	%>
 </script>
 </head>
 <body>
 	<%@ include file="/loginHeader.jsp" %>
-	<%@ include file="/nav.jsp" %>
-	<%if(LC == null){ %>
-	<%}else if(LC.equals("PASS")){ %>
-	<script>alert("비밀번호 오류!");</script>
-	<%}else if(LC.equals("ALL")){ %>
-	<script>alert("등록된 사용자가 없습니다!");</script>
-	<%}else{ %>
-	<script>alert("예외 발생!");</script>
-	<%} %>
+	<%@ include file="/nav.jsp" %>	
 	<section>
 		<div>
 			<form name="loginFrm">
