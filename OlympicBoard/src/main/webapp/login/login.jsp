@@ -8,10 +8,10 @@
 	String joinCheck = request.getParameter("joinCheck");
 	int joinCheckI = 0;
 	
-	LoginCheck loginCheck = (LoginCheck)session.getAttribute("LoginCheck");
+	Check check = (Check)session.getAttribute("check");
 	String LC = null;
-	if(loginCheck != null){
-		LC = loginCheck.getLoginCheck();
+	if(check != null){
+		LC = check.getLoginCheck();
 	}
 	
 	if(joinCheck != null){
@@ -82,5 +82,5 @@
 </body>
 </html>
 <%
-	session.setAttribute("LoginCheck",null);
+	session.setAttribute("check",null);
 %>

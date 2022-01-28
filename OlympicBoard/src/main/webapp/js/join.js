@@ -218,6 +218,11 @@ function joinSubmitFn(){
 	
 	if(!idcheck){
 		result = false;
+		if(value == ""){
+			span.style.visibility = "visible";
+			span.textContent = "아이디를 입력하세요";
+			span.style.color = "red";			
+		}
 	}else{
 		if(value == ""){
 			span.style.visibility = "visible";

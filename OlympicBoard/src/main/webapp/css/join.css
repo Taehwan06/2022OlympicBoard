@@ -54,7 +54,7 @@ form{
 }		
 .headSpan{
 	width: 120px;
-	height: 25px;
+	height: 27px;
 	font-size: 15px;
 	padding-top: 7px;
 	display: inline-block;
@@ -91,6 +91,7 @@ section input[type=button]{
 }		
 section input[name=joinSubmit]{
 	width: 400px;
+	height: 40px;
 	margin-bottom: 100px;
 }
 section input[type=button]:hover{

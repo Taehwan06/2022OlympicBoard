@@ -33,25 +33,26 @@
 		
 		if(rs.next()){
 			response.sendRedirect("join.jsp?idcheck=1");
-		}
-		
-		sql = "insert into member(midx,memberid,memberpassword,membername,birth,phone,email) "
-			+ " values(midx_seq.nextval,?,?,?,?,?,?)";
-		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,id);
-		psmt.setString(2,pass);
-		psmt.setString(3,name);
-		psmt.setString(4,birth);
-		psmt.setString(5,phone);
-		psmt.setString(6,email);
-		
-		int result = psmt.executeUpdate();
-		
-		if(result>0){
-			response.sendRedirect("login.jsp?joinCheck=1");
 		}else{
-			response.sendRedirect("login.jsp?joinCheck=2");
-		}		
+		
+			sql = "insert into member(midx,memberid,memberpassword,membername,birth,phone,email) "
+				+ " values(midx_seq.nextval,?,?,?,?,?,?)";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setString(2,pass);
+			psmt.setString(3,name);
+			psmt.setString(4,birth);
+			psmt.setString(5,phone);
+			psmt.setString(6,email);
+			
+			int result = psmt.executeUpdate();
+			
+			if(result>0){
+				response.sendRedirect("login.jsp?joinCheck=1");
+			}else{
+				response.sendRedirect("login.jsp?joinCheck=2");
+			}
+		}
 		
 	}catch(Exception e){
 		e.printStackTrace();

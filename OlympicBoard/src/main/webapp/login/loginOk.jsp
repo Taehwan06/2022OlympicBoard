@@ -27,7 +27,7 @@
 		rs = psmt.executeQuery();
 		
 		Member m = null;
-		LoginCheck LC = new LoginCheck();
+		Check LC = new Check();
 		
 		if(rs.next()){
 			m = new Member();
@@ -64,7 +64,7 @@
 				response.sendRedirect("login.jsp");
 			}			
 		}
-		session.setAttribute("LoginCheck",LC);
+		session.setAttribute("check",LC);
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
