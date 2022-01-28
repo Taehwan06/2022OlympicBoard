@@ -4,6 +4,11 @@
 <%@ page import="org.json.simple.*"%>
 <%@ page import="OlympicBoard.vo.*"%>
 <%@ page import="OlympicBoard.util.*"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idcheck = request.getParameter("idcheck");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +17,12 @@
 <link href="<%=request.getContextPath() %>/css/join.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
+<script>
+	console.log(idcheck);
+	if(<%=idcheck%>=="false"){
+		alert("중복된 아이디입니다. 다시 확인해주세요");
+	}
+</script>
 </head>
 <body>
 	<%@ include file="/loginHeader.jsp" %>

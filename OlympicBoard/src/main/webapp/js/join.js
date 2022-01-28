@@ -1,14 +1,7 @@
 var idcheck = false;
-var passValue = document.getElementById("pass").value;
-var ph1Val = document.getElementById("phone1").value;
-var ph2Val = document.getElementById("phone2").value;
-var ph3Val = document.getElementById("phone3").value;
 var ph1Reg = /\d{2,3}/;
 var ph2Reg = /\d{3,4}/;
 var ph3Reg = /\d{4}/;
-var bir1Val = document.getElementById("birth1").value;
-var bir2Val = document.getElementById("birth2").value;
-var bir3Val = document.getElementById("birth3").value;
 var bir1Reg = /\d{4}/;
 var bir2Reg = /\d{1,2}/;
 var bir3Reg = /\d{1,2}/;
@@ -19,6 +12,13 @@ function onBlurFn(obj){
 	var span = obj.parentElement.parentElement.getElementsByTagName("span")[1];
 	var id = obj.id;
 	var reg = "";
+	var passValue = document.getElementById("pass").value;
+	var ph1Val = document.getElementById("phone1").value;
+	var ph2Val = document.getElementById("phone2").value;
+	var ph3Val = document.getElementById("phone3").value;
+	var bir1Val = document.getElementById("birth1").value;
+	var bir2Val = document.getElementById("birth2").value;
+	var bir3Val = document.getElementById("birth3").value;
 
 	if(id =="id"){			
 		reg = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -218,22 +218,22 @@ function joinSubmitFn(){
 	
 	if(!idcheck){
 		result = false;
-	}
-	
-	if(value == ""){
-		span.style.visibility = "visible";
-		span.textContent = "아이디를 입력하세요";
-		span.style.color = "red";
-		result = false;
-	}else if(!reg.test(value)){
-		span.style.visibility = "visible";
-		span.textContent = "영문으로 시작하는 6~20자리의 영문or숫자만 가능합니다";
-		span.style.color = "red";
-		result = false;
 	}else{
-		span.style.visibility = "hidden";
-		span.textContent = "";
-	}
+		if(value == ""){
+			span.style.visibility = "visible";
+			span.textContent = "아이디를 입력하세요";
+			span.style.color = "red";
+			result = false;
+		}else if(!reg.test(value)){
+			span.style.visibility = "visible";
+			span.textContent = "영문으로 시작하는 6~20자리의 영문or숫자만 가능합니다";
+			span.style.color = "red";
+			result = false;
+		}else{
+			span.style.visibility = "hidden";
+			span.textContent = "";
+		}
+	}	
 
 	value = document.getElementById("pass").value;
 	span = document.getElementById("passSpan");
@@ -254,8 +254,8 @@ function joinSubmitFn(){
 	}
 
 	value = document.getElementById("passcheck").value;
-	span = document.getElementById("passcheckSpan");
-	passValue = document.getElementById("pass").value;
+	span = document.getElementById("passcheckSpan");	
+	var passValue = document.getElementById("pass").value;
 	if(value == ""){
 		span.style.visibility = "visible";
 		span.textContent = "비밀번호를 다시 입력하세요";
@@ -307,7 +307,10 @@ function joinSubmitFn(){
 		span.textContent = "";
 	}
 
-	span = document.getElementById("phoneSpan");		
+	span = document.getElementById("phoneSpan");
+	var ph1Val = document.getElementById("phone1").value;
+	var ph2Val = document.getElementById("phone2").value;
+	var ph3Val = document.getElementById("phone3").value;		
 	if(ph1Reg.test(ph1Val) && ph2Reg.test(ph2Val) && ph3Reg.test(ph3Val)){
 		span.style.visibility = "hidden";
 		span.textContent = "";
@@ -318,7 +321,10 @@ function joinSubmitFn(){
 		result = false;
 	}
 
-	span = document.getElementById("birthSpan");	
+	span = document.getElementById("birthSpan");
+	var bir1Val = document.getElementById("birth1").value;
+	var bir2Val = document.getElementById("birth2").value;
+	var bir3Val = document.getElementById("birth3").value;
 	if(bir1Reg.test(bir1Val) && bir2Reg.test(bir2Val) && bir3Reg.test(bir3Val) 
 		&& bir1Val!="0000" && bir2Val!="0" && bir2Val!="00" && bir3Val!="0" && bir3Val!="00" 
 		&& parseInt(bir2Val)<=12 && parseInt(bir3Val)<=31){

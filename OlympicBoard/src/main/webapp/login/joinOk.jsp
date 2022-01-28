@@ -19,7 +19,32 @@
 	String birth2 = request.getParameter("birth2");
 	String birth3 = request.getParameter("birth3");
 	
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	ResultSet rs = null;
 	
+	try{
+		conn = DBManager.getConnection();
+		
+		String sql ="select * from board where memberid=?";
+		
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,id);
+		
+		rs = psmt.executeQuery();
+		
+		if(rs.next()){
+			response.sendRedirect("join.jsp?idcheck=false");
+		}
+		
+		
+		
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		DBManager.close(psmt,conn,rs);
+	}
 	
 	
 
