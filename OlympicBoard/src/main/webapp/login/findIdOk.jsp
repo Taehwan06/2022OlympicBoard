@@ -15,6 +15,8 @@
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
+	Check IC = new Check();	
+	
 	try{
 		conn = DBManager.getConnection();
 		String sql = "select * from member where membername=? and phone=?";
@@ -27,15 +29,14 @@
 		if(rs.next()){
 			response.sendRedirect("findIdSuccess.jsp?id="+rs.getString("memberid"));
 		}else{
-			response.sendRedirect("findId.jsp?result='fail'");
-		}		
+			IC.setIdCheck("fail");
+			session.setAttribute("check",IC);
+			response.sendRedirect("findId.jsp");
+		}	
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
 		DBManager.close(psmt,conn,rs);
-	}
-	
-	
-	
+	}	
 %>

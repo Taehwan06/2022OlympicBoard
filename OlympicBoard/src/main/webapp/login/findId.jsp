@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="OlympicBoard.vo.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String result = request.getParameter("result");
+	Check check = (Check)session.getAttribute("check");
+	String IC = null;
+	if(check != null){
+		IC = check.getIdCheck();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -11,14 +16,13 @@
 <title>로그인</title>
 <link href="<%=request.getContextPath() %>/css/findId.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findId.js"></script>
-<script>
-	console.log(<%= result %>);
-	<%	if(result != null){
-	%>		alert("일치하는 회원이 없습니다.");
-	<%	}	
-		result = null;
-	%>
-	console.log(<%= result %>);
+<script>	
+	<%	if(IC != null){
+			if(IC.equals("fail")){
+	%>			alert("일치하는 회원이 없습니다.");
+	<%		}
+		}
+	%>	
 </script>
 </head>
 <body>
@@ -64,3 +68,6 @@
 	<%@ include file="/footer.jsp" %>
 </body>
 </html>
+<%
+	session.setAttribute("check",null);
+%>

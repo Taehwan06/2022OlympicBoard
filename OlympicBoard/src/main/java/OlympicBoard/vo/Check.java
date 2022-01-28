@@ -4,8 +4,26 @@ public class Check {
 	
 	public String loginCheck;
 	public String joinCheck;
+	public String idCheck;
+	public String id;
 
 		
+	public String getIdCheck() {
+		return idCheck;
+	}
+
+	public void setIdCheck(String idCheck) {
+		this.idCheck = idCheck;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getJoinCheck() {
 		return joinCheck;
 	}
