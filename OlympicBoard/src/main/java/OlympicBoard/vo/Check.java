@@ -7,8 +7,17 @@ public class Check {
 	public String idCheck;
 	public String id;
 	public boolean sendId;
+	public boolean sendPass;
 	
 		
+	public boolean isSendPass() {
+		return sendPass;
+	}
+
+	public void setSendPass(boolean sendPass) {
+		this.sendPass = sendPass;
+	}
+
 	public boolean isSendId() {
 		return sendId;
 	}

@@ -4,9 +4,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	Check check = (Check)session.getAttribute("check");
-	String IC = null;
+	String idCheck = null;
 	if(check != null){
-		IC = check.getIdCheck();
+		idCheck = check.getIdCheck();
 	}
 %>
 <!DOCTYPE html>
@@ -17,8 +17,8 @@
 <link href="<%=request.getContextPath() %>/css/findId.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findId.js"></script>
 <script>	
-	<%	if(IC != null){
-			if(IC.equals("fail")){
+	<%	if(idCheck != null){
+			if(idCheck.equals("fail")){
 	%>			alert("일치하는 회원이 없습니다.");
 	<%		}
 		}
