@@ -37,21 +37,25 @@
 				<div>
 					<div class="border">
 						<label for="name"><span class="headSpan">이름</span></label>
-						<input type="text" name="name" id="name" placeholder="회원 이름을 입력하세요">
+						<input type="text" name="name" id="name" onblur="onBlurFn(this)" 
+						placeholder="회원 이름을 입력하세요">
 					</div>
 					<div>
-					<label for="name"><span class="footSpan" id="nameSpan">이름을 입력하세요</span></label>
+						<label for="name"><span class="footSpan" id="nameSpan">이름을 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
 					<div class="border">
 						<label for="phone1"><span class="headSpan">연락처</span></label>
-						<input type="text" name="phone1" id="phone1" class="phone" placeholder="2~3자리"> -
-						<input type="text" name="phone2" id="phone2" class="phone" placeholder="3~4자리"> -
-						<input type="text" name="phone3" id="phone3" class="phone" placeholder="4자리">
+						<input type="text" name="phone1" id="phone1" class="phone" onblur="onBlurFn(this)" 
+						placeholder="2~3자리"> -
+						<input type="text" name="phone2" id="phone2" class="phone" onblur="onBlurFn(this)" 
+						placeholder="3~4자리"> -
+						<input type="text" name="phone3" id="phone3" class="phone" onblur="onBlurFn(this)"
+						placeholder="4자리">
 					</div>
 					<div>
-					<label for="phone1"><span class="footSpan"  id="phoneSpan">연락처를 입력하세요</span></label>
+						<label for="phone1"><span class="footSpan"  id="phoneSpan">연락처를 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -62,7 +66,7 @@
 				<input type="button" name="login" value="로그인" onclick="loginFn()">
 				<input type="button" name="join" value="회원가입" onclick="joinFn()">
 				<input type="button" name="findPass" value="비밀번호 찾기" onclick="findPassFn()">
-			</div>		
+			</div>
 		</div>
 	</section>
 	<%@ include file="/footer.jsp" %>

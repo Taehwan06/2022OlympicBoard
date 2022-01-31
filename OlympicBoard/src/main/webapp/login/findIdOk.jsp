@@ -15,7 +15,7 @@
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
-	Check IC = new Check();	
+	Check check = new Check();
 	
 	try{
 		conn = DBManager.getConnection();
@@ -29,8 +29,8 @@
 		if(rs.next()){
 			response.sendRedirect("findIdSuccess.jsp?id="+rs.getString("memberid")+"&email="+rs.getString("email"));
 		}else{
-			IC.setIdCheck("fail");
-			session.setAttribute("check",IC);
+			check.setIdCheck("fail");
+			session.setAttribute("check",check);
 			response.sendRedirect("findId.jsp");
 		}	
 		

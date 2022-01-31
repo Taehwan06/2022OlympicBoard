@@ -43,78 +43,33 @@ nav span:hover{
 	color: skyblue;
 	cursor: pointer;
 }
-section{
-	height:70%;
+section{	
 	text-align: center;
 	padding: 10px 0px;
 	margin: auto;
-}
-form{
-	margin-top: 100px;
-}
-.headSpan{
-	width: 120px;
-	height: 27px;
-	font-size: 15px;
-	padding-top: 7px;
-	display: inline-block;
-	border-right: 1px solid lightgray;
-	text-align: center;
-}
-.border{
-	width: 400px;
-	border: 1px solid lightgray;
-	display: inline-block;
-	border-radius: 5px;
-}
-section input{
-	width: 265px;
-	height: 32px;
-	border: none;
-	font-size: 15px;			
-}
-.footSpan{
-	width: 400px;
-	height: 15px;
-	color: red;
-	margin-bottom: 20px;
-	display: inline-block;
-	padding-left: 50px;
-	text-align: center;
-	visibility: visible;
-	font-size: 11px;
-	visibility: hidden;
-}
+}		
 section input[type=button]{	
 	background: lightgray;
-	border-radius: 5px;		
+	border: none;
+	border-radius: 5px;
 }		
-section input[name=findIdSubmit]{
-	width: 400px;
-	height: 40px;
-	margin-bottom: 30px;
-}
 section input[type=button]:hover{
 	background: skyblue;
 	cursor: pointer;
 }
-.phone{
-	width: 77px;
-	text-align: center;
-}
-.text{
-	margin: 30px 0px;
-}
-input::placeholder{
-	font-size: 11px;
+#mainText{
+	font-size: 20px;
+	margin: 150px 0px 100px 0px;
+	display: inline-block;
 }
 #last{
-	margin: 70px 0px;
+	margin: 100px 0px 100px 0px;
 }
 #last input{
-	width: 90px;
-	height: 25px;
-	font-size: 13px;
+	width: 180px;
+	height: 30px;
+	font-size: 17px;
+	margin: 20px;
 }
 footer{
 	height:50px;

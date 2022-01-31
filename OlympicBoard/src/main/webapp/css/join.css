@@ -92,7 +92,8 @@ section input[type=button]{
 section input[name=joinSubmit]{
 	width: 400px;
 	height: 40px;
-	margin-bottom: 100px;
+	font-size: 17px;
+	margin-bottom: 30px;
 }
 section input[type=button]:hover{
 	background: skyblue;
@@ -110,8 +111,14 @@ section input[type=button]:hover{
 	width: 67px;
 	text-align: center;
 }
-#last{
+#submitDiv{
 	margin-top: 30px;
+}
+#last input{
+	width: 115px;
+	height: 28px;
+	font-size: 14px;
+	margin: 10px 10px 50px 10px;
 }
 input::placeholder{
 	font-size: 11px;

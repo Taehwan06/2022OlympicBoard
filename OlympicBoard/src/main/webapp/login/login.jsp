@@ -62,7 +62,7 @@
 						<%if(memberid != null && !memberid.equals("") && !memberid.equals("null")) out.print("value='"+memberid+"'"); %>>
 					</div>
 					<div>
-					<label for="memberid"><span class="footSpan">아이디를 입력하세요</span></label>
+						<label for="memberid"><span class="footSpan">아이디를 입력하세요</span></label>
 					</div>
 				</div>
 				<div>
@@ -71,7 +71,7 @@
 						<input type="password" name="memberpassword" id="memberpassword" onblur="onBlurFn(this)">
 					</div>
 					<div>
-					<label for="memberpassword"><span class="footSpan">비밀번호를 입력하세요</span></label>
+						<label for="memberpassword"><span class="footSpan">비밀번호를 입력하세요</span></label>
 					</div>
 				</div>
 			</form>

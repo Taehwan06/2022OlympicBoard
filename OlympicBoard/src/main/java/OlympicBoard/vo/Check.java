@@ -3,13 +3,22 @@ package OlympicBoard.vo;
 public class Check {
 	
 	public String loginCheck;
-	public String joinCheck;
-	public String idCheck;
+	public String joinCheck;	
 	public String id;
+	public String idCheck;
+	public boolean passCheck;
 	public boolean sendId;
 	public boolean sendPass;
 	
 		
+	public boolean isPassCheck() {
+		return passCheck;
+	}
+
+	public void setPassCheck(boolean passCheck) {
+		this.passCheck = passCheck;
+	}
+
 	public boolean isSendPass() {
 		return sendPass;
 	}

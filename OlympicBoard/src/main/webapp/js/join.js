@@ -238,7 +238,7 @@ function joinSubmitFn(){
 			span.style.visibility = "hidden";
 			span.textContent = "";
 		}
-	}	
+	}
 
 	value = document.getElementById("pass").value;
 	span = document.getElementById("passSpan");
@@ -362,4 +362,16 @@ function joinSubmitFn(){
 		document.joinFrm.action = "joinOk.jsp";
 		document.joinFrm.submit();
 	}
+}
+
+function findIdFn(){
+	location.href="findId.jsp";
+}
+
+function loginFn(){
+	location.href="login.jsp";
+}
+	
+function findPassFn(){
+	location.href="findPass.jsp";
 }
