@@ -6,8 +6,17 @@ public class Check {
 	public String joinCheck;
 	public String idCheck;
 	public String id;
-
+	public boolean sendId;
+	
 		
+	public boolean isSendId() {
+		return sendId;
+	}
+
+	public void setSendId(boolean sendId) {
+		this.sendId = sendId;
+	}
+
 	public String getIdCheck() {
 		return idCheck;
 	}

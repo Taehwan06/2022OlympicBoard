@@ -7,16 +7,19 @@
 	String memberid = request.getParameter("memberid");
 	String joinCheck = request.getParameter("joinCheck");
 	int joinCheckI = 0;
-	
-	Check check = (Check)session.getAttribute("check");
-	String LC = null;
-	if(check != null){
-		LC = check.getLoginCheck();
-	}
-	
 	if(joinCheck != null){
 		joinCheckI = Integer.parseInt(joinCheck);
 	}
+	
+	Check check = (Check)session.getAttribute("check");
+	String loginCheck = null;
+	boolean sendId = false;
+	if(check != null){
+		loginCheck = check.getLoginCheck();
+		sendId = check.isSendId();
+	}	
+	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -32,12 +35,16 @@
 	%>		alert("회원가입에 실패했습니다.");
 	<%	}
 	%>
-	<%	if(LC == null){
+	<%	if(loginCheck == null){
 	%>		
-	<%	}else if(LC.equals("PASS")){
+	<%	}else if(loginCheck.equals("PASS")){
 	%>		alert("비밀번호 오류!");
-	<%	}else if(LC.equals("ALL")){
+	<%	}else if(loginCheck.equals("ALL")){
 	%>		alert("등록된 사용자가 없습니다!");
+	<%	}
+	%>
+	<%	if(sendId){
+	%>		alert("아이디를 회원님의 이메일로 발송했습니다.");
 	<%	}
 	%>
 </script>

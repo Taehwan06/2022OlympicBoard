@@ -27,7 +27,7 @@
 		rs = psmt.executeQuery();
 		
 		if(rs.next()){
-			response.sendRedirect("findIdSuccess.jsp?id="+rs.getString("memberid"));
+			response.sendRedirect("findIdSuccess.jsp?id="+rs.getString("memberid")+"&email="+rs.getString("email"));
 		}else{
 			IC.setIdCheck("fail");
 			session.setAttribute("check",IC);

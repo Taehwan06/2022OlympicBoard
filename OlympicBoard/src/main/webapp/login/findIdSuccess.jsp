@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("id");
+	String email = request.getParameter("email");
+	String idAll = request.getParameter("id");
+	String idSub = idAll.substring(3);
+	String id = "***"+idSub;
 %>
 <!DOCTYPE html>
 <html>
@@ -10,8 +13,10 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 <link href="<%=request.getContextPath() %>/css/findIdSuccess.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/js/findId.js"></script>
-<script>		
+<script src="<%=request.getContextPath()%>/js/findIdSuccess.js"></script>
+<script>
+	var idAll = "<%=idAll%>";
+	var email = "<%=email%>";
 </script>
 </head>
 <body>
@@ -19,9 +24,13 @@
 	<%@ include file="/nav.jsp" %>
 	<section>
 		<div>			
-			<div class="text">
+			<div id="mainText">
 				회원님의 아이디는 <span id="id"><%=id %></span> 입니다.
-			</div>				
+			</div>
+			<div>
+				<input type="button" name="sendMailId" value="전체 아이디 메일로 받기" onclick="sendMailIdFn()">
+				<div id="sendText">전체 아이디를 회원 가입시 입력하신 메일주소로 보내드립니다.</div>
+			</div>
 			<div id="last">
 				<input type="button" name="login" value="로그인" onclick="loginFn()">
 				<input type="button" name="join" value="회원가입" onclick="joinFn()">
