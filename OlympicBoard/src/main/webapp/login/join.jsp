@@ -6,10 +6,10 @@
 <%@ page import="OlympicBoard.util.*"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String idcheck = request.getParameter("idcheck");
-	int idcheckI = 0;
-	if(idcheck != null){
-		idcheckI = Integer.parseInt(idcheck);
+	Check check = (Check)session.getAttribute("check");
+	boolean idConfirm = false;
+	if(check != null){
+		idConfirm = check.isIdConfirm();
 	}
 %>
 <!DOCTYPE html>
@@ -21,10 +21,9 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
 <script>
-	<%	if(idcheckI == 1){
+	<%	if(idConfirm){
 	%>		alert("이미 존재하는 아이디 입니다. 다시 확인해주세요.");
-	<%		idcheckI = 0;
-		}
+	<%	}
 	%>
 </script>
 </head>
@@ -126,3 +125,6 @@
 	<%@ include file="/footer.jsp" %>
 </body>
 </html>
+<%
+	session.setAttribute("check",null);
+%>

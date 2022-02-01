@@ -5,12 +5,29 @@ public class Check {
 	public String loginCheck;
 	public String joinCheck;	
 	public String id;
-	public String idCheck;
+	public boolean idConfirm;
+	public boolean idCheck;
 	public boolean passCheck;
 	public boolean sendId;
 	public boolean sendPass;
 	
 		
+	public boolean isIdConfirm() {
+		return idConfirm;
+	}
+
+	public void setIdConfirm(boolean idConfirm) {
+		this.idConfirm = idConfirm;
+	}
+
+	public boolean isIdCheck() {
+		return idCheck;
+	}
+
+	public void setIdCheck(boolean idCheck) {
+		this.idCheck = idCheck;
+	}
+
 	public boolean isPassCheck() {
 		return passCheck;
 	}
@@ -35,14 +52,6 @@ public class Check {
 		this.sendId = sendId;
 	}
 
-	public String getIdCheck() {
-		return idCheck;
-	}
-
-	public void setIdCheck(String idCheck) {
-		this.idCheck = idCheck;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -65,8 +74,5 @@ public class Check {
 
 	public void setLoginCheck(String loginCheck) {
 		this.loginCheck = loginCheck;
-	}
-	
-	
-			
+	}			
 }

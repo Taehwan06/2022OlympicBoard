@@ -75,7 +75,7 @@ public class MailSend {
            
             message.setSubject("[2022 Beijing] 요청하신 회원 비밀번호입니다.");
 
-            message.setText("회원님의 비밀번호는 "+pass+" 입니다.");
+            message.setText("회원님의 임시 비밀번호는 "+pass+" 입니다. 로그인 후 반드시 비밀번호를 변경해주세요.");
             
             Transport.send(message);
                    

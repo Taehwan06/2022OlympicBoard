@@ -27,7 +27,7 @@
 		rs = psmt.executeQuery();
 		
 		Member m = null;
-		Check LC = new Check();
+		Check check = new Check();
 		
 		if(rs.next()){
 			m = new Member();
@@ -37,7 +37,8 @@
 			m.setMidx(rs.getInt("midx"));
 			
 			session.setAttribute("loginUser",m);
-			LC.setLoginCheck("OK");
+			check.setLoginCheck("ok");
+			session.setAttribute("check",check);
 		}
 		
 		if(m != null){
@@ -57,14 +58,16 @@
 			rs = psmt.executeQuery();
 			
 			if(rs.next()){
-				LC.setLoginCheck("PASS");
+				check.setLoginCheck("pass");
+				session.setAttribute("check",check);
 				response.sendRedirect("login.jsp?memberid="+memberid);
 			}else{
-				LC.setLoginCheck("ALL");
+				check.setLoginCheck("all");
+				session.setAttribute("check",check);
 				response.sendRedirect("login.jsp");
 			}			
 		}
-		session.setAttribute("check",LC);
+		
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{

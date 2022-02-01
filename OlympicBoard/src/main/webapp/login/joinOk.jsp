@@ -20,6 +20,8 @@
 	String phone = phone1+"-"+phone2+"-"+phone3;
 	String birth = birth1+"년 "+birth2+"월 "+birth3+"일";
 	
+	Check check = new Check();
+	
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
@@ -32,7 +34,9 @@
 		rs = psmt.executeQuery();
 		
 		if(rs.next()){
-			response.sendRedirect("join.jsp?idcheck=1");
+			check.setIdConfirm(true);
+			session.setAttribute("check",check);
+			response.sendRedirect("join.jsp");
 		}else{
 		
 			sql = "insert into member(midx,memberid,memberpassword,membername,birth,phone,email) "
@@ -48,11 +52,15 @@
 			int result = psmt.executeUpdate();
 			
 			if(result>0){
-				response.sendRedirect("login.jsp?joinCheck=1");
+				check.setJoinCheck("success");
+				session.setAttribute("check",check);
+				response.sendRedirect("login.jsp");
 			}else{
-				response.sendRedirect("login.jsp?joinCheck=2");
+				check.setJoinCheck("fail");
+				session.setAttribute("check",check);
+				response.sendRedirect("login.jsp");
 			}
-		}
+		}		
 		
 	}catch(Exception e){
 		e.printStackTrace();

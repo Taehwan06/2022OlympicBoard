@@ -112,7 +112,7 @@ section input[type=button]:hover{
 	text-align: center;
 }
 #submitDiv{
-	margin-top: 30px;
+	margin: 10px 0px;	
 }
 #last input{
 	width: 115px;

@@ -5,21 +5,16 @@
 	request.setCharacterEncoding("UTF-8");
 
 	String memberid = request.getParameter("memberid");
-	String joinCheck = request.getParameter("joinCheck");
-	int joinCheckI = 0;
-	if(joinCheck != null){
-		joinCheckI = Integer.parseInt(joinCheck);
-	}
-	
+		
 	Check check = (Check)session.getAttribute("check");
+	String joinCheck = null;
 	String loginCheck = null;
 	boolean sendId = false;
 	if(check != null){
+		joinCheck = check.getJoinCheck();
 		loginCheck = check.getLoginCheck();
 		sendId = check.isSendId();
-	}	
-	
-
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -28,18 +23,20 @@
 <title>로그인</title>
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/login.js"></script>
-<script>
-	<%	if(joinCheckI == 1){
+<script>	
+	<%	if(joinCheck == null){
+	%>		
+	<%	}else if(joinCheck.equals("success")){
 	%>		alert("회원가입이 완료되었습니다.");
-	<%	}else if(joinCheckI == 2){
+	<%	}else if(joinCheck.equals("fail")){
 	%>		alert("회원가입에 실패했습니다.");
 	<%	}
 	%>
 	<%	if(loginCheck == null){
 	%>		
-	<%	}else if(loginCheck.equals("PASS")){
+	<%	}else if(loginCheck.equals("pass")){
 	%>		alert("비밀번호 오류!");
-	<%	}else if(loginCheck.equals("ALL")){
+	<%	}else if(loginCheck.equals("all")){
 	%>		alert("등록된 사용자가 없습니다!");
 	<%	}
 	%>

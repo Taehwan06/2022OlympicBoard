@@ -5,12 +5,14 @@
 <%@ page import="OlympicBoard.util.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String name = request.getParameter("name");
+	String name = "이지은";
+	String id = "user03";
 	String phone1 = request.getParameter("phone1");
 	String phone2 = request.getParameter("phone2");
 	String phone3 = request.getParameter("phone3");
-	String phone = phone1+"-"+phone2+"-"+phone3;
-	
+	String phone = "010-0003-0003";
+	String email = "lth-mail@nate.com";
+		
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
@@ -19,24 +21,33 @@
 	
 	try{
 		conn = DBManager.getConnection();
-		String sql = "select * from member where membername=? and phone=?";
+		String sql = "select * from member where membername=? and memberid=? and phone=? and email=?";
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,name);
-		psmt.setString(2,phone);
+		psmt.setString(2,id);
+		psmt.setString(3,phone);
+		psmt.setString(4,email);
 		
-		rs = psmt.executeQuery();
+		rs = psmt.executeQuery();		
 		
 		if(rs.next()){
-			response.sendRedirect("findIdSuccess.jsp?id="+rs.getString("memberid")+"&email="+rs.getString("email"));
-		}else{
-			check.setIdCheck(true);
-			session.setAttribute("check",check);
-			response.sendRedirect("findId.jsp");
-		}	
+			response.sendRedirect("sendMailPass.jsp?midx="+rs.getInt("midx")+"&email="+email);			
+		}		
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
 		DBManager.close(psmt,conn,rs);
-	}	
+	}
 %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

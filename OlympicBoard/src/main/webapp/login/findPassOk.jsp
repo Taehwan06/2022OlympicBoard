@@ -18,6 +18,8 @@
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
+	Connection conn2 = null;
+	PreparedStatement psmt2 = null;
 	
 	Check check = new Check();
 	
@@ -36,17 +38,25 @@
 			RandomPassword rp = new RandomPassword();
 			String pass = rp.getRamdomPassword(10);
 			
-			sql = "update member set memberpassword='"+pass+"' where midx=?";
-			psmt = null;
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,rs.getInt("midx"));
+			try{				
+				conn2 = DBManager.getConnection();
+				String sql2 = "update member set memberpassword=? where midx=?";				
+				psmt2 = conn2.prepareStatement(sql2);
+				psmt2.setString(1,pass);
+				psmt2.setInt(2,rs.getInt("midx"));
+				
+				int result = psmt2.executeUpdate();
+				
+				if(result>0){
+					MailSend.pass(email,pass);
+					response.sendRedirect("findPassSuccess.jsp");
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				DBManager.close(psmt,conn);
+			}
 			
-			int result = psmt.executeUpdate();
-			
-			if(result>0){
-				MailSend.pass(email,pass);
-				response.sendRedirect("findPassSuccess.jsp");
-			}			
 		}else{
 			check.setPassCheck(true);
 			session.setAttribute("check",check);
