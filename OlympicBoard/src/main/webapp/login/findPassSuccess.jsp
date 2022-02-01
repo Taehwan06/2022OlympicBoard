@@ -4,8 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>비밀번호 찾기 완료</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/findPassSuccess.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findPassSuccess.js"></script>
 </head>
 <body>

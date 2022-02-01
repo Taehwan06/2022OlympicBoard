@@ -14,7 +14,10 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/findPass.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findPass.js"></script>
 <script>	
 	<%	if(passCheck){			

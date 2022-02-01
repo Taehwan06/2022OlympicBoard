@@ -9,8 +9,16 @@ public class Member {
 	private String addr;
 	private String phone;
 	private String email;
+	private String enterdate;
 	private int midx;
 	
+	
+	public String getEnterdate() {
+		return enterdate;
+	}
+	public void setEnterdate(String enterdate) {
+		this.enterdate = enterdate;
+	}
 	public int getMidx() {
 		return midx;
 	}

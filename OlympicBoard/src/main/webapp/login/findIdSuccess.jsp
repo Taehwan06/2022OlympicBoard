@@ -11,8 +11,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>아이디 찾기 완료</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/findIdSuccess.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findIdSuccess.js"></script>
 <script>
 	var idAll = "<%=idAll%>";

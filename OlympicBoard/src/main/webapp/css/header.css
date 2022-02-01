@@ -1,0 +1,46 @@
+@charset "UTF-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+body{
+	width: 800px;	
+	min-height: 500px;
+	margin: auto;
+}
+header{
+	height:70px;			
+	text-align:center;
+	position:relative;
+}
+header>div{
+	text-align:right;
+	position:absolute;
+	top:20px;
+	right:20px;
+}
+header>div>span{
+	padding-right: 10px;
+}
+header>div>input{
+	height: 22px;
+	width: 90px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	background: lightgray;
+}
+header>div input:hover{
+	cursor: pointer;
+	background-color: skyblue;
+	border-radius: 5px;
+}
+header>h2{
+	padding:20px;
+}
+header>h2>a{
+	text-decoration: none;
+	color: black;
+}
+header>h2>a:hover{
+	color: skyblue;
+}

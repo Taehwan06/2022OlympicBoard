@@ -14,7 +14,10 @@
 <head>
 <meta charset="UTF-8">
 <title>아아디 찾기</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/findId.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findId.js"></script>
 <script>	
 	<%	if(idCheck){			

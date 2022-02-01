@@ -21,7 +21,10 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/login.js"></script>
 <script>	
 	<%	if(joinCheck == null){

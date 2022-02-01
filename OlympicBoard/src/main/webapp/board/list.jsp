@@ -5,8 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="<%=request.getContextPath() %>/css/list.css?ver=1" rel="stylesheet">
+<title>자유 게시판</title>
+<link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>

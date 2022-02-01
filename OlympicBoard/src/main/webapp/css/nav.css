@@ -1,0 +1,21 @@
+@charset "UTF-8";
+nav{
+	height: 30px;
+	width: 800px;
+	background: #EEEEEE;			
+	text-align: center;
+}		
+nav span{
+	background: #EEEEEE;	
+	color: black;
+	height: 27px;
+	width: 100px;
+	padding-top: 3px;			
+	display: inline-block;			
+	text-align: center;
+}
+nav span:hover{
+	background: gray;
+	color: skyblue;
+	cursor: pointer;
+}

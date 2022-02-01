@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="org.json.simple.*"%>
 <%@ page import="OlympicBoard.vo.*"%>
 <%@ page import="OlympicBoard.util.*"%>
 <%
@@ -17,7 +16,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="<%=request.getContextPath() %>/css/loginHeader.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/join.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
 <script>
