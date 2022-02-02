@@ -10,8 +10,17 @@ public class Check {
 	public boolean passCheck;
 	public boolean sendId;
 	public boolean sendPass;
+	public String memberModify;
 	
-		
+	
+	public String getMemberModify() {
+		return memberModify;
+	}
+
+	public void setMemberModify(String memberModify) {
+		this.memberModify = memberModify;
+	}
+
 	public boolean isIdConfirm() {
 		return idConfirm;
 	}

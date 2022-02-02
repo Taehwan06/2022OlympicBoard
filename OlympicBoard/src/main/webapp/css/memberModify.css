@@ -1,35 +1,36 @@
 @charset "UTF-8";
 section{
 	text-align: center;
-	padding: 50px 0px;
+	padding: 10px 0px;
 	margin: auto;		
 }
 form{
-	margin-top: 100px;
+	margin-top: 70px;
 }		
 .headSpan{
-	width: 80px;
+	width: 120px;
 	height: 27px;
-	font-size: 14px;
+	font-size: 15px;
 	padding-top: 7px;
 	display: inline-block;
 	border-right: 1px solid lightgray;
 	text-align: center;
 }
 .border{
-	width: 265px;
+	width: 400px;
 	border: 1px solid lightgray;
 	display: inline-block;
 	border-radius: 5px;
 }
 section input{
-	width: 170px;
+	width: 265px;
 	height: 32px;
 	border: none;
-	font-size: 15px;			
+	font-size: 15px;
+	text-align: center;
 }		
 .footSpan{
-	width: 245px;
+	width: 400px;
 	height: 15px;
 	color: red;
 	margin-bottom: 20px;
@@ -42,21 +43,43 @@ section input{
 }
 section input[type=button]{	
 	background: lightgray;
-	border-radius: 5px;	
-}
-section input[name=login]{
-	width: 270px;
-	height: 40px;
+	border-radius: 5px;		
 }
 section input[type=button]:hover{
 	background: skyblue;
 	cursor: pointer;
 }
-#last{
-	margin: 100px 0px;
+#email,#phone1,#phone2,#phone3{
+	color: gray;
+}
+#email:focus,#phone1:focus,#phone2:focus,#phone3:focus{
+	color: black;
+}
+.phone{
+	width: 77px;	
+}
+#birth{
+	width: 395px;
+	padding-right: 5px;
+}
+.birth{
+	width: 67px;	
+}
+#submitDiv{
+	margin-bottom: 30px;	
+}
+#submitDiv input{
+	width: 180px;
+	height: 35px;
+	font-size: 15px;
+	margin: 15px;
 }
 #last input{
-	width: 90px;
-	height: 25px;
-	font-size: 13px;
+	width: 115px;
+	height: 28px;
+	font-size: 14px;
+	margin: 10px 10px 50px 10px;
+}
+input::placeholder{
+	font-size: 11px;
 }

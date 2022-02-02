@@ -3,9 +3,9 @@ function mylistFn(){
 }
 
 function modifyFn(){
-	location.href="modify.jsp";
+	location.href="passCheck.jsp?url=modify";
 }
 
 function withdrawFn(){
-	location.href="withdraw.jsp";
+	location.href="passCheck.jsp?url=withdraw";
 }

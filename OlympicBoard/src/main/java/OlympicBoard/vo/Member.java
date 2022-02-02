@@ -10,11 +10,18 @@ public class Member {
 	private String memberpassword;
 	private String membername;	
 	private String phone;
+	private String birth;
 	private String email;
 	private String enterdate;
 	private int midx;
 			
 
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public String getEnterdate() throws Exception {	
 		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(enterdate);
 		

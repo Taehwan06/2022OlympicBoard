@@ -36,6 +36,7 @@
 			m.setMembername(rs.getString("membername"));
 			m.setPhone(rs.getString("phone"));
 			m.setEmail(rs.getString("email"));
+			m.setBirth(rs.getString("birth"));
 			m.setEnterdate(rs.getString("enterdate"));
 			m.setMidx(rs.getInt("midx"));
 			

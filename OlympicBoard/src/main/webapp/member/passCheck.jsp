@@ -3,17 +3,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
-<%
-	int cnt = 0;
-	String memberModify = "";
+<%	
 	
-	String email = "";
-	String phone = "";
-
-	Check check = (Check)session.getAttribute("check");
-	if(check != null){
-		memberModify = check.getMemberModify();
-	}
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
