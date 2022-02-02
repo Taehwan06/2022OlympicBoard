@@ -12,7 +12,7 @@ section{
 	margin: 10px;
 }
 .border span{
-	content-size: 15px;
+	font-size: 16px;
 	height: 20px;
 	padding: 5px 0px 8px;
 	display: inline-block;

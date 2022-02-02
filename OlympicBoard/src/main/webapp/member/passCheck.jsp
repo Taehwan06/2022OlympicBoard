@@ -3,49 +3,13 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
-<%	
-	
+<%
+	String url = request.getParameter("url");
+
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
-	}else{
-		int midx = loginUser.getMidx();
-
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
-			
-			String sql = "select * from (select count(*) c from board where midx=?)";
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,midx);
-			
-			rs = psmt.executeQuery();
-			
-			if(rs.next()){
-				cnt = rs.getInt("c");
-			}
-						
-			conn = DBManager.getConnection();
-			
-			sql = "select * from member where midx=?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,midx);
-			
-			rs = psmt.executeQuery();
-			
-			if(rs.next()){
-				email = rs.getString("email");
-				phone = rs.getString("phone");		
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(psmt,conn,rs);
-		}
+	}else{		
 %>
 <!DOCTYPE html>
 <html>
@@ -54,63 +18,28 @@
 <title>마이 페이지</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/css/mypage.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/passCheck.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/mypage.js"></script>
-<script>
-	<%	if(memberModify == null){
-	%>
-	<%	}else if(memberModify.equals("success")){
-	%>		alert("회원정보 수정이 완료되었습니다.");
-	<%	}else if(memberModify.equals("fail")){
-	%>		alert("회원정보 수정이 실패했습니다.");
-	<%	}
-	%>
-</script>
+<script src="<%=request.getContextPath()%>/js/passCheck.js"></script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
-		<div>		
-			<div>
-				<div class="border">
-					<span class="left">아이디</span>
-					<span class="right"><%=loginUser.getMemberid() %></span>
-				</div>
-				<div class="border">
-					<span class="left">성명</span>
-					<span class="right"><%=loginUser.getMembername() %></span>
-				</div>
-				<div class="border">
-					<span class="left">연락처</span>
-					<span class="right"><%=phone %></span>
-				</div>
-				<div class="border">
-					<span class="left">이메일 주소</span>
-					<span class="right"><%=email %></span>
-				</div>
-				<div class="border">
-					<span class="left">가입일</span>
-					<span class="right"><%=loginUser.getEnterdate() %></span>
-				</div>
-				<div class="border">
-					<span class="left">작성한 게시글 수</span>
-					<span class="right"><%=cnt %></span>
-				</div>
+		<div>
+			<div id="text">
+				비밀번호를 다시 입력해주세요.
 			</div>
-			<div class="button">
-				<div class="border" onclick="mylistFn()">
-					<span>내가 쓴 글 보러가기</span>
-				</div><br>
-				<div class="border" onclick="modifyFn()()">
-					<span>회원정보 수정</span>
-				</div><br>
-				<div class="border" onclick="withdrawFn()">
-					<span>회원 탈퇴</span>
+			<form name="passCheckFrm">
+				<div class="border">
+					<label for="memberpassword"><span class="headSpan">비밀번호</span></label>
+					<input type="password" name="memberpassword" id="memberpassword" 
+					placeholder="비밀번호를 입력하세요">
+				</div>				
+				<div class="button">
+					<input type="button" value="확인" name="passCheck" onclick="passCheckFn()">
 				</div>
-			</div>
+			</form>
 		</div>
 	</section>
 	<%@ include file="/footer.jsp" %>
@@ -118,5 +47,4 @@
 </html>
 <%
 	}
-	session.setAttribute("check",null);
 %>
