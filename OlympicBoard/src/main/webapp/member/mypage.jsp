@@ -39,123 +39,12 @@
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
-
+<link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/mypage.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
-<style>	
-	*{
-		margin:0px;
-		padding:0px;
-	}
-	body{
-		width: 800px;
-		height: 90vh;
-		min-height: 500px;
-		margin: auto;
-	}
-	header{
-		height:70px;			
-		text-align:center;
-		position:relative;
-	}
-	header>div{
-		text-align:right;
-		position:absolute;
-		top:20px;
-		right:20px;
-	}
-	header>div>span{
-		padding-right: 10px;
-	}
-	header>div>input{
-		height: 22px;
-		width: 90px;
-		border-radius: 5px;
-		border: 1px solid gray;
-		background: lightgray;
-	}
-	header>div input:hover{
-		cursor: pointer;
-		background-color: skyblue;
-		border-radius: 5px;
-	}
-	header>h2{
-		padding:20px;
-	}
-	header>h2>a{
-		text-decoration: none;
-		color: black;
-	}
-	header>h2>a:hover{
-		color: skyblue;
-	}
-	nav{
-		height: 30px;
-		width: 800px;
-		background: #EEEEEE;			
-		text-align: center;
-	}		
-	nav span{
-		background: #EEEEEE;	
-		color: black;
-		height: 27px;
-		width: 100px;
-		padding-top: 3px;			
-		display: inline-block;			
-		text-align: center;
-	}
-	nav span:hover{
-		background: gray;
-		color: skyblue;
-		cursor: pointer;
-	}
-	section{
-		height:70%;
-		text-align: center;
-		padding: 50px 0px;
-		margin: auto;
-	}
-	.border{
-		width: 450px;
-		border: 1px solid lightgray;
-		display: inline-block;
-		border-radius: 5px;
-		margin: 10px;
-	}
-	.border span{
-		content-size: 15px;
-		height: 20px;
-		padding: 5px 0px 8px;
-		display: inline-block;
-	}
-	.left{
-		width: 170px;
-		border-right: 1px solid lightgray;
-	}
-	.right{
-		width: 260px;
-	}
-	.button{
-		margin: 50px 0px;
-	}
-	.button .border{
-		width: 250px;
-	}
-	.button .border:hover{
-		background: skyblue;
-		cursor: pointer;
-	}
-	footer{
-		height:50px;
-		border-top:1px solid gray;
-		text-align: center;
-	}
-	footer div{
-		margin: 15px;
-	}
-</style>
-<script>
-
-</script>
+<script src="<%=request.getContextPath()%>/js/mypage.js"></script>
 </head>
 <body>
 	<%@ include file="/loginHeader.jsp" %>
