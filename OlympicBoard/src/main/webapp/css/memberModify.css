@@ -28,7 +28,7 @@ section input{
 	border: none;
 	font-size: 15px;
 	text-align: center;
-}		
+}
 .footSpan{
 	width: 400px;
 	height: 15px;
@@ -73,12 +73,6 @@ section input[type=button]:hover{
 	height: 35px;
 	font-size: 15px;
 	margin: 15px;
-}
-#last input{
-	width: 115px;
-	height: 28px;
-	font-size: 14px;
-	margin: 10px 10px 50px 10px;
 }
 input::placeholder{
 	font-size: 11px;

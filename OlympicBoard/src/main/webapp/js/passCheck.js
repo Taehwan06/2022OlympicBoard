@@ -1,6 +1,5 @@
-var val = 
 function passCheckFn(){
-	if(val == "modify"){
-		location.href="memberModify.jsp";
-	}
+	document.passCheckFrm.method = "post";
+	document.passCheckFrm.action = "passCheckOk.jsp";
+	document.passCheckFrm.submit();
 }

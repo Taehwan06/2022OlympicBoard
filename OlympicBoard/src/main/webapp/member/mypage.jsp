@@ -6,6 +6,7 @@
 <%
 	int cnt = 0;
 	String memberModify = "";
+	String withdraw = "";
 	
 	String email = "";
 	String phone = "";
@@ -13,6 +14,7 @@
 	Check check = (Check)session.getAttribute("check");
 	if(check != null){
 		memberModify = check.getMemberModify();
+		withdraw = check.getWithdraw();
 	}
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
@@ -65,15 +67,16 @@
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/mypage.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/mypage.js"></script>
 <script>
-	<%	if(memberModify == null){
+	<%	if(check == null){
 	%>
 	<%	}else if(memberModify.equals("success")){
 	%>		alert("회원정보 수정이 완료되었습니다.");
 	<%	}else if(memberModify.equals("fail")){
 	%>		alert("회원정보 수정이 실패했습니다.");
+	<%	}else if(withdraw.equals("fail")){
+	%>		alert("회원 탈퇴가 실패했습니다.");
 	<%	}
 	%>
 </script>

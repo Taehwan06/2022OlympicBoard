@@ -11,8 +11,17 @@ public class Check {
 	public boolean sendId;
 	public boolean sendPass;
 	public String memberModify;
+	public String withdraw;
 	
 	
+	public String getWithdraw() {
+		return withdraw;
+	}
+
+	public void setWithdraw(String withdraw) {
+		this.withdraw = withdraw;
+	}
+
 	public String getMemberModify() {
 		return memberModify;
 	}

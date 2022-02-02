@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="OlympicBoard.vo.*" %>
 <%@ include file="/scriptlet/base.jsp"%>
+<%
+	String withdraw = "";
+
+	Check check = (Check)session.getAttribute("check");
+	if(check != null){		
+		withdraw = check.getWithdraw();
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +20,14 @@
 <link href="<%=request.getContextPath() %>/css/index.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script>
+	<%	if(check == null){
+	%>	
+	<%	}else if(withdraw.equals("success")){
+	%>		alert("회원 탈퇴가 완료되었습니다.");
+	<%	}
+	%>
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp" %>
@@ -23,3 +40,6 @@
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
+<%
+	session.setAttribute("check",null);
+%>
