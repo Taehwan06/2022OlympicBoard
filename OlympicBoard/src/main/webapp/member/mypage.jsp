@@ -69,12 +69,15 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/mypage.js"></script>
 <script>
-	<%	if(check == null){
+	<%	if(memberModify == null){
 	%>
 	<%	}else if(memberModify.equals("success")){
 	%>		alert("회원정보 수정이 완료되었습니다.");
 	<%	}else if(memberModify.equals("fail")){
 	%>		alert("회원정보 수정이 실패했습니다.");
+	<%	}
+		if(withdraw == null){
+	%>		
 	<%	}else if(withdraw.equals("fail")){
 	%>		alert("회원 탈퇴가 실패했습니다.");
 	<%	}

@@ -21,7 +21,7 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
-	<%	if(check == null){
+	<%	if(withdraw == null){
 	%>	
 	<%	}else if(withdraw.equals("success")){
 	%>		alert("회원 탈퇴가 완료되었습니다.");

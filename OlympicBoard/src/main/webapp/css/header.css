@@ -5,11 +5,11 @@
 }
 body{
 	width: 800px;	
-	min-height: 500px;
+	min-height: 800px;
 	margin: auto;
 }
 header{
-	height:70px;			
+	height:120px;			
 	text-align:center;
 	position:relative;
 }
@@ -20,13 +20,14 @@ header>div{
 	right:20px;
 }
 header>div>span{
-	padding-right: 10px;
+	margin: 10px 10px 10px 0px;
+	display: inline-block;
 }
 header>div>input{
 	height: 22px;
 	width: 90px;
-	border-radius: 5px;
-	border: 1px solid gray;
+	border: none;
+	border-radius: 5px;	
 	background: lightgray;
 }
 header>div input:hover{
@@ -35,7 +36,7 @@ header>div input:hover{
 	border-radius: 5px;
 }
 header>h2{
-	padding:20px;
+	padding:40px;
 }
 header>h2>a{
 	text-decoration: none;
