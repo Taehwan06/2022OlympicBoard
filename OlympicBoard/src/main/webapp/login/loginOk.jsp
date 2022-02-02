@@ -18,7 +18,7 @@
 	try{
 		conn = DBManager.getConnection();
 		
-		String sql = "select * from member where memberid=? and memberpassword=?";
+		String sql = "select * from member where memberid=? and memberpassword=? and delyn='N'";
 		
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,memberid);
@@ -53,7 +53,7 @@
 				response.sendRedirect(request.getContextPath());
 			}
 		}else{
-			sql = "select * from member where memberid=?";
+			sql = "select * from member where memberid=? and delyn='N'";
 			
 			psmt = null;
 			psmt = conn.prepareStatement(sql);
