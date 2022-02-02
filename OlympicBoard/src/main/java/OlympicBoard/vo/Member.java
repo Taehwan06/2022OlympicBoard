@@ -1,20 +1,26 @@
 package OlympicBoard.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Member {
 
 	private String memberid;
 	private String memberpassword;
-	private String membername;
-	private String gender;
-	private String addr;
+	private String membername;	
 	private String phone;
 	private String email;
 	private String enterdate;
 	private int midx;
-	
-	
-	public String getEnterdate() {
-		return enterdate;
+			
+
+	public String getEnterdate() throws Exception {	
+		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(enterdate);
+		
+		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(date);
+		
+		return outdate;
 	}
 	public void setEnterdate(String enterdate) {
 		this.enterdate = enterdate;
@@ -42,18 +48,6 @@ public class Member {
 	}
 	public void setMembername(String membername) {
 		this.membername = membername;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
 	}
 	public String getPhone() {
 		return phone;

@@ -34,6 +34,9 @@
 			m.setMemberid(rs.getString("memberid"));
 			m.setMemberpassword(rs.getString("memberpassword"));
 			m.setMembername(rs.getString("membername"));
+			m.setPhone(rs.getString("phone"));
+			m.setEmail(rs.getString("email"));
+			m.setEnterdate(rs.getString("enterdate"));
 			m.setMidx(rs.getInt("midx"));
 			
 			session.setAttribute("loginUser",m);

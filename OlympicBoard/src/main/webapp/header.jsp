@@ -14,7 +14,7 @@
 	<div>
 		<span><%=m.getMembername() %>님 환영합니다</span><br>
 		<input type="button" name="logout" value="로그아웃" onclick="location.href='<%=request.getContextPath() %>/login/logout.jsp'">
-		<input type="button" name="mypage" value="마이페이지" onclick="location.href='<%=request.getContextPath() %>/member/view.jsp'">
+		<input type="button" name="mypage" value="마이페이지" onclick="location.href='<%=request.getContextPath() %>/member/mypage.jsp'">
 	</div>
 	<%} %>
 	<h2><a href="<%=request.getContextPath() %>">게시판</a></h2>
