@@ -10,6 +10,24 @@
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
 	
+	Cookie[] cookieHCA = request.getCookies();
+
+	String value = "";
+	String[] valueA = null;
+	boolean hitCheck = false;
+	if(cookieHCA != null){
+		for(Cookie cookieHC : cookieHCA){
+			if(cookieHC.getName().equals("hitCheck")){
+				value = cookieHC.getValue();
+				valueA = value.split("&");
+				for(int i=0; i<valueA.length; i++){
+					if(valueA[i].equals(bidx)){
+						hitCheck = true;
+					}
+				}
+			}
+		}
+	}	
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
 
@@ -19,10 +37,25 @@
 	
 	try{
 		conn = DBManager.getConnection();
+		String sql = "";
 		
-		String sql = "select * from board where bidx=?";
+		if(!hitCheck){
+			sql = "update board set bhit=((select bhit from board where bidx=?)+1) where bidx=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,bidx);
+			psmt.setString(2,bidx);
+			
+			int reault = psmt.executeUpdate();
+			if(reault>0){
+				Cookie cookieHC = new Cookie("hitCheck", value+bidx+"&");
+				cookieHC.setMaxAge(60*60);
+				response.addCookie(cookieHC);
+			}
+		}
+			
+		sql = "select * from board where bidx=?";
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,bidx);
+		psmt.setString(1,bidx);		
 		
 		rs = psmt.executeQuery();
 		
