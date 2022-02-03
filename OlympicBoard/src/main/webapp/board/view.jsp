@@ -52,7 +52,7 @@
 				response.addCookie(cookieHC);
 			}
 		}
-			
+		
 		sql = "select * from board where bidx=?";
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,bidx);		
