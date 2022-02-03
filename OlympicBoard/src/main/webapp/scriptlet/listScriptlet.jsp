@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="OlympicBoard.vo.*"%>
-<%@ page import="OlympicBoard.util.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="org.json.simple.*"%>
+<%@ page import="OlympicBoard.vo.*"%>
+<%@ page import="OlympicBoard.util.*"%>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();
 	reurl.setUrl(url);
 	session.setAttribute("ReUrl",reurl);
 
-	Member login = (Member)session.getAttribute("loginUser");
-	request.setCharacterEncoding("UTF-8");
+	Member loginUser = (Member)session.getAttribute("loginUser");	
 		
 	String searchType = request.getParameter("searchType");
-	String searchValue = request.getParameter("searchValue");
+	String searchValue = request.getParameter("searchValue");	
 	
 	String nowPage = request.getParameter("nowPage");
 	int nowPageI = 1;
@@ -80,5 +81,5 @@
 		
 		psmt = conn.prepareStatement(sql);
 		
-		rs = psmt.executeQuery();		
+		rs = psmt.executeQuery();
 %>

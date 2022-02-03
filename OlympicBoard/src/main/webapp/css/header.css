@@ -9,9 +9,9 @@ body{
 	margin: auto;
 }
 header{
-	height:120px;			
-	text-align:center;
-	position:relative;
+	height: 120px;			
+	text-align: center;
+	position: relative;
 }
 header>div{
 	text-align:right;

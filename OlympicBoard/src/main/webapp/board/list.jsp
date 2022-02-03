@@ -11,6 +11,7 @@
 <link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
@@ -50,38 +51,47 @@
 					</tr>
 				</thead>
 				<tbody>
-				<%	while(rs.next()){
-				%>
-						<tr>
-							<td><%=rs.getInt("bidx") %></td>
-							<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>"
-							+"&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
-							<%=rs.getString("bsubject") %></a></td>
-							<td><%=rs.getString("bwriter") %></td>
-							<td><%=rs.getString("bwdate") %></td>
-							<td><%=rs.getString("bhit") %></td>
-						<tr>
-				<%	}
-				%>
-				</tbody>
+			<%	while(rs.next()){							
+			%>		<tr>
+						<td><%=rs.getInt("bidx") %></td>
+						<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>"
+						+"&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
+						<%=rs.getString("bsubject") %> 
+						<%	if(rs.getInt("recnt")>0){ 
+						%>		[<%=rs.getInt("recnt") %>]
+						<%	} 
+						%></a></td>
+						<td><%=rs.getString("bwriter") %></td>
+						<td><%=rs.getString("bwdate") %></td>
+						<td><%=rs.getString("bhit") %></td>
+					<tr>
+			<%	}
+			%>	</tbody>				
 			</table>
+		<%	if(loginUser != null){ 
+		%>
+			<div id="writeButtonDiv">
+				<input type="button" id="writeButton" value="글쓰기" onclick="writeFn()">
+			</div>
+		<% } 
+		%>
 			<div id="pagingArea">
-			<% 	if(paging.getStartPage() > 1){	%>
-					<a href="list.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&lt;</a>	
+			<% 	if(paging.getStartPage() > 1){	
+			%>		<input type="button" class="backButton" value="이전" 
+					onclick="location.href='list.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
 			<%	}
 				for(int i= paging.getStartPage(); i<=paging.getEndPage(); i++){
 					if(i == paging.getNowPage()){
-			%>
-						<b><%= i %></b>
+			%>			<input type="button" class="selButton" value="<%=i%>" 
+						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
 			<%		}else{
-			%>
-						<a href="list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>"><%=i%></a>
+			%>			<input type="button" class="numButton" value="<%=i%>" 
+						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
 			<%		}
-				}
-			%>			
-			<% 	if(paging.getEndPage() != paging.getLastPage()){
-			%>
-				<a href="list.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&gt;</a>	
+				}						
+			 	if(paging.getEndPage() != paging.getLastPage()){
+			%>		<input type="button" class="nextButton" value="다음" 
+					onclick="location.href='list.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
 			<%	}
 			%>			
 			</div>

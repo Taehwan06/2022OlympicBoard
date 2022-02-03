@@ -4,6 +4,12 @@ section{
 	padding: 50px 0px;
 	margin: auto;
 }
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
 section>div{
 	width: 700px;
 	height: 500px;			
@@ -42,4 +48,42 @@ section>div>table{
 	margin: auto;
 	width: 700px;
 	height: 400px;
+}
+#writeButtonDiv{
+	text-align: right;
+}
+#writeButton{
+	margin: 10px 15px 0px 0px;
+	width: 80px;
+	height: 25px;
+	font-size: 15px;
+	background: lightgray;
+	border-radius: 5px;
+}
+#writeButton:hover{
+	background: skyblue;
+	cursor: pointer;
+}
+#pagingArea{
+	margin: 15px 0px 30px 0px;
+}
+.backButton,.nextButton{
+	width: 40px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.numButton,.selButton{
+	width: 25px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.selButton{
+	font-weight: bold;
+	color: blue;
+}
+#pagingArea input:hover{
+	background: skyblue;
+	cursor: pointer;
 }
