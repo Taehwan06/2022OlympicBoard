@@ -11,7 +11,6 @@
 <link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
@@ -54,8 +53,7 @@
 			<%	while(rs.next()){							
 			%>		<tr>
 						<td><%=rs.getInt("bidx") %></td>
-						<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>"
-						+"&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
+						<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
 						<%=rs.getString("bsubject") %> 
 						<%	if(rs.getInt("recnt")>0){ 
 						%>		[<%=rs.getInt("recnt") %>]

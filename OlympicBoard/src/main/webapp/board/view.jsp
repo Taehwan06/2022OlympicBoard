@@ -4,7 +4,14 @@
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	String bidx = request.getParameter("bidx");
+	String searchType = request.getParameter("searchType");
+	String searchValue = request.getParameter("searchValue");
+	
+	
+	Member loginUser = (Member)session.getAttribute("loginUser");
 
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -25,12 +32,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유 게시판</title>
+<title>글 상세보기</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/view.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script>
+	var sT = "<%=searchType %>";
+	var sV = "<%=searchValue %>";
+</script>
+<script src="<%=request.getContextPath() %>/js/view.js"></script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
@@ -63,6 +75,13 @@
 					<tr>
 				</tbody>
 			</table>
+			<div id="buttonDiv">
+		<%	if(loginUser != null && loginUser.getMidx() == rs.getInt("midx")){ 
+		%>		<input type="button" id="modifyButton" value="수정" onclick="modifyFn()">
+				<input type="button" id="deleteButton" value="삭제" onclick="deleteFn()">
+		<%	}
+		%>		<input type="button" id="listButton" value="목록" onclick="listFn()">
+			</div>
 		</div>
 	</section>
 	<%@ include file="/footer.jsp" %>
