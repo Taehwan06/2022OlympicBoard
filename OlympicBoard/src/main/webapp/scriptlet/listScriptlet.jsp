@@ -12,10 +12,12 @@
 	reurl.setUrl(url);
 	session.setAttribute("ReUrl",reurl);
 
-	Member loginUser = (Member)session.getAttribute("loginUser");	
+	Member loginUser = (Member)session.getAttribute("loginUser");
 		
 	String searchType = request.getParameter("searchType");
-	String searchValue = request.getParameter("searchValue");	
+	String searchValue = request.getParameter("searchValue");
+	
+	Notice notice = new Notice();
 	
 	String nowPage = request.getParameter("nowPage");
 	int nowPageI = 1;
@@ -81,5 +83,5 @@
 		
 		psmt = conn.prepareStatement(sql);
 		
-		rs = psmt.executeQuery();
+		rs = psmt.executeQuery();				
 %>

@@ -50,7 +50,8 @@
 					</tr>
 				</thead>
 				<tbody>
-			<%	while(rs.next()){							
+			<%	while(rs.next()){
+					notice.setListWritedate(rs.getString("bwdate"));
 			%>		<tr>
 						<td><%=rs.getInt("bidx") %></td>
 						<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
@@ -60,7 +61,7 @@
 						<%	} 
 						%></a></td>
 						<td><%=rs.getString("bwriter") %></td>
-						<td><%=rs.getString("bwdate") %></td>
+						<td><%=notice.getListWritedate() %></td>
 						<td><%=rs.getString("bhit") %></td>
 					<tr>
 			<%	}

@@ -14,8 +14,7 @@ section input{
 }
 section>div>table{	
 	margin: auto;
-	width: 700px;
-	height: 400px;
+	width: 700px;	
 }
 #buttonDiv{
 	text-align: right;
@@ -33,3 +32,71 @@ section>div>table{
 	background: skyblue;
 	cursor: pointer;
 }
+#reInputArea{
+	padding: 20px;
+	text-align: left;
+}
+#reInput{
+	width: 540px;
+	height: 35px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+#reSubmitButton{
+	width: 80px;
+	height: 35px;
+	margin-left: 20px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background: white;
+	font-size: 16px;
+	cursor: pointer;
+}
+#reArea{
+	border: 1px solid gray;
+	text-align: left;
+	padding: 5px;
+}
+#rename,#redate,#recon{	
+	display: inline-block;
+}
+#rename{
+	font-size: 14px;
+	font-weight: bold;	
+}
+#redate{
+	font-size: 14px;
+	margin: 0px 20px;
+}
+#redel{
+	border: 1px solid black;
+	border-radius: 5px;
+	background: white;
+	width: 35px;
+	height: 18px;
+	font-size: 12px;
+	cursor: pointer;
+}
+#recon{
+	font-size: 14px;
+}
+#redel:hover,#reSubmitButton:hover{
+	background: skyblue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

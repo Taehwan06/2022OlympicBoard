@@ -10,6 +10,7 @@
 
 	String memberid = request.getParameter("memberid");
 	String memberpassword = request.getParameter("memberpassword");
+	String bidx = request.getParameter("bidx");
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -47,7 +48,7 @@
 		
 		if(m != null){
 			if(reurl != null){
-				String url = reurl.getUrl();
+				String url = reurl.getUrl()+"?bidx="+bidx;
 				response.sendRedirect(url);
 			}else{
 				response.sendRedirect(request.getContextPath());

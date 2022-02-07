@@ -5,6 +5,7 @@
 	request.setCharacterEncoding("UTF-8");
 
 	String memberid = request.getParameter("memberid");
+	String bidx = request.getParameter("bidx");
 		
 	Check check = (Check)session.getAttribute("check");
 	String joinCheck = null;
@@ -57,6 +58,7 @@
 			<form name="loginFrm">
 				<div>
 					<div class="border">
+						<input type="hidden" name="bidx" value="<%=bidx %>">
 						<label for="memberid"><span class="headSpan">아이디</span></label>
 						<input type="text" name="memberid" id="memberid" onblur="onBlurFn(this)"
 						<%if(memberid != null && !memberid.equals("") && !memberid.equals("null")) out.print("value='"+memberid+"'"); %>>
