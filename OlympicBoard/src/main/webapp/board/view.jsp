@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
 <%@ include file="/scriptlet/viewScriptlet.jsp" %>
@@ -37,17 +38,16 @@
 		});
 	}
 	
-	function reDeleteFn(){
+	function reDeleteFn(ridx,obj){
 		$.ajax({
 			url: "replyDelete.jsp",
 			type: "post",
-			data: $("#redelFrm").serialize(),
-			success: function(data){
-				console.log(data);
+			data: "ridx="+ridx,
+			success: function(data){				
 				var result = data.trim();
 				if(result>0){
-					console.log("ok");
-				}				
+					obj.style.display = "none";					
+				}
 			}
 		});
 	}
@@ -63,22 +63,22 @@
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td><%=rs.getString("bsubject") %></td>
+						<td><%=board.getBsubject() %></td>
 					<tr>
 					<tr>
 						<td>작성자</td>
-						<td><%=rs.getString("bwriter") %></td>
+						<td><%=board.getBwriter() %></td>
 					<tr>
 					<tr>
 						<td>작성일</td>
-						<td><%=notice.getViewWritedate() %></td>
+						<td><%=board.getBwdate() %></td>
 					<tr>
 					<tr>
 						<td>조회수</td>
-						<td><%=rs.getString("bhit") %></td>
+						<td><%=board.getBhit() %></td>
 					<tr>
 					<tr>	
-						<td colspan="2"><%=rs.getString("bcontent") %></td>
+						<td colspan="2"><%=board.getBcontent() %></td>
 					<tr>
 					<tr>
 						<td colspan="2">추천</td>
@@ -86,7 +86,7 @@
 				</tbody>
 			</table>
 			<div id="buttonDiv">
-		<%	if(loginUser != null && loginUser.getMidx() == rs.getInt("midx")){ 
+		<%	if(loginUser != null && loginUser.getMidx() == board.getMidx()){ 
 		%>		<input type="button" id="modifyButton" value="수정" onclick="modifyFn()">
 				<input type="button" id="deleteButton" value="삭제" onclick="deleteFn()">
 		<%	}
@@ -108,22 +108,21 @@
 		<%	}
 		%>		</form>
 			</div>
-			<div id="replyBox">
-		<%	while(rs2.next()){
-				notice.setReplyWritedate(rs2.getString("rwdate"));
-		%>		<div id="reArea">
-		<%=rs2.getInt("ridx") %>
-					<form id="redelFrm">
-						<span id="rename"><%=rs2.getString("rwriter") %></span>
-						<span id="redate"><%=notice.getReplyWritedate() %></span>
-		<%	if(loginUser != null && loginUser.getMidx() == rs2.getInt("midx")){
-		%>			
-						<input type="hidden" name="ridx" value="<%=rs2.getInt("ridx") %>">
-						<input type="button" value="삭제" id="redel" onclick="reDeleteFn()">
-		<%	}
-		%>			</form>
-					<span id="recon"><%=rs2.getString("rcontent") %></span>
-				</div>
+			<div id="reBox">
+		<%	for(Reply r : rList){				
+		%>		<div id="reArea">					
+					<span id="rename"><%=r.getRwriter() %></span>
+					<span id="redate"><%=r.getRwdate() %></span>
+			<%	if(loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")){
+			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">						
+			<%	}
+			%>		<br>
+			<%	if(r.getRdelyn().equals("Y")){
+			%>		<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
+			<%	}else if(r.getRdelyn().equals("N")){
+			%>		<span id="recon"><%=r.getRcontent() %></span>
+			<%	}
+			%>	</div>
 		<%	}
 		%>	</div>
 		</div>
@@ -132,12 +131,5 @@
 </body>
 </html>
 <%
-		}
-		
-	}catch(Exception e){
-		e.printStackTrace();
-	}finally{
-		DBManager.close(psmt,conn,rs);
-		DBManager.close(psmt2,conn2,rs2);
-	}
+	
 %>

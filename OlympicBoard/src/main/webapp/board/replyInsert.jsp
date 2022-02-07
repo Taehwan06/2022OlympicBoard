@@ -26,7 +26,13 @@
 		psmt.setString(3,bidx);
 		psmt.setInt(4,loginUser.getMidx());
 		
-		int result = psmt.executeUpdate();
+		psmt.executeUpdate();
+		
+		sql = "update board set recnt=((select recnt from board where bidx=?)+1) where bidx=?";
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,bidx);
+		psmt.setString(2,bidx);
+		psmt.executeUpdate();
 		
 		sql = "select * from reply where ridx = "
 				+"(select max(ridx) from reply)";

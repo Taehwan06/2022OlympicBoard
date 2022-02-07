@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="org.json.simple.*" %>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
@@ -21,6 +22,9 @@
 	Notice notice = new Notice();
 	
 	Cookie[] cookieHCA = request.getCookies();
+	
+	Board board = new Board();
+	ArrayList<Reply> rList = new ArrayList<>();
 
 	String value = "";
 	String[] valueA = null;
@@ -42,9 +46,6 @@
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
-	Connection conn2 = null;
-	PreparedStatement psmt2 = null;
-	ResultSet rs2 = null;
 	
 	try{
 		conn = DBManager.getConnection();
@@ -71,12 +72,38 @@
 		rs = psmt.executeQuery();		
 		
 		if(rs.next()){
-			notice.setViewWritedate(rs.getString("bwdate"));
+			board.setBidx(rs.getInt("bidx"));
+			board.setMidx(rs.getInt("midx"));
+			board.setBhit(rs.getInt("bhit"));
+			board.setRecnt(rs.getInt("recnt"));
+			board.setBwriter(rs.getString("bwriter"));
+			board.setBsubject(rs.getString("bsubject"));
+			board.setBcontent(rs.getString("bcontent"));
+			board.setBwdate(rs.getString("bwdate"));
+		}
+		
+		sql = "select * from reply where bidx=?";
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,bidx);
+		
+		rs = psmt.executeQuery();
 			
-			conn2 = DBManager.getConnection();
-			String sql2 = "select * from reply where bidx=?";
-			psmt2 = conn2.prepareStatement(sql2);
-			psmt2.setString(1,bidx);
+		while(rs.next()){
+			Reply reply = new Reply();
+			reply.setRidx(rs.getInt("ridx"));
+			reply.setBidx(rs.getInt("bidx"));
+			reply.setMidx(rs.getInt("midx"));
+			reply.setRwriter(rs.getString("rwriter"));
+			reply.setRwdate(rs.getString("rwdate"));
+			reply.setRcontent(rs.getString("rcontent"));
+			reply.setRdelyn(rs.getString("rdelyn"));
 			
-			rs2 = psmt2.executeQuery();
+			rList.add(reply);
+		}
+			
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		DBManager.close(psmt,conn,rs);		
+	}
 %>
