@@ -1,6 +1,49 @@
 @charset "UTF-8";
 section{
-	text-align: center;
-	padding: 50px 0px;
+	text-align: left;
+	padding: 20px 50px;
 	margin: auto;
+}
+.box{
+	margin: 30px 0px;
+}
+#subjectTop{
+	margin: 0px 0px 3px 20px;
+}
+#subject{
+	width: 700px;
+	height: 30px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	font-size: 17px;
+	padding: 3px 15px;
+}
+#contentTop{
+	margin: 0px 0px 3px 20px;
+}
+#content{
+	width: 700px;
+	height: 400px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	font-size: 17px;
+	padding: 10px 15px;
+	resize: none;
+}
+#buttonBox{
+	text-align: right;
+	margin-bottom: 50px;
+}
+#writeSubmit,#cancel{
+	width: 70px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	background: lightgray;
+	margin: 0px 10px;
+	font-size: 15px;
+	cursor: pointer;
+}
+#writeSubmit:hover,#cancel:hover{
+	background: skyblue;
 }

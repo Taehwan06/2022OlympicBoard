@@ -12,8 +12,17 @@ public class Check {
 	public boolean sendPass;
 	public String memberModify;
 	public String withdraw;
+	public boolean writeCheck;
 	
 	
+	public boolean isWriteCheck() {
+		return writeCheck;
+	}
+
+	public void setWriteCheck(boolean writeCheck) {
+		this.writeCheck = writeCheck;
+	}
+
 	public String getWithdraw() {
 		return withdraw;
 	}

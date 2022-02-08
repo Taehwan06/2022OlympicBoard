@@ -11,6 +11,13 @@
 <link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/list.js"></script>
+<script>
+	var searchType = "<%=searchType%>";
+	var searchValue = "<%=searchValue%>";
+	console.log(searchType);
+	console.log(searchValue);
+</script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
@@ -47,6 +54,7 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
+						<th>추천</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,7 +70,8 @@
 						%></a></td>
 						<td><%=rs.getString("bwriter") %></td>
 						<td><%=notice.getListWritedate() %></td>
-						<td><%=rs.getString("bhit") %></td>
+						<td><%=rs.getInt("bhit") %></td>
+						<td><%=rs.getInt("up") %></td>
 					<tr>
 			<%	}
 			%>	</tbody>				
@@ -70,7 +79,8 @@
 		<%	if(loginUser != null){ 
 		%>
 			<div id="writeButtonDiv">
-				<input type="button" id="writeButton" value="글쓰기" onclick="writeFn()">
+				<input type="button" id="writeButton" value="글쓰기" 
+				onclick="location.href='write.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
 			</div>
 		<% } 
 		%>

@@ -25,6 +25,12 @@
 		nowPageI = Integer.parseInt(nowPage);
 	}
 	
+	
+	
+	
+	
+	
+	
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;

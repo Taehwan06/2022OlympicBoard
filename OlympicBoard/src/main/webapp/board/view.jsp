@@ -18,7 +18,8 @@
 <script>
 	var sT = "<%=searchType %>";
 	var sV = "<%=searchValue %>";
-	var bidx = "<%=bidx %>";
+	var bidx = "<%=bidx %>";	
+	
 	function reSubmitFn(){
 		$.ajax({
 			url: "replyInsert.jsp",
@@ -56,14 +57,12 @@
 	}
 	
 	function upFn(){
-	<%	loginUser = (Member)session.getAttribute("loginUser");
-		if(loginUser == null){
+	<%	if(loginUser == null){
 	%>		alert("로그인 후 이용해 주세요.");
 	<%	}else{
-	%>		var uplist = "<%=loginUser.getUplist() %>";
-			console.log(uplist);
+	%>		var uplist = "<%=loginUser.getUplist() %>";			
 			var uplistA = uplist.split("&");
-			var result = false;			
+			var result = false;
 			for(var i=0; i<uplistA.length; i++){				
 				if(uplistA[i] == bidx){					
 					result = true;
@@ -79,7 +78,9 @@
 					success: function(data){						
 						var result = data.trim();				
 						if(result>0){
-							var value = $("#upVal").text();					
+							var value = $("#upVal").text();
+							$("#up").attr("disabled",true);
+							$("#down").attr("disabled",true);							
 							$("#upVal").text(parseInt(value)+1);
 						}
 					}
@@ -88,6 +89,41 @@
 	<%	}
 	%>
 	}
+	
+	function downFn(){
+		<%	if(loginUser == null){
+		%>		alert("로그인 후 이용해 주세요.");
+		<%	}else{
+		%>		var uplist = "<%=loginUser.getUplist() %>";				
+				var uplistA = uplist.split("&");
+				var result = false;
+				for(var i=0; i<uplistA.length; i++){				
+					if(uplistA[i] == bidx){					
+						result = true;
+					}
+				}
+				if(result){
+					alert("추천 또는 비추천은 한 번만 하실 수 있습니다.");
+				}else{				
+					$.ajax({
+						url: "boardDown.jsp",
+						type: "post",
+						data: "bidx="+bidx,
+						success: function(data){						
+							var result = data.trim();				
+							if(result>0){
+								var value = $("#upVal").text();
+								$("#up").attr("disabled",true);
+								$("#down").attr("disabled",true);
+								$("#upVal").text(parseInt(value)-1);
+							}
+						}
+					});
+				}
+		<%	}
+		%>
+		}
+	
 </script>
 <script src="<%=request.getContextPath() %>/js/view.js"></script>
 </head>
