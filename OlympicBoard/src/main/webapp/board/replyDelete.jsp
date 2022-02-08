@@ -7,6 +7,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String ridx = request.getParameter("ridx");
+	String bidx = request.getParameter("bidx");
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -19,6 +20,12 @@
 		psmt.setString(1,ridx);
 				
 		int result = psmt.executeUpdate();
+		
+		sql = "update board set recnt=((select recnt from board where bidx=?)-1) where bidx=?";
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,bidx);
+		psmt.setString(2,bidx);
+		psmt.executeUpdate();
 				
 		out.print(result);
 		

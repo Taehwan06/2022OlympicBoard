@@ -40,6 +40,8 @@
 			m.setBirth(rs.getString("birth"));
 			m.setEnterdate(rs.getString("enterdate"));
 			m.setMidx(rs.getInt("midx"));
+			m.setUplist(rs.getString("uplist"));
+			m.setOriginEnterdate(rs.getString("enterdate"));
 			
 			session.setAttribute("loginUser",m);
 			check.setLoginCheck("ok");

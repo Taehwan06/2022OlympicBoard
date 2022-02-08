@@ -18,6 +18,7 @@
 <script>
 	var sT = "<%=searchType %>";
 	var sV = "<%=searchValue %>";
+	var bidx = "<%=bidx %>";
 	function reSubmitFn(){
 		$.ajax({
 			url: "replyInsert.jsp",
@@ -32,24 +33,60 @@
 				html += "<span id='recon'>"+json[0].rcontent+"</span>";
 				html += "</div>";
 				
-				$("#replyBox").append(html);
+				$("#reBox").append(html);
 				document.reSubmitFrm.reset();
 			}
 		});
 	}
-	
+		
 	function reDeleteFn(ridx,obj){
 		$.ajax({
 			url: "replyDelete.jsp",
 			type: "post",
-			data: "ridx="+ridx,
+			data: "ridx="+ridx+"&bidx="+bidx,
 			success: function(data){				
 				var result = data.trim();
 				if(result>0){
-					obj.style.display = "none";					
+					obj.style.display = "none";
+					obj.parentElement.lastElementChild.textContent = "삭제된 댓글입니다.";
+					obj.parentElement.lastElementChild.style.color = "gray";
 				}
 			}
 		});
+	}
+	
+	function upFn(){
+	<%	loginUser = (Member)session.getAttribute("loginUser");
+		if(loginUser == null){
+	%>		alert("로그인 후 이용해 주세요.");
+	<%	}else{
+	%>		var uplist = "<%=loginUser.getUplist() %>";
+			console.log(uplist);
+			var uplistA = uplist.split("&");
+			var result = false;			
+			for(var i=0; i<uplistA.length; i++){				
+				if(uplistA[i] == bidx){					
+					result = true;
+				}
+			}
+			if(result){
+				alert("추천 또는 비추천은 한 번만 하실 수 있습니다.");
+			}else{				
+				$.ajax({
+					url: "boardUp.jsp",
+					type: "post",
+					data: "bidx="+bidx,
+					success: function(data){						
+						var result = data.trim();				
+						if(result>0){
+							var value = $("#upVal").text();					
+							$("#upVal").text(parseInt(value)+1);
+						}
+					}
+				});
+			}
+	<%	}
+	%>
 	}
 </script>
 <script src="<%=request.getContextPath() %>/js/view.js"></script>
@@ -81,7 +118,11 @@
 						<td colspan="2"><%=board.getBcontent() %></td>
 					<tr>
 					<tr>
-						<td colspan="2">추천</td>
+						<td colspan="2">
+							<input type="button" id="up" value="추천" onclick="upFn()">
+							<span id="upVal"><%=board.getUp() %></span>
+							<input type="button" id="down" value="비추천" onclick="downFn()">
+						</td>
 					<tr>
 				</tbody>
 			</table>

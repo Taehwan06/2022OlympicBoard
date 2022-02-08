@@ -16,6 +16,19 @@ section>div>table{
 	margin: auto;
 	width: 700px;	
 }
+#up,#down{
+	margin: 10px;
+	width: 50px;
+	height: 20px;
+	font-size: 13px;
+	border: 1px solid black;
+	background: white;
+	border-radius: 5px;
+}
+#up:hover,#down:hover{
+	background: skyblue;
+	cursor: pointer;
+}
 #buttonDiv{
 	text-align: right;
 	margin: 10px 20px;
@@ -88,19 +101,3 @@ section>div>table{
 #redel:hover,#reSubmitButton:hover{
 	background: skyblue;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

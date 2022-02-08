@@ -80,9 +80,10 @@
 			board.setBsubject(rs.getString("bsubject"));
 			board.setBcontent(rs.getString("bcontent"));
 			board.setBwdate(rs.getString("bwdate"));
+			board.setUp(rs.getInt("up"));
 		}
 		
-		sql = "select * from reply where bidx=?";
+		sql = "select * from reply where bidx=? order by ridx";
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,bidx);
 		

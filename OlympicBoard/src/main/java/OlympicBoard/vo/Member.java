@@ -10,12 +10,26 @@ public class Member {
 	private String memberpassword;
 	private String membername;	
 	private String phone;
-	private String birth;
+	private String birth;	
 	private String email;
 	private String enterdate;
+	private String originEnterdate;
 	private int midx;
-			
+	private String uplist;
+	
 
+	public String getOriginEnterdate() {
+		return originEnterdate;
+	}
+	public void setOriginEnterdate(String originEnterdate) {
+		this.originEnterdate = originEnterdate;
+	}
+	public String getUplist() {
+		return uplist;
+	}
+	public void setUplist(String uplist) {
+		this.uplist = uplist;
+	}
 	public String getBirth() {
 		return birth;
 	}

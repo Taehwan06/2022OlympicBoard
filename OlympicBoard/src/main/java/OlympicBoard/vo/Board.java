@@ -15,8 +15,15 @@ public class Board {
 	private String bdelyn;
 	private int bhit;
 	private int recnt;
+	private int up;
 	
 	
+	public int getUp() {
+		return up;
+	}
+	public void setUp(int up) {
+		this.up = up;
+	}
 	public int getBidx() {
 		return bidx;
 	}

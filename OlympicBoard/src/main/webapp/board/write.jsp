@@ -7,7 +7,7 @@
 <title>글 작성</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/css/write.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -20,26 +20,21 @@
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td><input></td>
+						<td><input type="text" id="subject" name="subject" placeholder="제목을 입력하세요."></td>
 					<tr>
 					<tr>
-						<td>작성자</td>
-						<td><%=rs.getString("bwriter") %></td>
+						<td>내용</td>
+						<td><input type="text" id="subject" name="subject" placeholder="제목을 입력하세요."></td>
 					<tr>
 					<tr>
 						<td>작성일</td>
-						<td><%=rs.getString("bwdate") %></td>
+						<td><input type="text" id="subject" name="subject" placeholder="제목을 입력하세요."></td>
 					<tr>
 					<tr>
 						<td>조회수</td>
-						<td><%=rs.getString("bhit") %></td>
+						<td><input type="text" id="subject" name="subject" placeholder="제목을 입력하세요."></td>
 					<tr>
-					<tr>	
-						<td colspan="2"><%=rs.getString("bcontent") %></td>
-					<tr>
-					<tr>
-						<td colspan="2">추천</td>
-					<tr>
+				
 				</tbody>
 			</table>
 		</div>
