@@ -6,6 +6,7 @@
 
 	String memberid = request.getParameter("memberid");
 	String bidx = request.getParameter("bidx");
+	String nowPage = request.getParameter("nowPage");
 		
 	Check check = (Check)session.getAttribute("check");
 	String joinCheck = null;
@@ -27,7 +28,8 @@
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/login.js"></script>
-<script>	
+<script>
+	var nowPage = "<%=nowPage %>";
 	<%	if(joinCheck == null){
 	%>		
 	<%	}else if(joinCheck.equals("success")){

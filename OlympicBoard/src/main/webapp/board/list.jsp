@@ -11,18 +11,16 @@
 <link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/list.js"></script>
 <script>
 	var searchType = "<%=searchType%>";
 	var searchValue = "<%=searchValue%>";
-	console.log(searchType);
-	console.log(searchValue);
 </script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+	nowPage : <%=nowPage %>
 		<div>
 			<form name="searchFrm" action="list.jsp">
 				<select name="searchType">
@@ -62,7 +60,8 @@
 					notice.setListWritedate(rs.getString("bwdate"));
 			%>		<tr>
 						<td><%=rs.getInt("bidx") %></td>
-						<td><a href="view.jsp?bidx=<%=rs.getInt("bidx") %>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">
+						<td><a href="view.jsp?nowPage=<%=paging.getNowPage() %>&bidx=<%=rs.getInt("bidx") %>
+									&searchType=<%=searchType %>&searchValue=<%=searchValue %>">
 						<%=rs.getString("bsubject") %> 
 						<%	if(rs.getInt("recnt")>0){ 
 						%>		[<%=rs.getInt("recnt") %>]

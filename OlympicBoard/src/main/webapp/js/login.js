@@ -11,7 +11,7 @@ function onBlurFn(obj){
 }
 function loginFn(){
 	document.loginFrm.method = "post";
-	document.loginFrm.action = "loginOk.jsp";
+	document.loginFrm.action = "loginOk.jsp?nowPage="+nowPage;
 	document.loginFrm.submit();
 }
 function findIdFn(){

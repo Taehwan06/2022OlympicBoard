@@ -11,6 +11,7 @@
 	String bidx = request.getParameter("bidx");
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
+	String nowPage = request.getParameter("nowPage");
 	
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();

@@ -15,10 +15,13 @@
 <link href="<%=request.getContextPath() %>/css/view.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/view.js"></script>
 <script>
 	var sT = "<%=searchType %>";
 	var sV = "<%=searchValue %>";
-	var bidx = "<%=bidx %>";	
+	var bidx = "<%=bidx %>";
+	var nowPage = "<%=nowPage %>";
+	console.log(nowPage);
 	
 	function reSubmitFn(){
 		$.ajax({
@@ -60,11 +63,11 @@
 	<%	if(loginUser == null){
 	%>		alert("로그인 후 이용해 주세요.");
 	<%	}else{
-	%>		var uplist = "<%=loginUser.getUplist() %>";			
+	%>		var uplist = "<%=loginUser.getUplist() %>";
 			var uplistA = uplist.split("&");
 			var result = false;
-			for(var i=0; i<uplistA.length; i++){				
-				if(uplistA[i] == bidx){					
+			for(var i=0; i<uplistA.length; i++){
+				if(uplistA[i] == bidx){
 					result = true;
 				}
 			}
@@ -75,12 +78,14 @@
 					url: "boardUp.jsp",
 					type: "post",
 					data: "bidx="+bidx,
-					success: function(data){						
-						var result = data.trim();				
+					success: function(data){
+						var result = data.trim();
 						if(result>0){
 							var value = $("#upVal").text();
 							$("#up").attr("disabled",true);
-							$("#down").attr("disabled",true);							
+							$("#down").attr("disabled",true);
+							$("#up").css("border","1px solid gray");
+							$("#down").css("border","1px solid gray");
 							$("#upVal").text(parseInt(value)+1);
 						}
 					}
@@ -94,23 +99,23 @@
 		<%	if(loginUser == null){
 		%>		alert("로그인 후 이용해 주세요.");
 		<%	}else{
-		%>		var uplist = "<%=loginUser.getUplist() %>";				
+		%>		var uplist = "<%=loginUser.getUplist() %>";
 				var uplistA = uplist.split("&");
 				var result = false;
-				for(var i=0; i<uplistA.length; i++){				
-					if(uplistA[i] == bidx){					
+				for(var i=0; i<uplistA.length; i++){
+					if(uplistA[i] == bidx){
 						result = true;
 					}
 				}
 				if(result){
 					alert("추천 또는 비추천은 한 번만 하실 수 있습니다.");
-				}else{				
+				}else{
 					$.ajax({
 						url: "boardDown.jsp",
 						type: "post",
 						data: "bidx="+bidx,
-						success: function(data){						
-							var result = data.trim();				
+						success: function(data){
+							var result = data.trim();
 							if(result>0){
 								var value = $("#upVal").text();
 								$("#up").attr("disabled",true);
@@ -125,12 +130,12 @@
 		}
 	
 </script>
-<script src="<%=request.getContextPath() %>/js/view.js"></script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+	nowPage : <%=nowPage %>
 		<div>			
 			<table border=1>		
 				<tbody>

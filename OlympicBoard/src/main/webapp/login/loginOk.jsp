@@ -11,6 +11,7 @@
 	String memberid = request.getParameter("memberid");
 	String memberpassword = request.getParameter("memberpassword");
 	String bidx = request.getParameter("bidx");
+	String nowPage = request.getParameter("nowPage");
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -50,7 +51,7 @@
 		
 		if(m != null){
 			if(reurl != null){
-				String url = reurl.getUrl()+"?bidx="+bidx;
+				String url = reurl.getUrl()+"?bidx="+bidx+"&nowPage="+nowPage;
 				response.sendRedirect(url);
 			}else{
 				response.sendRedirect(request.getContextPath());
@@ -67,11 +68,11 @@
 			if(rs.next()){
 				check.setLoginCheck("pass");
 				session.setAttribute("check",check);
-				response.sendRedirect("login.jsp?memberid="+memberid);
+				response.sendRedirect("login.jsp?memberid="+memberid+"&nowPage="+nowPage);
 			}else{
 				check.setLoginCheck("all");
 				session.setAttribute("check",check);
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("login.jsp?nowPage="+nowPage);
 			}			
 		}
 		

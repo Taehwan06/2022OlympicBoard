@@ -4,9 +4,10 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String bidx = request.getParameter("bidx");
+	String nowPage = request.getParameter("nowPage");
 
 	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
-	String url = reurl.getUrl()+"?bidx="+bidx;
+	String url = reurl.getUrl()+"?bidx="+bidx+"&nowPage="+nowPage;
 
 	session.setAttribute("loginUser",null);
 

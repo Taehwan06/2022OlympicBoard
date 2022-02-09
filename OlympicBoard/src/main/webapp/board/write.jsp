@@ -33,14 +33,19 @@
 		location.href = "list.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>";
 	}
 	
+	function imgUp1Fn(){
+		document.imgUpfrm1.method = "post";
+		document.imgUpfrm1.enctype = "multipart/form-data";
+		document.imgUpfrm1.action = "imgUp1.jsp";
+		document.imgUpfrm1.submit();
+	}
+	
 </script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
-	<%=searchType %>
-	<%=searchValue %>
 		<form id="writeFrm" name="writeFrm">
 			<div class="box">
 				<label for="subject"><div id="subjectTop">제목</div></label>
@@ -53,6 +58,13 @@
 				placeholder="내용을 입력하세요."></textarea>
 			</div>
 		</form>
+		<div class="imgBox">
+			<form name="imgUpfrm1" id="imgUpfrm1">
+				<input type="file" name="imgUp1" id="imgUp1">
+				<input type="button" name="imgUp1submit" value="이미지 저장" 
+				onclick="imgUp1Fn()">
+			</form>
+		</div>
 		<div id="buttonBox">
 			<input type="button" id="writeSubmit" name="writeSubmit" 
 			value="등록" onclick="writeFn()">

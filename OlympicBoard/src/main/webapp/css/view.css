@@ -24,9 +24,6 @@ section>div>table{
 	border: 1px solid black;
 	background: white;
 	border-radius: 5px;
-}
-#up:hover,#down:hover{
-	background-color: skyblue;
 	cursor: pointer;
 }
 #buttonDiv{
@@ -98,6 +95,7 @@ section>div>table{
 #recon{
 	font-size: 14px;	
 }
-#redel:hover,#reSubmitButton:hover{
-	background: skyblue;
+#reSubmitButton:hover,#redel:hover,#up:hover,#down:hover{
+	background: #E0E0E0;
+	border: none;
 }
