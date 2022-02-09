@@ -11,6 +11,7 @@
 	
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
+	String nowPage = request.getParameter("nowPage");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
 	}
 	
 	function cancelFn(){
-		location.href = "list.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>";
+		location.href = "list.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>";
 	}
 	
 	function imgUp1Fn(){
@@ -46,7 +47,7 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
-		<form id="writeFrm" name="writeFrm">
+		<form id="writeFrm" name="writeFrm">			
 			<div class="box">
 				<label for="subject"><div id="subjectTop">제목</div></label>
 				<input type="text" id="subject" name="subject" 

@@ -19,22 +19,21 @@
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
-	<section>
-	nowPage : <%=nowPage %>
+	<section>	
 		<div>
 			<form name="searchFrm" action="list.jsp">
 				<select name="searchType">
 					<option value="subjectContent"
-					<%if(searchType != null && searchType.equals("subjectContent")) 
+					<%if(searchType != null && !searchType.equals("") && searchType.equals("subjectContent")) 
 						out.print("selected"); %>>제목+내용</option>
 					<option value="writer"
-					<%if(searchType != null && searchType.equals("writer")) 
+					<%if(searchType != null && !searchType.equals("") && searchType.equals("writer")) 
 						out.print("selected"); %>>작성자</option>
 					<option value="subject"
-					<%if(searchType != null && searchType.equals("subject")) 
+					<%if(searchType != null && !searchType.equals("") && searchType.equals("subject")) 
 						out.print("selected"); %>>제목</option>
 					<option value="content"
-					<%if(searchType != null && searchType.equals("content")) 
+					<%if(searchType != null && !searchType.equals("") && searchType.equals("content")) 
 						out.print("selected"); %>>내용</option>					
 				</select>
 				<div>
@@ -79,7 +78,7 @@
 		%>
 			<div id="writeButtonDiv">
 				<input type="button" id="writeButton" value="글쓰기" 
-				onclick="location.href='write.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
+				onclick="location.href='write.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=paging.getNowPage() %>'">
 			</div>
 		<% } 
 		%>

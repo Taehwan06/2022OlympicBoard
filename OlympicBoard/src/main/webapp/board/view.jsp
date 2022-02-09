@@ -20,8 +20,7 @@
 	var sT = "<%=searchType %>";
 	var sV = "<%=searchValue %>";
 	var bidx = "<%=bidx %>";
-	var nowPage = "<%=nowPage %>";
-	console.log(nowPage);
+	var nowPage = "<%=nowPage %>";	
 	
 	function reSubmitFn(){
 		$.ajax({
@@ -135,9 +134,8 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
-	nowPage : <%=nowPage %>
-		<div>			
-			<table border=1>		
+		<div>
+			<table border=1>
 				<tbody>
 					<tr>
 						<td>제목</td>

@@ -10,8 +10,8 @@ function onBlurFn(obj){
 	}
 }
 function loginFn(){
-	document.loginFrm.method = "post";
-	document.loginFrm.action = "loginOk.jsp?nowPage="+nowPage;
+	document.loginFrm.method = "get";
+	document.loginFrm.action = "loginOk.jsp";
 	document.loginFrm.submit();
 }
 function findIdFn(){

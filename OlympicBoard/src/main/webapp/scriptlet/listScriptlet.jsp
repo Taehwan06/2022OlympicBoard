@@ -21,15 +21,10 @@
 	
 	String nowPage = request.getParameter("nowPage");
 	int nowPageI = 1;
-	if(nowPage != null){
+	if(nowPage != null && !nowPage.equals("") && !nowPage.equals("null")){
 		nowPageI = Integer.parseInt(nowPage);
 	}
-	
-	
-	
-	
-	
-	
+		
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;

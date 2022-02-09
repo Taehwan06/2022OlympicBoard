@@ -7,7 +7,10 @@
 	String memberid = request.getParameter("memberid");
 	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
-		
+
+	String searchType = request.getParameter("searchType");
+	String searchValue = request.getParameter("searchValue");
+	
 	Check check = (Check)session.getAttribute("check");
 	String joinCheck = null;
 	String loginCheck = null;
@@ -27,9 +30,7 @@
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
-<script src="<%=request.getContextPath()%>/js/login.js"></script>
 <script>
-	var nowPage = "<%=nowPage %>";
 	<%	if(joinCheck == null){
 	%>		
 	<%	}else if(joinCheck.equals("success")){
@@ -49,15 +50,19 @@
 	<%	if(sendId){
 	%>		alert("아이디를 회원님의 이메일로 발송했습니다.");
 	<%	}
-	%>
+	%>	
 </script>
+<script src="<%=request.getContextPath()%>/js/login.js"></script>
 </head>
 <body>
 	<%@ include file="/loginHeader.jsp" %>
 	<%@ include file="/nav.jsp" %>	
-	<section>
+	<section>	
 		<div>
 			<form name="loginFrm">
+				<input type="hidden" name="nowPage" value="<%=nowPage %>">
+				<input type="hidden" name="searchValue" value="<%=searchValue %>">
+				<input type="hidden" name="searchType" value="<%=searchType %>">
 				<div>
 					<div class="border">
 						<input type="hidden" name="bidx" value="<%=bidx %>">

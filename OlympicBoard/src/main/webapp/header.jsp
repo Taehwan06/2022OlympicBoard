@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="OlympicBoard.vo.*"%>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	Member m = (Member)session.getAttribute("loginUser");
 	String bidxH = request.getParameter("bidx");
 	String nowPageH = request.getParameter("nowPage");
+	
 	String searchTypeH = request.getParameter("searchType");
-	String searchValueH = request.getParameter("searchValue");	
+	String searchValueH = request.getParameter("searchValue");
 %>
 <header>
 	<%if(m == null){%>
