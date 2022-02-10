@@ -57,7 +57,7 @@
 <body>
 	<%@ include file="/loginHeader.jsp" %>
 	<%@ include file="/nav.jsp" %>	
-	<section>	
+	<section>
 		<div>
 			<form name="loginFrm">
 				<input type="hidden" name="nowPage" value="<%=nowPage %>">

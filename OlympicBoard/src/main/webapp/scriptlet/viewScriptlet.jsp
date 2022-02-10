@@ -8,17 +8,25 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String bidx = request.getParameter("bidx");
-	String searchType = request.getParameter("searchType");
-	String searchValue = request.getParameter("searchValue");
+	String bidx = request.getParameter("bidx");	
 	String nowPage = request.getParameter("nowPage");
 	
+	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
+	String searchValue = null;
+	String searchType = null;
+	if(listPageData != null){
+		searchType = listPageData.getSearchType();
+		searchValue = listPageData.getSearchValue();		
+	}
+		
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();
 	reurl.setUrl(url);
 	session.setAttribute("ReUrl",reurl);
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	Check check = (Check)session.getAttribute("check");
 	
 	Notice notice = new Notice();
 	
@@ -82,7 +90,10 @@
 			board.setBcontent(rs.getString("bcontent"));
 			board.setBwdate(rs.getString("bwdate"));
 			board.setUp(rs.getInt("up"));
+			session.setAttribute("board",board);
 		}
+		
+		board = (Board)session.getAttribute("board");
 		
 		sql = "select * from reply where bidx=? order by ridx";
 		psmt = conn.prepareStatement(sql);

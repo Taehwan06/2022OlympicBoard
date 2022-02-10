@@ -19,7 +19,7 @@
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
-	<section>	
+	<section>
 		<div>
 			<form name="searchFrm" action="list.jsp">
 				<select name="searchType">

@@ -30,14 +30,12 @@ section{
 	padding: 10px 15px;
 	resize: none;
 }
-#imgBox,#buttonBox{
-	margin-top: 10px;
-}
 #buttonBox{
 	text-align: right;
+	margin-top: 10px;
 	margin-bottom: 50px;
 }
-#writeSubmit,#cancel{
+#modifySubmit,#cancel{
 	width: 70px;
 	height: 30px;
 	border: none;
@@ -47,6 +45,6 @@ section{
 	font-size: 15px;
 	cursor: pointer;
 }
-#writeSubmit:hover,#cancel:hover{
+#modifySubmit:hover,#cancel:hover{
 	background: skyblue;
 }

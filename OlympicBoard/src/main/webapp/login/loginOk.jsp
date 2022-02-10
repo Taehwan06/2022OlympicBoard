@@ -3,6 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
+<%@ page import="java.net.URLEncoder" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
@@ -12,9 +13,16 @@
 	String memberpassword = request.getParameter("memberpassword");
 	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
-
-	String searchType = request.getParameter("searchType");
-	String searchValue = request.getParameter("searchValue");
+	
+	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
+	
+	String searchType = listPageData.getSearchType();
+	String searchValue = listPageData.getSearchValue();
+	try {
+		searchValue = URLEncoder.encode(searchValue, "UTF-8");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -54,11 +62,12 @@
 		
 		if(m != null){
 			if(reurl != null){
+				
 				String url = reurl.getUrl();
 				url += "?bidx="+bidx;
 				url += "&nowPage="+nowPage;
-				url += "&searchValue="+searchValue;
 				url += "&searchType="+searchType;
+		        url += "&searchValue="+searchValue;
 				response.sendRedirect(url);
 			}else{
 				response.sendRedirect(request.getContextPath());

@@ -40,16 +40,17 @@
 		psmt = conn.prepareStatement(sql);
 		rs = psmt.executeQuery();
 		
-		Notice notice = new Notice();
+		Reply reply = new Reply();
 		
 		JSONArray list = new JSONArray();
 		if(rs.next()){
 			JSONObject jobj = new JSONObject();
 			jobj.put("rwriter",rs.getString("rwriter"));
 			jobj.put("rcontent",rs.getString("rcontent"));
+			jobj.put("ridx",rs.getInt("ridx"));
 			
-			notice.setReplyWritedate(rs.getString("rwdate"));
-			jobj.put("rwdate",notice.getReplyWritedate());			
+			reply.setRwdate(rs.getString("rwdate"));
+			jobj.put("rwdate",reply.getRwdate());
 			
 			list.add(jobj);
 		}

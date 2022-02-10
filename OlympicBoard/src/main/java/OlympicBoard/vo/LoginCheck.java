@@ -1,7 +1,7 @@
 package OlympicBoard.vo;
 
 public class LoginCheck {
-	public String loginCheck;
+	private String loginCheck;
 
 	public String getLoginCheck() {
 		return loginCheck;

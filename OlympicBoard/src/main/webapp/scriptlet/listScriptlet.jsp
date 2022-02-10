@@ -13,7 +13,7 @@
 	session.setAttribute("ReUrl",reurl);
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
-		
+	
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
 	
@@ -24,7 +24,12 @@
 	if(nowPage != null && !nowPage.equals("") && !nowPage.equals("null")){
 		nowPageI = Integer.parseInt(nowPage);
 	}
-		
+	
+	ListPageData listPageData = new ListPageData();
+	listPageData.setSearchType(searchType);
+	listPageData.setSearchValue(searchValue);
+	listPageData.setNowPage(Integer.toString(nowPageI));
+	session.setAttribute("listPageData", listPageData);
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;

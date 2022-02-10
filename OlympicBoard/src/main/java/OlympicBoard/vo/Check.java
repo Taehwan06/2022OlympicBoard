@@ -2,19 +2,28 @@ package OlympicBoard.vo;
 
 public class Check {
 	
-	public String loginCheck;
-	public String joinCheck;	
-	public String id;
-	public boolean idConfirm;
-	public boolean idCheck;
-	public boolean passCheck;
-	public boolean sendId;
-	public boolean sendPass;
-	public String memberModify;
-	public String withdraw;
-	public boolean writeCheck;
+	private String loginCheck;
+	private String joinCheck;	
+	private String id;
+	private boolean idConfirm;
+	private boolean idCheck;
+	private boolean passCheck;
+	private boolean sendId;
+	private boolean sendPass;
+	private String memberModify;
+	private String withdraw;
+	private boolean writeCheck;
+	private String modifyCheck;
 	
 	
+	public String getModifyCheck() {
+		return modifyCheck;
+	}
+
+	public void setModifyCheck(String modifyCheck) {
+		this.modifyCheck = modifyCheck;
+	}
+
 	public boolean isWriteCheck() {
 		return writeCheck;
 	}

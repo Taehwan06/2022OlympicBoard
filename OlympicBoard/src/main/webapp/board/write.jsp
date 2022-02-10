@@ -9,15 +9,16 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	
+	String nowPage = request.getParameter("nowPage");	
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
-	String nowPage = request.getParameter("nowPage");
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 작성</title>
+<title>게시글 작성</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/write.css" rel="stylesheet">
@@ -54,12 +55,17 @@
 				placeholder="제목을 입력하세요.">
 			</div>
 			<div class="box">
+				<label for="writer"><div id="writerTop">작성자</div></label>
+				<input type="text" id="writer" name="writer" 
+				value="<%=loginUser.getMembername() %>" readonly>
+			</div>
+			<div class="box">
 				<label for="content"><div id="contentTop">내용</div></label>
 				<textarea id="content" name="content" 
 				placeholder="내용을 입력하세요."></textarea>
 			</div>
 		</form>
-		<div class="imgBox">
+		<div id="imgBox">
 			<form name="imgUpfrm1" id="imgUpfrm1">
 				<input type="file" name="imgUp1" id="imgUp1">
 				<input type="button" name="imgUp1submit" value="이미지 저장" 
