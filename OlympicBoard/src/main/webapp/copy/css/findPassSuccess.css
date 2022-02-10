@@ -1,0 +1,29 @@
+@charset "UTF-8";
+section{	
+	text-align: center;
+	padding: 10px 0px;
+	margin: auto;
+}		
+section input[type=button]{	
+	background: lightgray;
+	border: none;
+	border-radius: 5px;
+}		
+section input[type=button]:hover{
+	background: skyblue;
+	cursor: pointer;
+}
+#mainText{
+	font-size: 20px;
+	margin: 150px 0px 100px 0px;
+	display: inline-block;
+}
+#last{
+	margin: 100px 0px 100px 0px;
+}
+#last input{
+	width: 180px;
+	height: 30px;
+	font-size: 17px;
+	margin: 20px;
+}

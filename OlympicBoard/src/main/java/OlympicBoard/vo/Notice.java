@@ -11,8 +11,14 @@ public class Notice {
 	private String replyWritedate;
 		
 	
-	public String getReplyWritedate() throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(replyWritedate);		
+	public String getReplyWritedate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(replyWritedate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		
 		String outdate = new SimpleDateFormat("MM-dd HH:mm").format(date);
 		
@@ -23,8 +29,14 @@ public class Notice {
 		this.replyWritedate = replyWritedate;
 	}
 
-	public String getListWritedate() throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(listWritedate);		
+	public String getListWritedate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(listWritedate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		
 		String outdate = new SimpleDateFormat("MM-dd HH:mm").format(date);
 		
@@ -35,8 +47,14 @@ public class Notice {
 		this.listWritedate = listWritedate;
 	}
 
-	public String getViewWritedate() throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(viewWritedate);		
+	public String getViewWritedate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(viewWritedate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		
 		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분ss초").format(date);
 		

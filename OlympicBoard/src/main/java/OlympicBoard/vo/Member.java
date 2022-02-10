@@ -43,9 +43,14 @@ public class Member {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getEnterdate() throws Exception {	
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(enterdate);
-		
+	public String getEnterdate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(enterdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(date);
 		
 		return outdate;

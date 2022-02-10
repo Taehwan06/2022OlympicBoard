@@ -2,22 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="OlympicBoard.vo.*" %>
 <%
-	String writer = "";
-
-	Check check = new Check();
-
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
-		check.setLoginNull("null");
-		session.setAttribute("check",check);
 		response.sendRedirect(request.getContextPath()+"/board/list.jsp");
-	}else{
-		writer = loginUser.getMembername();
 	}
 	
 	request.setCharacterEncoding("UTF-8");
 	
-	String nowPage = request.getParameter("nowPage");
+	String nowPage = request.getParameter("nowPage");	
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
 	
@@ -65,7 +57,7 @@
 			<div class="box">
 				<label for="writer"><div id="writerTop">작성자</div></label>
 				<input type="text" id="writer" name="writer" 
-				value="<%=writer %>" readonly>
+				value="<%=loginUser.getMembername() %>" readonly>
 			</div>
 			<div class="box">
 				<label for="content"><div id="contentTop">내용</div></label>

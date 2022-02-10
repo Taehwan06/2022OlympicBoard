@@ -149,16 +149,15 @@
 	}
 	
 	function modifyFn(){
-		location.href = "modify.jsp?bidx=<%=board.getBidx() %>";
+		location.href = "modify.jsp?bidx=<%=bidx %>";
 	}
 	
 	function deleteFn(){
 		var con = confirm("게시글을 삭제하시겠습니까?");		
 		if(con){
-			location.href = "deleteBoard.jsp?bidx=<%=board.getBidx() %>";
+			location.href = "deleteBoard.jsp?bidx=<%=bidx %>";
 		}
-	}
-	
+	}	
 	
 </script>
 </head>
@@ -171,22 +170,22 @@
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td><%=board.getBsubject() %></td>
+						<td><%=rs.getString("bsubject") %></td>
 					<tr>
 					<tr>
 						<td>작성자</td>
-						<td><%=board.getBwriter() %></td>
+						<td><%=rs.getString("bwriter") %></td>
 					<tr>
 					<tr>
 						<td>작성일</td>
-						<td><%=board.getBwdate() %></td>
+						<td><%=rs.getString("bwdate") %></td>
 					<tr>
 					<tr>
 						<td>조회수</td>
-						<td><%=board.getBhit() %></td>
+						<td><%=rs.getString("bhit") %></td>
 					<tr>
 					<tr>	
-						<td colspan="2"><%=board.getBcontent() %></td>
+						<td colspan="2"><%=rs.getString("bcontent") %></td>
 					<tr>
 					<tr>
 						<td colspan="2">
@@ -244,4 +243,10 @@
 </html>
 <%
 	session.setAttribute("check",null);
+
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		DBManager.close(psmt,conn,rs);		
+	}
 %>

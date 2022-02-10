@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="org.json.simple.*"%>
-<%@ page import="OlympicBoard.vo.*"%>
-<%@ page import="OlympicBoard.util.*"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.json.simple.*" %>
+<%@ page import="OlympicBoard.vo.*" %>
+<%@ page import="OlympicBoard.util.*" %>
+<%@ page import="java.net.URLEncoder" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
@@ -13,8 +15,6 @@
 	session.setAttribute("ReUrl",reurl);
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	
-	Check check = (Check)session.getAttribute("check");
 	
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");

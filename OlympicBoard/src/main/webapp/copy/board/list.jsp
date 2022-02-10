@@ -14,13 +14,6 @@
 <script>
 	var searchType = "<%=searchType%>";
 	var searchValue = "<%=searchValue%>";
-	
-	<% if(check != null){
-			if(check.getLoginNull != null && check.getLoginNull.equals("null")){
-	%>			alert("로그인 후 이용 가능합니다.");
-	<%		}
-		}
-	%>
 </script>
 </head>
 <body>

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+section{
+	text-align: center;
+	padding: 10px 0px;
+	margin: auto;		
+}
+form{
+	margin-top: 70px;
+}		
+.headSpan{
+	width: 120px;
+	height: 27px;
+	font-size: 15px;
+	padding-top: 7px;
+	display: inline-block;
+	border-right: 1px solid lightgray;
+	text-align: center;
+}
+.border{
+	width: 400px;
+	border: 1px solid lightgray;
+	display: inline-block;
+	border-radius: 5px;
+}
+section input{
+	width: 265px;
+	height: 32px;
+	border: none;
+	font-size: 15px;
+	text-align: center;
+}		
+.footSpan{
+	width: 400px;
+	height: 15px;
+	color: red;
+	margin-bottom: 20px;
+	display: inline-block;
+	padding-left: 50px;
+	text-align: center;
+	visibility: visible;
+	font-size: 11px;
+	visibility: hidden;
+}
+section input[type=button]{	
+	background: lightgray;
+	border-radius: 5px;		
+}		
+section input[name=joinSubmit]{
+	width: 400px;
+	height: 40px;
+	font-size: 17px;
+	margin-bottom: 30px;
+}
+section input[type=button]:hover{
+	background: skyblue;
+	cursor: pointer;
+}
+.phone{
+	width: 77px;	
+}
+#birth{
+	width: 395px;
+	padding-right: 5px;
+}
+.birth{
+	width: 67px;	
+}
+#submitDiv{
+	margin: 10px 0px;	
+}
+#last input{
+	width: 115px;
+	height: 28px;
+	font-size: 14px;
+	margin: 10px 10px 50px 10px;
+}
+input::placeholder{
+	font-size: 11px;
+}
