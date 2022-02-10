@@ -14,8 +14,26 @@ public class Check {
 	private String withdraw;
 	private boolean writeCheck;
 	private String modifyCheck;
+	private String deleteBoardCheck;
+	private String loginNull;
 	
 	
+	public String getLoginNull() {
+		return loginNull;
+	}
+
+	public void setLoginNull(String loginNull) {
+		this.loginNull = loginNull;
+	}
+
+	public String getDeleteBoardCheck() {
+		return deleteBoardCheck;
+	}
+
+	public void setDeleteBoardCheck(String deleteBoardCheck) {
+		this.deleteBoardCheck = deleteBoardCheck;
+	}
+
 	public String getModifyCheck() {
 		return modifyCheck;
 	}

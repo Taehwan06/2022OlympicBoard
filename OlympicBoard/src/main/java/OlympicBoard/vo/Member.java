@@ -16,8 +16,15 @@ public class Member {
 	private String originEnterdate;
 	private int midx;
 	private String uplist;
+	private String grade;
 	
 
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public String getOriginEnterdate() {
 		return originEnterdate;
 	}
