@@ -1,0 +1,111 @@
+@charset "UTF-8";
+section{
+	text-align: center;
+	padding: 50px 0px;
+	margin: auto;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+section>div{
+	width: 700px;
+	height: 500px;			
+	display: inline-block;
+}
+section form{
+	text-align: left;
+	margin-bottom: 20px;
+}
+section select{
+	height: 26px;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+section>div>form>div{
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 0px 7px;
+	display: inline-block;
+}
+section input{
+	border: none;
+}
+section input[name='searchValue']{
+	height: 23px;
+}
+section input[name='searchSubmit']{	
+	width: 50px;	
+	background: white;
+	border: none;
+}
+section input[name='searchSubmit']:hover{
+	cursor: pointer;
+}
+#box{
+	margin: 30px 0px;
+}
+#titleRow{
+	top: 1px solid gray;
+}
+.rowDiv{
+	border-bottom: 1px solid gray;
+	height: 23px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.rowDiv span{
+	border: 1px solid green;
+}
+.midxSpan{
+	width: 80px;
+	display: inline-block;
+}
+.idSpan{
+	width: 190px;
+	display: inline-block;
+}
+.nameSpan{
+	width: 120px;
+	display: inline-block;
+}
+.edateSpan{
+	width: 100px;
+	display: inline-block;
+}
+.gradeSpan{
+	width: 80px;
+	display: inline-block;
+}
+.delSpan{
+	width: 60px;
+	display: inline-block;
+}
+
+
+
+#pagingArea{
+	margin: 15px 0px 30px 0px;
+}
+.backButton,.nextButton{
+	width: 40px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.numButton,.selButton{
+	width: 25px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.selButton{
+	font-weight: bold;
+	color: blue;
+}
+#pagingArea input:hover{
+	background: skyblue;
+	cursor: pointer;
+}
