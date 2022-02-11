@@ -7,7 +7,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");	
+	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
 
 	String memberid = request.getParameter("memberid");
 	String memberpassword = request.getParameter("memberpassword");

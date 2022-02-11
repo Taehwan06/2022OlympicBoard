@@ -10,8 +10,6 @@
 	request.setCharacterEncoding("UTF-8");
 
 	String bidx = request.getParameter("bidx");
-	String subject = request.getParameter("subject");
-	String content = request.getParameter("content");
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	String nowPage = request.getParameter("nowPage");
@@ -30,14 +28,12 @@
 		nowPage = listPageData.getNowPage();
 	}
 	
-	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
+	Check check = new Check();
 	
-	if(searchValue != null){
-		try {
-			searchValue = URLEncoder.encode(searchValue, "UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	try {
+		searchValue = URLEncoder.encode(searchValue, "UTF-8");
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
 	
 	Connection conn = null;
@@ -45,22 +41,21 @@
 	
 	try{
 		conn = DBManager.getConnection();
-		String sql = "update board set bsubject=?, bcontent=? where bidx=?";
+		
+		String sql = "update board set bdelyn='Y' where bidx=?";
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,subject);
-		psmt.setString(2,content);
-		psmt.setString(3,bidx);
+		psmt.setString(1,bidx);
 		
 		int result = psmt.executeUpdate();
 		
-		Check check = new Check();
 		if(result > 0){
-			check.setModifyCheck("success");			
+			check.setDeleteBoardCheck("success");
 		}else{
-			check.setModifyCheck("fail");			
+			check.setDeleteBoardCheck("fail");
 		}
 		session.setAttribute("check",check);
-		response.sendRedirect(request.getContextPath()+"/board/view.jsp?bidx="+bidx+"&nowPage="+nowPage);
+		
+		response.sendRedirect(request.getContextPath()+"/member/mylist.jsp?searchValue="+searchValue+"&searchType="+searchType+"&nowPage="+nowPage);
 		
 	}catch(Exception e){
 		e.printStackTrace();

@@ -15,7 +15,7 @@
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	String nowPage = request.getParameter("nowPage");
-	
+
 	ListPageData listPageData = new ListPageData();
 	if(session.getAttribute("listPageData") != null){
 		listPageData = (ListPageData)session.getAttribute("listPageData");
@@ -29,8 +29,6 @@
 	if(listPageData != null && listPageData.getNowPage() != null){		
 		nowPage = listPageData.getNowPage();
 	}
-	
-	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
 	
 	if(searchValue != null){
 		try {
@@ -60,11 +58,12 @@
 			check.setModifyCheck("fail");			
 		}
 		session.setAttribute("check",check);
-		response.sendRedirect(request.getContextPath()+"/board/view.jsp?bidx="+bidx+"&nowPage="+nowPage);
+		response.sendRedirect(request.getContextPath()+"/member/myview.jsp?bidx="+bidx+"&nowPage="+nowPage);
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
 		DBManager.close(psmt,conn);
 	}
+	
 %>

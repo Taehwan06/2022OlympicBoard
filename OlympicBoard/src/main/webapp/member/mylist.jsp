@@ -103,7 +103,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유 게시판</title>
+<title>내가 작성한 글 목록</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/list.css" rel="stylesheet">

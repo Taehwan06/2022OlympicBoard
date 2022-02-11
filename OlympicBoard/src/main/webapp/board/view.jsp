@@ -12,10 +12,13 @@
 
 	String bidx = request.getParameter("bidx");	
 	String nowPage = request.getParameter("nowPage");
-	
-	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
+	
+	ListPageData listPageData = new ListPageData();
+	if(session.getAttribute("listPageData") != null){
+		listPageData = (ListPageData)session.getAttribute("listPageData");
+	}	
 	
 	if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
 		searchType = listPageData.getSearchType();

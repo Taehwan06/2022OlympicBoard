@@ -117,7 +117,7 @@
 			</div>
 			<div class="button">
 				<div class="border" onclick="mylistFn()">
-					<span>내가 쓴 글 보러가기</span>
+					<span>내가 작성한 글 보러가기</span>
 				</div><br>
 				<div class="border" onclick="modifyFn()()">
 					<span>회원정보 수정</span>

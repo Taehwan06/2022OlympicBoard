@@ -10,18 +10,26 @@
 	request.setCharacterEncoding("UTF-8");
 
 	String bidx = request.getParameter("bidx");
+	String searchValue = request.getParameter("searchValue");
+	String searchType = request.getParameter("searchType");
+	String nowPage = request.getParameter("nowPage");
+	
+	ListPageData listPageData = new ListPageData();
+	if(session.getAttribute("listPageData") != null){
+		listPageData = (ListPageData)session.getAttribute("listPageData");
+	}
+	
+	if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
+		searchType = listPageData.getSearchType();
+		searchValue = listPageData.getSearchValue();		
+	}	
+	
+	if(listPageData != null && listPageData.getNowPage() != null){		
+		nowPage = listPageData.getNowPage();
+	}
 	
 	Check check = new Check();
 	
-	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	String searchValue = null;
-	String searchType = null;
-	String nowPage = null;
-	if(listPageData != null){
-		searchType = listPageData.getSearchType();
-		searchValue = listPageData.getSearchValue();
-		nowPage = listPageData.getNowPage();
-	}
 	try {
 		searchValue = URLEncoder.encode(searchValue, "UTF-8");
 	} catch (Exception e) {
@@ -48,7 +56,6 @@
 		session.setAttribute("check",check);
 		
 		response.sendRedirect(request.getContextPath()+"/board/list.jsp?searchValue="+searchValue+"&searchType="+searchType+"&nowPage="+nowPage);
-		
 		
 	}catch(Exception e){
 		e.printStackTrace();

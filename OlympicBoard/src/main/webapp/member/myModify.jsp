@@ -14,12 +14,11 @@
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
-		response.sendRedirect(request.getContextPath()+"/board/view.jsp?bidx="+bidx);
+		response.sendRedirect(request.getContextPath());
 	}
 	
 	Board board = (Board)session.getAttribute("board");
 	
-
 	ListPageData listPageData = new ListPageData();
 	if(session.getAttribute("listPageData") != null){
 		listPageData = (ListPageData)session.getAttribute("listPageData");
@@ -33,6 +32,7 @@
 	if(listPageData != null && listPageData.getNowPage() != null){		
 		nowPage = listPageData.getNowPage();
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -47,12 +47,12 @@
 <script>
 	function modifyFn(){
 		document.modifyFrm.method = "post";
-		document.modifyFrm.action = "modifyOk.jsp";
+		document.modifyFrm.action = "myModifyOk.jsp";
 		document.modifyFrm.submit();
 	}
 
 	function cancelFn(){
-		location.href = "view.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>&bidx=<%=bidx %>";
+		location.href = "myview.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>&bidx=<%=bidx %>";
 	}
 </script>
 </head>
