@@ -13,9 +13,10 @@
 	String content = request.getParameter("content");
 	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	String searchValue = null;
-	String searchType = null;
-	String nowPage = null;
+	String searchValue = request.getParameter("searchValue");
+	String searchType = request.getParameter("searchType");
+	String nowPage = request.getParameter("nowPage");
+	
 	if(listPageData != null){
 		searchType = listPageData.getSearchType();
 		searchValue = listPageData.getSearchValue();
@@ -42,7 +43,7 @@
 			check.setModifyCheck("fail");			
 		}
 		session.setAttribute("check",check);
-		response.sendRedirect(request.getContextPath()+"/board/view.jsp?bidx="+bidx);
+		response.sendRedirect(request.getContextPath()+"/board/view.jsp?bidx="+bidx+"&nowPage="+nowPage);
 		
 	}catch(Exception e){
 		e.printStackTrace();

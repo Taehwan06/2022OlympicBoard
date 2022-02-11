@@ -14,12 +14,18 @@
 	String nowPage = request.getParameter("nowPage");
 	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	String searchValue = null;
-	String searchType = null;
-	if(listPageData != null){
+	String searchValue = request.getParameter("searchValue");
+	String searchType = request.getParameter("searchType");
+	
+	if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
 		searchType = listPageData.getSearchType();
-		searchValue = listPageData.getSearchValue();		
+		searchValue = listPageData.getSearchValue();
 	}
+	
+	listPageData.setSearchType(searchType);
+	listPageData.setSearchValue(searchValue);
+	listPageData.setNowPage(nowPage);
+	session.setAttribute("listPageData",listPageData);
 		
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();

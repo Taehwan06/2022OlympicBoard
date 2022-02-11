@@ -17,9 +17,10 @@
 	Board board = (Board)session.getAttribute("board");
 	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	String searchValue = null;
-	String searchType = null;
-	String nowPage = null;
+	String searchValue = request.getParameter("searchValue");
+	String searchType = request.getParameter("searchType");
+	String nowPage = request.getParameter("nowPage");
+	
 	if(listPageData != null){
 		searchType = listPageData.getSearchType();
 		searchValue = listPageData.getSearchValue();
@@ -52,7 +53,7 @@
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
-	<section>
+	<section>	
 		<form id="modifyFrm" name="modifyFrm">	
 			<input type="hidden" name="bidx" value="<%=bidx %>">
 			<div class="box">
