@@ -6,7 +6,6 @@
 <%@ page import="OlympicBoard.util.*" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="org.json.simple.*" %>
-<%@ page import="java.net.URLEncoder" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
@@ -14,113 +13,82 @@
 	String nowPage = request.getParameter("nowPage");
 	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	String searchValue = null;
-	String searchType = null;
-	if(listPageData != null){
+	String searchValue = request.getParameter("searchValue");
+	String searchType = request.getParameter("searchType");
+	
+	if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
 		searchType = listPageData.getSearchType();
-		searchValue = listPageData.getSearchValue();		
+		searchValue = listPageData.getSearchValue();
 	}
-		
-	ReUrl reurl = new ReUrl();
-	String url = request.getRequestURL().toString();
-	reurl.setUrl(url);
-	session.setAttribute("ReUrl",reurl);
-	
+			
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	if(loginUser == null){
+		response.sendRedirect(request.getContextPath());
+	}else{
+		int midx = loginUser.getMidx();
 	
-	Check check = (Check)session.getAttribute("check");
-	
-	Notice notice = new Notice();
-	
-	Cookie[] cookieHCA = request.getCookies();
-	
-	Board board = new Board();
-	ArrayList<Reply> rList = new ArrayList<>();
-
-	String value = "";
-	String[] valueA = null;
-	boolean hitCheck = false;
-	if(cookieHCA != null){
-		for(Cookie cookieHC : cookieHCA){
-			if(cookieHC.getName().equals("hitCheck")){
-				value = cookieHC.getValue();
-				valueA = value.split("&");
-				for(int i=0; i<valueA.length; i++){
-					if(valueA[i].equals(bidx)){
-						hitCheck = true;
-					}
-				}
-			}
-		}
-	}	
-	
-	Connection conn = null;
-	PreparedStatement psmt = null;
-	ResultSet rs = null;
-	
-	try{
-		conn = DBManager.getConnection();
-		String sql = "";
+		Check check = (Check)session.getAttribute("check");
 		
-		if(!hitCheck){
-			sql = "update board set bhit=((select bhit from board where bidx=?)+1) where bidx=?";
+		Notice notice = new Notice();
+		
+		Board board = new Board();
+		ArrayList<Reply> rList = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try{
+			conn = DBManager.getConnection();
+			
+			String sql = "select * from board where bidx=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,bidx);		
+			
+			rs = psmt.executeQuery();		
+			
+			if(!rs.next()){
+				response.sendRedirect("mylist.jsp?nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue);
+			}else if(rs.next()){
+				board.setBidx(rs.getInt("bidx"));
+				board.setMidx(rs.getInt("midx"));
+				board.setBhit(rs.getInt("bhit"));
+				board.setRecnt(rs.getInt("recnt"));
+				board.setBwriter(rs.getString("bwriter"));
+				board.setBsubject(rs.getString("bsubject"));
+				board.setBcontent(rs.getString("bcontent"));
+				board.setBwdate(rs.getString("bwdate"));
+				board.setUp(rs.getInt("up"));
+				session.setAttribute("board",board);
+			}
+			
+			board = (Board)session.getAttribute("board");
+			
+			sql = "select * from reply where bidx=? order by ridx";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1,bidx);
-			psmt.setString(2,bidx);
 			
-			int reault = psmt.executeUpdate();
-			if(reault>0){
-				Cookie cookieHC = new Cookie("hitCheck", value+bidx+"&");
-				cookieHC.setMaxAge(60*60);
-				response.addCookie(cookieHC);
-			}
-		}
-		
-		sql = "select * from board where bidx=?";
-		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,bidx);		
-		
-		rs = psmt.executeQuery();		
-		
-		if(rs.next()){
-			board.setBidx(rs.getInt("bidx"));
-			board.setMidx(rs.getInt("midx"));
-			board.setBhit(rs.getInt("bhit"));
-			board.setRecnt(rs.getInt("recnt"));
-			board.setBwriter(rs.getString("bwriter"));
-			board.setBsubject(rs.getString("bsubject"));
-			board.setBcontent(rs.getString("bcontent"));
-			board.setBwdate(rs.getString("bwdate"));
-			board.setUp(rs.getInt("up"));
-			session.setAttribute("board",board);
-		}		
+			rs = psmt.executeQuery();
 				
-		sql = "select * from reply where bidx=? order by ridx";
-		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,bidx);
-		
-		rs = psmt.executeQuery();
-			
-		while(rs.next()){
-			Reply reply = new Reply();
-			reply.setRidx(rs.getInt("ridx"));
-			reply.setBidx(rs.getInt("bidx"));
-			reply.setMidx(rs.getInt("midx"));
-			reply.setRwriter(rs.getString("rwriter"));
-			reply.setRwdate(rs.getString("rwdate"));
-			reply.setRcontent(rs.getString("rcontent"));
-			reply.setRdelyn(rs.getString("rdelyn"));
-			
-			rList.add(reply);
-		}
-			
-	}catch(Exception e){
-		e.printStackTrace();
-	}finally{
-		DBManager.close(psmt,conn,rs);		
-	}
+			while(rs.next()){
+				Reply reply = new Reply();
+				reply.setRidx(rs.getInt("ridx"));
+				reply.setBidx(rs.getInt("bidx"));
+				reply.setMidx(rs.getInt("midx"));
+				reply.setRwriter(rs.getString("rwriter"));
+				reply.setRwdate(rs.getString("rwdate"));
+				reply.setRcontent(rs.getString("rcontent"));
+				reply.setRdelyn(rs.getString("rdelyn"));
+				
+				rList.add(reply);
+			}
+	
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBManager.close(psmt,conn,rs);		
+		}	
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,7 +99,6 @@
 <link href="<%=request.getContextPath() %>/css/view.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
-<script src="<%=request.getContextPath() %>/js/view.js"></script>
 <script>
 	<%	if(check != null){
 			if(check.getModifyCheck() != null && check.getModifyCheck().equals("success")){
@@ -151,7 +118,7 @@
 		var reVal = $(obj).prev().val();
 		if(reVal != null && reVal != ""){
 			$.ajax({
-				url: "replyInsert.jsp",
+				url: "<%=request.getContextPath() %>/board/replyInsert.jsp",
 				type: "post",
 				data: $("#reSubmitFrm").serialize(),
 				success: function(data){
@@ -177,7 +144,7 @@
 		var con = confirm("댓글을 삭제하시겠습니까?");		
 		if(con){
 			$.ajax({
-				url: "replyDelete.jsp",
+				url: "<%=request.getContextPath() %>/board/replyDelete.jsp",
 				type: "post",
 				data: "ridx="+ridx+"&bidx="+bidx,
 				success: function(data){				
@@ -192,84 +159,14 @@
 		}
 	}
 	
-	function upFn(){
-	<%	if(loginUser == null){
-	%>		alert("로그인 후 이용해 주세요.");
-	<%	}else{
-	%>		var uplist = "<%=loginUser.getUplist() %>";
-			var uplistA = uplist.split("&");
-			var result = false;
-			for(var i=0; i<uplistA.length; i++){
-				if(uplistA[i] == bidx){
-					result = true;
-				}
-			}
-			if(result){
-				alert("추천 또는 비추천은 한 번만 하실 수 있습니다.");
-			}else{				
-				$.ajax({
-					url: "boardUp.jsp",
-					type: "post",
-					data: "bidx="+bidx,
-					success: function(data){
-						var result = data.trim();
-						if(result>0){
-							var value = $("#upVal").text();
-							$("#up").attr("disabled",true);
-							$("#down").attr("disabled",true);
-							$("#up").css("border","1px solid gray");
-							$("#down").css("border","1px solid gray");
-							$("#upVal").text(parseInt(value)+1);
-						}
-					}
-				});
-			}
-	<%	}
-	%>
-	}
-	
-	function downFn(){
-	<%	if(loginUser == null){
-	%>		alert("로그인 후 이용해 주세요.");
-	<%	}else{
-	%>		var uplist = "<%=loginUser.getUplist() %>";
-			var uplistA = uplist.split("&");
-			var result = false;
-			for(var i=0; i<uplistA.length; i++){
-				if(uplistA[i] == bidx){
-					result = true;
-				}
-			}
-			if(result){
-				alert("추천 또는 비추천은 한 번만 하실 수 있습니다.");
-			}else{
-				$.ajax({
-					url: "boardDown.jsp",
-					type: "post",
-					data: "bidx="+bidx,
-					success: function(data){
-						var result = data.trim();
-						if(result>0){
-							var value = $("#upVal").text();
-							$("#up").attr("disabled",true);
-							$("#down").attr("disabled",true);
-							$("#upVal").text(parseInt(value)-1);
-						}
-					}
-				});
-			}
-	<%	}
-	%>
-	}
-	
 	function modifyFn(){
-		location.href = "modify.jsp?bidx=<%=bidx %>";
+		location.href = "modify.jsp?bidx=<%=board.getBidx() %>";
 	}
 	
 	function deleteFn(){
 		var con = confirm("게시글을 삭제하시겠습니까?");		
 		if(con){
-			location.href = "deleteBoard.jsp?bidx=<%=bidx %>";
+			location.href = "deleteBoard.jsp?bidx=<%=board.getBidx() %>";
 		}
 	}
 	
@@ -360,5 +257,6 @@
 </body>
 </html>
 <%
-	session.setAttribute("check",null);
+	}
+	session.setAttribute("check",null);	
 %>

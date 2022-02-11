@@ -56,6 +56,7 @@
 			m.setEnterdate(loginUser.getOriginEnterdate());
 			m.setMidx(loginUser.getMidx());
 			m.setOriginEnterdate(loginUser.getOriginEnterdate());
+			m.setGrade(rs.getString("grade"));
 			
 			session.setAttribute("loginUser",m);
 		}

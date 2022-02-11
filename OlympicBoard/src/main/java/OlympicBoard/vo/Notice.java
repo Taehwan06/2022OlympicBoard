@@ -56,7 +56,7 @@ public class Notice {
 			e.printStackTrace();
 		}		
 		
-		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분ss초").format(date);
+		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(date);
 		
 		return outdate;
 	}

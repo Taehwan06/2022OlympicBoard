@@ -73,13 +73,7 @@
 				placeholder="내용을 입력하세요."></textarea>
 			</div>
 		</form>
-		<div id="imgBox">
-			<form name="imgUpfrm1" id="imgUpfrm1">
-				<input type="file" name="imgUp1" id="imgUp1">
-				<input type="button" name="imgUp1submit" value="이미지 저장" 
-				onclick="imgUp1Fn()">
-			</form>
-		</div>
+		
 		<div id="buttonBox">
 			<input type="button" id="writeSubmit" name="writeSubmit" 
 			value="등록" onclick="writeFn()">

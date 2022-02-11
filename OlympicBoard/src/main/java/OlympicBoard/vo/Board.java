@@ -49,8 +49,13 @@ public class Board {
 		this.bcontent = bcontent;
 	}
 	public String getBwdate() throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bwdate);
-		
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bwdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분ss초").format(date);
 		
 		return outdate;

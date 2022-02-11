@@ -4,11 +4,10 @@
 <%@ page import="org.json.simple.*"%>
 <%@ page import="OlympicBoard.vo.*"%>
 <%@ page import="OlympicBoard.util.*"%>
-<%@ include file="/scriptlet/base.jsp"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	Member login = (Member)session.getAttribute("loginUser");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 	
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();

@@ -15,10 +15,12 @@
 		searchType = listPageData.getSearchType();
 		searchValue = listPageData.getSearchValue();		
 	}
-	try {
-		searchValue = URLEncoder.encode(searchValue, "UTF-8");
-	} catch (Exception e) {
-		e.printStackTrace();
+	if(searchValue != null){
+		try {
+			searchValue = URLEncoder.encode(searchValue, "UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");

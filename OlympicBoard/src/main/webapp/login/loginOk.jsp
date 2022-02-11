@@ -13,15 +13,21 @@
 	String memberpassword = request.getParameter("memberpassword");
 	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
+	String searchType = request.getParameter("searchType");
+	String searchValue = request.getParameter("searchValue");
 	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
-	
-	String searchType = listPageData.getSearchType();
-	String searchValue = listPageData.getSearchValue();
-	try {
-		searchValue = URLEncoder.encode(searchValue, "UTF-8");
-	} catch (Exception e) {
-		e.printStackTrace();
+	if(listPageData != null){
+		searchType = listPageData.getSearchType();
+		searchValue = listPageData.getSearchValue();
+	}
+		
+	if(searchValue != null){
+		try {
+			searchValue = URLEncoder.encode(searchValue, "UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	Connection conn = null;

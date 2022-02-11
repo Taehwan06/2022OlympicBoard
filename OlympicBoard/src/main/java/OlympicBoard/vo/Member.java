@@ -18,7 +18,7 @@ public class Member {
 	private String uplist;
 	private String grade;
 	
-
+	
 	public String getGrade() {
 		return grade;
 	}
@@ -50,8 +50,8 @@ public class Member {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(date);
+		}
+		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분ss초").format(date);
 		
 		return outdate;
 	}
