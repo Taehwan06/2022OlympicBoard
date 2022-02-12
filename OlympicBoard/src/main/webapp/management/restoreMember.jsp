@@ -29,12 +29,11 @@
 		}
 		session.setAttribute("check",check);
 		
-		response.sendRedirect(request.getContextPath()+"/member/memberView.jsp?midx="+midx);
+		response.sendRedirect(request.getContextPath()+"/management/memberView.jsp?midx="+midx);
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
 		DBManager.close(psmt,conn);
 	}
-	
 %>

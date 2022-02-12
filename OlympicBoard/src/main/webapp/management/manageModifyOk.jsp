@@ -47,7 +47,7 @@
 			check.setMemberModify("fail");
 		}
 		session.setAttribute("check",check);
-		response.sendRedirect("memberView.jsp?midx="+midx);
+		response.sendRedirect(request.getContextPath()+"/management/memberView.jsp?midx="+midx);
 		
 	}catch(Exception e){
 		e.printStackTrace();
