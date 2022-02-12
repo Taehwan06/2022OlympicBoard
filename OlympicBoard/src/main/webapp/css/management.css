@@ -62,8 +62,8 @@ section input[name='searchSubmit']:hover{
 	padding-bottom: 10px;
 }
 .rowDiv:hover{
-	background: lightgray;
-	color: #64B5F6;
+	background: #E0E0E0;
+	color: #1B5E20;
 	font-weight: bold;
 }
 .midxSpan{
