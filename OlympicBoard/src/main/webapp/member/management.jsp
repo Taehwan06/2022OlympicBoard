@@ -114,6 +114,9 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
+	function memberViewFn(midx){
+		location.href = "memverView.jsp?nowPage=<%=paging.getNowPage() %>&midx="+midx+"&searchType=<%=searchType %>&searchValue=<%=searchValue %>"
+	}
 </script>
 </head>
 <body>
@@ -147,7 +150,7 @@
 				</div>
 			</form>
 			<div id="box">
-				<div class="rowDiv" id="titleRow">
+				<div id="titleRow">
 					<span class="midxSpan">회원번호</span>
 					<span class="idSpan">아이디</span>
 					<span class="nameSpan">성명</span>					
@@ -159,12 +162,9 @@
 				
 			<%	while(rs.next()){
 					notice.setMemberEnterdate(rs.getString("enterdate"));
-			%>		<div class="rowDiv">
+			%>		<div class="rowDiv" onclick="memberViewFn(<%=rs.getInt("midx") %>)">
 						<span class="midxSpan"><%=rs.getInt("midx") %></span>
-						<span class="idSpan"><a href="memverView.jsp?nowPage=<%=paging.getNowPage() %>&midx=<%=rs.getInt("midx") %>
-									&searchType=<%=searchType %>&searchValue=<%=searchValue %>">
-						<%=rs.getString("memberid") %> 
-						</a></span>
+						<span class="idSpan"><%=rs.getString("memberid") %></span>
 						<span class="nameSpan"><%=rs.getString("membername") %></span>
 						
 						<span class="edateSpan"><%=notice.getMemberEnterdate() %></span>

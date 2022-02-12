@@ -48,7 +48,12 @@ section input[name='searchSubmit']:hover{
 	margin: 30px 0px;
 }
 #titleRow{
-	top: 1px solid gray;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	font-weight: bold;
+	height: 23px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .rowDiv{
 	border-bottom: 1px solid gray;
@@ -56,8 +61,10 @@ section input[name='searchSubmit']:hover{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.rowDiv span{
-	border: 1px solid green;
+.rowDiv:hover{
+	background: lightgray;
+	color: #64B5F6;
+	font-weight: bold;
 }
 .midxSpan{
 	width: 80px;

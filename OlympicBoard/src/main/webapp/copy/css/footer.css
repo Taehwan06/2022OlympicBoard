@@ -1,9 +1,0 @@
-@charset "UTF-8";		
-footer{
-	height:50px;
-	border-top:1px solid gray;
-	text-align: center;
-}
-footer div{
-	margin: 15px;
-}
