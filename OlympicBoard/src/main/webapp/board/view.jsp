@@ -14,6 +14,7 @@
 	String nowPage = request.getParameter("nowPage");
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
+	int replyTotal = 0;
 	
 	ListPageData listPageData = new ListPageData();
 	if(session.getAttribute("listPageData") != null){
@@ -45,6 +46,14 @@
 	
 	Board board = new Board();
 	ArrayList<Reply> rList = new ArrayList<>();
+	
+	String replyNowPage = request.getParameter("replyNowPage");
+	int replyNowPageI = 1;
+	if(replyNowPage != null && !replyNowPage.equals("") && !replyNowPage.equals("null")){
+		replyNowPageI = Integer.parseInt(replyNowPage);
+	}
+	
+	PagingUtil replyPaging = null;
 
 	String value = "";
 	String[] valueA = null;
@@ -101,10 +110,30 @@
 			board.setBcontent(rs.getString("bcontent"));
 			board.setBwdate(rs.getString("bwdate"));
 			board.setUp(rs.getInt("up"));
+			
 			session.setAttribute("board",board);
-		}		
-				
-		sql = "select * from reply where bidx=? order by ridx";
+			
+			notice.setViewWritedate(rs.getString("bwdate"));
+		}
+		
+		sql = "select count(*) as total from reply where bidx=? ";
+		
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,bidx);
+		
+		rs = psmt.executeQuery();
+		
+		if(rs.next()){
+			replyTotal = rs.getInt("total");
+		}
+		
+		replyPaging = new PagingUtil(replyTotal,replyNowPageI,10);
+		
+		sql = " select * from ";
+		sql += " (select rownum r , b.* from ";		
+		sql += "(select * from reply where bidx=? ";
+		sql += " order by ridx) b) ";
+		sql += " where r>="+replyPaging.getStart()+" and r<="+replyPaging.getEnd();
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,bidx);
 		
@@ -175,6 +204,7 @@
 					
 					$("#reBox").append(html);
 					document.reSubmitFrm.reset();
+					alert("댓글이 등록되었습니다.");
 				}
 			});
 		}else{
@@ -195,6 +225,7 @@
 						obj.style.display = "none";
 						obj.parentElement.lastElementChild.textContent = "삭제된 댓글입니다.";
 						obj.parentElement.lastElementChild.style.color = "gray";
+						alert("댓글이 삭제되었습니다.");
 					}
 				}
 			});
@@ -293,36 +324,31 @@
 	<%@ include file="/nav.jsp" %>
 	<section>
 		<div>
-			<table border=1>
-				<tbody>
-					<tr>
-						<td>제목</td>
-						<td><%=board.getBsubject() %></td>
-					<tr>
-					<tr>
-						<td>작성자</td>
-						<td><%=board.getBwriter() %></td>
-					<tr>
-					<tr>
-						<td>작성일</td>
-						<td><%=board.getBwdate() %></td>
-					<tr>
-					<tr>
-						<td>조회수</td>
-						<td><%=board.getBhit() %></td>
-					<tr>
-					<tr>	
-						<td colspan="2"><%=board.getBcontent() %></td>
-					<tr>
-					<tr>
-						<td colspan="2">
-							<input type="button" id="up" value="추천" onclick="upFn()">
-							<span id="upVal"><%=board.getUp() %></span>
-							<input type="button" id="down" value="비추천" onclick="downFn()">
-						</td>
-					<tr>
-				</tbody>
-			</table>
+			<div id="box">
+				<div id="subjectDiv" class="rowDiv">
+					<span id="subjectSpan" class="colSpan"><%=board.getBsubject() %></span>
+				</div>
+				<div id="writerDiv" class="rowDiv">
+					<div id="leftDiv">
+						<span id="writerSpan" class="colSpan"><%=board.getBwriter() %></span>
+						<span id="wdateSpan" class="colSpan"><%=notice.getViewWritedate() %></span>
+					</div>
+					<div id="rightDiv">
+						조회수 <span id="hitSpan" class="colSpan"><%=board.getBhit() %></span>
+						추천 <span id="upSpan" class="colSpan"><%=board.getUp() %></span>
+						댓글 <span id="replySpan" class="colSpan"><%=replyTotal %></span>
+					</div>
+				</div>
+				<div id="contentDiv">
+					<pre><%=board.getBcontent() %></pre>
+				</div>
+				<div id="upAreaDiv" class="rowDiv">
+					<input type="button" id="up" value="추천" onclick="upFn()">
+					<span id="upVal"><%=board.getUp() %></span>
+					<input type="button" id="down" value="비추천" onclick="downFn()">
+				</div>
+			</div>
+			
 			<div id="buttonDiv">
 		<%	if(loginUser != null && loginUser.getMidx() == board.getMidx()){ 
 		%>		<input type="button" id="modifyButton" value="수정" onclick="modifyFn()">
@@ -334,13 +360,13 @@
 				<form id="reSubmitFrm" name="reSubmitFrm">
 					<input type="hidden" name="bidx" value="<%=bidx %>">
 		<%	if(loginUser == null){
-		%>			<input type="text" name="reInput" id="reInput" size=30 
-					maxlength=500 placeholder="댓글을 작성하려면 로그인 해주세요" readonly>
+		%>			<textarea name="reInput" id="reInput" 
+					placeholder="댓글을 작성하려면 내용을 입력하세요"></textarea>
 					<input type="button" name="reSubmitButton" id="reSubmitButton" 
 					value="등록">
 		<%	}else if(loginUser != null){
-		%>			<input type="text" name="reInput" id="reInput" size=30 
-					maxlength=500 placeholder="댓글을 작성하려면 내용을 입력하세요">
+		%>			<textarea name="reInput" id="reInput" 
+					placeholder="댓글을 작성하려면 내용을 입력하세요"></textarea>
 					<input type="button" name="reSubmitButton" id="reSubmitButton" 
 					value="등록" onclick="reSubmitFn(this)">
 		<%	}
@@ -363,6 +389,26 @@
 			%>	</div>
 		<%	}
 		%>	</div>
+			<div id="pagingArea">
+			<% 	if(replyPaging.getStartPage() > 1){	
+			%>		<input type="button" class="backButton" value="이전" 
+					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getStartPage()-1%>&bidx=<%=bidx %>'">
+			<%	}
+				for(int i= replyPaging.getStartPage(); i<=replyPaging.getEndPage(); i++){
+					if(i == replyPaging.getNowPage()){
+			%>			<input type="button" class="selButton" value="<%=i%>" 
+						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>'">
+			<%		}else{
+			%>			<input type="button" class="numButton" value="<%=i%>" 
+						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>'">
+			<%		}
+				}						
+			 	if(replyPaging.getEndPage() != replyPaging.getLastPage()){
+			%>		<input type="button" class="nextButton" value="다음" 
+					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getEndPage()+1%>&bidx=<%=bidx %>'">
+			<%	}
+			%>			
+			</div>
 		</div>
 	</section>
 	<%@ include file="/footer.jsp" %>

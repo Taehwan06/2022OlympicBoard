@@ -44,10 +44,56 @@ section input[name='searchSubmit']{
 section input[name='searchSubmit']:hover{
 	cursor: pointer;
 }
-section>div>table{	
-	margin: auto;
-	width: 700px;
-	height: 400px;
+#box{
+	margin: 30px 0px;
+}
+#titleRow{
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	font-weight: bold;
+	height: 23px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.rowDiv{
+	border-bottom: 1px solid gray;
+	height: 23px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+.rowDiv:hover{
+	background: lightgray;
+	color: #64B5F6;
+	font-weight: bold;
+}
+.bidxSpan{
+	width: 50px;
+	display: inline-block;
+}
+.subjectSpan{
+	width: 350px;
+	display: inline-block;
+	padding-left: 10px;
+}
+.rowDiv .subjectSpan{
+	text-align: left;
+}
+.writerSpan{
+	width: 70px;
+	display: inline-block;
+}
+.wdateSpan{
+	width: 100px;
+	display: inline-block;
+}
+.hitSpan{
+	width: 50px;
+	display: inline-block;
+}
+.upSpan{
+	width: 35px;
+	display: inline-block;
 }
 #writeButtonDiv{
 	text-align: right;

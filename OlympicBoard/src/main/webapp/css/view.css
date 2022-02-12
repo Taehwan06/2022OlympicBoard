@@ -12,12 +12,51 @@ section>div{
 section input{
 	border: none;
 }
-section>div>table{	
-	margin: auto;
-	width: 700px;	
+#subjectDiv{
+	height: 40px;
+	text-align: left;
+	padding-left: 20px;
+	font-weight: bold;
+	font-size: 20px;
+}
+#rightDiv,#leftDiv{
+	height: 30px;
+	display: inline-block;
+}
+#writerDiv,#upAreaDiv{
+	border-bottom: 1px solid gray;
+}
+#leftDiv{
+	width: 347px;
+	text-align: left;
+}
+#rightDiv{
+	width: 347px;
+	text-align: right;
+	font-size: 14px;
+}
+#leftDiv span,#rightDiv span{
+	display: inline-block;
+}
+#writerSpan{
+	font-size: 17px;
+	margin-left: 20px;
+}
+#wdateSpan{
+	font-size: 14px;
+	margin-left: 20px;
+}
+#hitSpan,#upSpan,#replySpan{
+	font-weight: bold;
+	margin-right: 20px;
+}
+#contentDiv{
+	text-align: left;
+	padding: 20px 10px;
+	font-size: 16px;
 }
 #up,#down{
-	margin: 10px;
+	margin: 20px;
 	width: 50px;
 	height: 20px;
 	font-size: 13px;
@@ -43,25 +82,32 @@ section>div>table{
 	cursor: pointer;
 }
 #reInputArea{
-	padding: 20px 60px 20px 60px;
+	padding: 20px;
 	text-align: left;
+	position: relative;
 }
 #reInput{
-	width: 450px;
-	height: 35px;
+	width: 530px;
+	height: 44px;
 	border: 1px solid gray;
 	border-radius: 5px;
-	padding-left: 20px;
+	padding: 3px 20px;
+	resize: none;
+}
+#reInput::placeholder{
+	position: absolute;
+	top: 18px;
 }
 #reSubmitButton{
 	width: 80px;
-	height: 35px;
+	height: 50px;
 	margin-left: 20px;
 	border-radius: 5px;
 	border: 1px solid black;
 	background: white;
 	font-size: 16px;
 	cursor: pointer;
+	position: absolute;
 }
 #reBox{
 	border-bottom: 1px solid gray;
@@ -98,4 +144,27 @@ section>div>table{
 #reSubmitButton:hover,#redel:hover,#up:hover,#down:hover{
 	background: #E0E0E0;
 	border: none;
+}
+#pagingArea{
+	margin: 10px 10px 50px 10px;
+}
+.backButton,.nextButton{
+	width: 40px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.selButton,.numButton{
+	width: 25px;
+	height:25px;
+	font-size: 15px;	
+	border-radius: 5px;
+}
+.selButton{
+	font-weight: bold;
+	color: blue;
+}
+#pagingArea input:hover{
+	background: skyblue;
+	cursor: pointer;
 }

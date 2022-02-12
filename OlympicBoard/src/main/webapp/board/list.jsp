@@ -67,7 +67,7 @@
 			total = rs.getInt("total");
 		}
 		
-		paging = new PagingUtil(total,nowPageI,10);		
+		paging = new PagingUtil(total,nowPageI,10);
 		
 		sql = " select * from ";
 		sql += " (select rownum r , b.* from ";		
@@ -110,6 +110,11 @@
 	<%		}
 	}
 	%>
+	
+	function viewFn(bidx){
+		location.href="view.jsp?bidx="+bidx+"&nowPage=<%=paging.getNowPage() %>&searchType=<%=searchType %>&searchValue=<%=searchValue %>";
+	}
+	
 </script>
 </head>
 <body>
@@ -139,37 +144,34 @@
 					<input type="submit" name="searchSubmit" value="검색">
 				</div>
 			</form>
-			<table border=1>
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-						<th>추천</th>
-					</tr>
-				</thead>
-				<tbody>
-			<%	while(rs.next()){
-					notice.setListWritedate(rs.getString("bwdate"));
-			%>		<tr>
-						<td><%=rs.getInt("bidx") %></td>
-						<td><a href="view.jsp?nowPage=<%=paging.getNowPage() %>&bidx=<%=rs.getInt("bidx") %>
-									&searchType=<%=searchType %>&searchValue=<%=searchValue %>">
+			<div id="box">
+				<div id="titleRow">
+					<span class="bidxSpan">글번호</span>
+					<span class="subjectSpan">제목</span>
+					<span class="writerSpan">작성자</span>					
+					<span class="wdateSpan">작성일</span>
+					<span class="hitSpan">조회수</span>
+					<span class="upSpan">추천</span>
+				</div>
+		<%	while(rs.next()){
+				notice.setListWritedate(rs.getString("bwdate"));
+		%>		<div class="rowDiv" onclick="viewFn(<%=rs.getInt("bidx") %>)">
+					<span class="bidxSpan"><%=rs.getInt("bidx") %></span>
+					<span class="subjectSpan">
 						<%=rs.getString("bsubject") %> 
 						<%	if(rs.getInt("recnt")>0){ 
 						%>		[<%=rs.getInt("recnt") %>]
 						<%	} 
-						%></a></td>
-						<td><%=rs.getString("bwriter") %></td>
-						<td><%=notice.getListWritedate() %></td>
-						<td><%=rs.getInt("bhit") %></td>
-						<td><%=rs.getInt("up") %></td>
-					<tr>
-			<%	}
-			%>	</tbody>				
-			</table>
+						%>
+					</span>
+					<span class="writerSpan"><%=rs.getString("bwriter") %></span>
+					<span class="wdateSpan"><%=notice.getListWritedate() %></span>
+					<span class="hitSpan"><%=rs.getInt("bhit") %></span>
+					<span class="upSpan"><%=rs.getInt("up") %></span>
+				</div>
+		<%	}
+		%>	</div>
+		
 		<%	if(loginUser != null){ 
 		%>
 			<div id="writeButtonDiv">

@@ -94,7 +94,7 @@ public class Notice {
 			e.printStackTrace();
 		}		
 		
-		String outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(date);
+		String outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 		
 		return outdate;
 	}

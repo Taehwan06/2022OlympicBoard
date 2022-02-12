@@ -161,28 +161,24 @@
 				<div id="titleRow">
 					<span class="midxSpan">회원번호</span>
 					<span class="idSpan">아이디</span>
-					<span class="nameSpan">성명</span>					
-					<span class="edateSpan">가입일</span>
-					
+					<span class="nameSpan">성명</span>
+					<span class="edateSpan">가입일</span>	
 					<span class="gradeSpan">회원 등급</span>
 					<span class="delSpan">탈퇴</span>
 				</div>
-				
-			<%	while(rs.next()){
-					notice.setMemberEnterdate(rs.getString("enterdate"));
-			%>		<div class="rowDiv" onclick="memberViewFn(<%=rs.getInt("midx") %>)">
-						<span class="midxSpan"><%=rs.getInt("midx") %></span>
-						<span class="idSpan"><%=rs.getString("memberid") %></span>
-						<span class="nameSpan"><%=rs.getString("membername") %></span>
-						
-						<span class="edateSpan"><%=notice.getMemberEnterdate() %></span>
-						
-						<span class="gradeSpan"><%=rs.getString("grade") %></span>
-						<span class="delSpan"><%=rs.getString("delyn") %></span>
-					</div>
-			<%	}
-			%>					
-			</div>		
+		<%	while(rs.next()){
+				notice.setMemberEnterdate(rs.getString("enterdate"));
+		%>		<div class="rowDiv" onclick="memberViewFn(<%=rs.getInt("midx") %>)">
+					<span class="midxSpan"><%=rs.getInt("midx") %></span>
+					<span class="idSpan"><%=rs.getString("memberid") %></span>
+					<span class="nameSpan"><%=rs.getString("membername") %></span>
+					<span class="edateSpan"><%=notice.getMemberEnterdate() %></span>
+					<span class="gradeSpan"><%=rs.getString("grade") %></span>
+					<span class="delSpan"><%=rs.getString("delyn") %></span>
+				</div>
+		<%	}
+		%>	
+			</div>
 			<div id="pagingArea">
 			<% 	if(paging.getStartPage() > 1){
 			%>		<input type="button" class="backButton" value="이전" 
