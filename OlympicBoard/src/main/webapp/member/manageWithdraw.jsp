@@ -4,7 +4,15 @@
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
 <%
+	request.setCharacterEncoding("UTF-8");
+
+	String midx = request.getParameter("midx");
+
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	if(loginUser == null || !loginUser.getGrade().equals("A")){
+		response.sendRedirect(request.getContextPath());
+	}
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -18,7 +26,7 @@
 		String sql = "update member set delyn='Y' where midx=?";
 		
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1,loginUser.getMidx());
+		psmt.setString(1,midx);
 		
 		int result = psmt.executeUpdate();
 		
@@ -27,19 +35,16 @@
 			sql = "update member set breakdate=sysdate where midx=?";
 			
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,loginUser.getMidx());
+			psmt.setString(1,midx);
 			
 			psmt.executeUpdate();
 			
 			check.setWithdraw("success");
-			session.setAttribute("check",check);
-			session.setAttribute("loginUser",null);
-			response.sendRedirect(request.getContextPath());
 		}else{
 			check.setWithdraw("fail");
-			session.setAttribute("check",check);
-			response.sendRedirect("mypage.jsp");
 		}
+		session.setAttribute("check",check);
+		response.sendRedirect(request.getContextPath()+"/member/memberView.jsp?midx="+midx);
 		
 	}catch(Exception e){
 		e.printStackTrace();

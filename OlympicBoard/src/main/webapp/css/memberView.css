@@ -1,0 +1,38 @@
+@charset "UTF-8";
+section{
+	text-align: center;
+	padding: 50px 0px;
+	margin: auto;
+}
+.border{
+	width: 450px;
+	border: 1px solid lightgray;
+	display: inline-block;
+	border-radius: 5px;
+	margin: 10px;
+}
+.border span{
+	font-size: 16px;
+	height: 20px;
+	padding: 5px 0px 8px;
+	display: inline-block;
+}
+.left{
+	width: 170px;
+	border-right: 1px solid lightgray;
+}
+.right{
+	width: 260px;
+}
+.button{
+	margin: 50px 0px;
+}
+.button .border{
+	width: 135px;
+	background: lightgray;
+	border: none;
+}
+.button .border:hover{
+	background: skyblue;
+	cursor: pointer;
+}

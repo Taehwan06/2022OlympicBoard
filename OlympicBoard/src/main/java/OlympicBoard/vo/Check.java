@@ -16,8 +16,17 @@ public class Check {
 	private String modifyCheck;
 	private String deleteBoardCheck;
 	private String loginNull;
+	private String restore;
 	
 	
+	public String getRestore() {
+		return restore;
+	}
+
+	public void setRestore(String restore) {
+		this.restore = restore;
+	}
+
 	public String getLoginNull() {
 		return loginNull;
 	}

@@ -9,12 +9,12 @@ body{
 	margin: auto;
 }
 header{
-	height:70px;			
-	text-align:center;
+	height: 120px;			
+	text-align: center;
 	position:relative;
 }
 header>h2{
-	padding:20px;
+	padding:40px;
 }
 header>h2>a{
 	text-decoration: none;

@@ -34,8 +34,6 @@
 				onclick="location.href='<%=request.getContextPath() %>/login/logout.jsp?bidx=<%=bidxH %>&nowPage=<%=nowPageH %>&searchType=<%=searchTypeH%>&searchValue=<%=searchValueH%>'">
 				<input type="button" name="mypage" value="회원 관리" 
 				onclick="location.href='<%=request.getContextPath() %>/member/management.jsp'">
-				<input type="button" name="mypage" value="게시물 관리" 
-				onclick="location.href='<%=request.getContextPath() %>/board/management.jsp'">
 			</div>
 	<%	} 
 	%>

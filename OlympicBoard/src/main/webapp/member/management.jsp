@@ -6,6 +6,22 @@
 <%@ page import="OlympicBoard.util.*"%>
 <%	
 	request.setCharacterEncoding("UTF-8");
+
+	String memberModify = "";
+	String withdraw = "";
+	String searchType = request.getParameter("searchType");
+	String searchValue = request.getParameter("searchValue");
+	String nowPage = request.getParameter("nowPage");
+	
+	Check check = (Check)session.getAttribute("check");
+	if(check != null){
+		if(check.getMemberModify() != null){
+			memberModify = check.getMemberModify();
+		}
+		if(check.getWithdraw() != null){
+			withdraw = check.getWithdraw();
+		}
+	}
 	
 	ReUrl reurl = new ReUrl();
 	String url = request.getRequestURL().toString();
@@ -20,16 +36,8 @@
 			response.sendRedirect(request.getContextPath());
 		}
 		
-		int midx = loginUser.getMidx();
-	
-		Check check = (Check)session.getAttribute("check");
-		
-		String searchType = request.getParameter("searchType");
-		String searchValue = request.getParameter("searchValue");
-		
 		Notice notice = new Notice();
 		
-		String nowPage = request.getParameter("nowPage");
 		int nowPageI = 1;
 		if(nowPage != null && !nowPage.equals("") && !nowPage.equals("null")){
 			nowPageI = Integer.parseInt(nowPage);
@@ -115,7 +123,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
 	function memberViewFn(midx){
-		location.href = "memverView.jsp?nowPage=<%=paging.getNowPage() %>&midx="+midx+"&searchType=<%=searchType %>&searchValue=<%=searchValue %>"
+		location.href = "memberView.jsp?nowPage=<%=paging.getNowPage() %>&midx="+midx+"&searchType=<%=searchType %>&searchValue=<%=searchValue %>"
 	}
 </script>
 </head>

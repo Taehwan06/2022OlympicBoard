@@ -17,8 +17,42 @@ public class Member {
 	private int midx;
 	private String uplist;
 	private String grade;
+	private String breakdate;
+	private String delyn;
+	private String originBreakdate;
 	
 	
+	public String getOriginBreakdate() {
+		return originBreakdate;
+	}
+	public void setOriginBreakdate(String originBreakdate) {
+		this.originBreakdate = originBreakdate;
+	}
+	public String getDelyn() {
+		return delyn;
+	}
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
+	public String getBreakdate() {
+		String outdate = null;
+		if(breakdate != null) {
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(breakdate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			outdate = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분ss초").format(date);
+		}else {
+			outdate = "탈퇴하지 않은 회원입니다.";
+		}
+		return outdate;
+	}
+	public void setBreakdate(String breakdate) {
+		this.breakdate = breakdate;
+	}
 	public String getGrade() {
 		return grade;
 	}
