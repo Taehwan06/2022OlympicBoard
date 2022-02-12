@@ -392,20 +392,20 @@
 			<div id="pagingArea">
 			<% 	if(replyPaging.getStartPage() > 1){	
 			%>		<input type="button" class="backButton" value="이전" 
-					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getStartPage()-1%>&bidx=<%=bidx %>'">
+					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getStartPage()-1%>&bidx=<%=bidx %>#pagingArea'">
 			<%	}
 				for(int i= replyPaging.getStartPage(); i<=replyPaging.getEndPage(); i++){
 					if(i == replyPaging.getNowPage()){
 			%>			<input type="button" class="selButton" value="<%=i%>" 
-						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>'">
+						onclick="location.href='view.jsp#?replyNowPage=<%=i%>&bidx=<%=bidx %>#pagingArea'">
 			<%		}else{
 			%>			<input type="button" class="numButton" value="<%=i%>" 
-						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>'">
+						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>#pagingArea'">
 			<%		}
 				}						
 			 	if(replyPaging.getEndPage() != replyPaging.getLastPage()){
 			%>		<input type="button" class="nextButton" value="다음" 
-					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getEndPage()+1%>&bidx=<%=bidx %>'">
+					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getEndPage()+1%>&bidx=<%=bidx %>#pagingArea'">
 			<%	}
 			%>			
 			</div>

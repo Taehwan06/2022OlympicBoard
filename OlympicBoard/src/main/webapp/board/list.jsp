@@ -183,20 +183,20 @@
 			<div id="pagingArea">
 			<% 	if(paging.getStartPage() > 1){	
 			%>		<input type="button" class="backButton" value="이전" 
-					onclick="location.href='list.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
+					onclick="location.href='list.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>#pagingArea'">
 			<%	}
 				for(int i= paging.getStartPage(); i<=paging.getEndPage(); i++){
 					if(i == paging.getNowPage()){
 			%>			<input type="button" class="selButton" value="<%=i%>" 
-						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
+						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>#pagingArea'">
 			<%		}else{
 			%>			<input type="button" class="numButton" value="<%=i%>" 
-						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
+						onclick="location.href='list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>#pagingArea'">
 			<%		}
-				}						
+				}
 			 	if(paging.getEndPage() != paging.getLastPage()){
 			%>		<input type="button" class="nextButton" value="다음" 
-					onclick="location.href='list.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>'">
+					onclick="location.href='list.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>#pagingArea'">
 			<%	}
 			%>			
 			</div>
