@@ -59,7 +59,11 @@
 <body>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
-	<section>	
+	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<form id="modifyFrm" name="modifyFrm">	
 			<input type="hidden" name="bidx" value="<%=bidx %>">
 			<div class="box">

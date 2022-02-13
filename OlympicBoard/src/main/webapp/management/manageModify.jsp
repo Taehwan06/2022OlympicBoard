@@ -18,54 +18,57 @@
 	Member member = new Member();
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	if(loginUser == null || !loginUser.getGrade().equals("A")){
+	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
 	}else{
+		if(!loginUser.getGrade().equals("A")){
+			response.sendRedirect(request.getContextPath());
+		}else{
 		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
 			
-			String sql = "select * from member where midx=?";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1,midx);
-			
-			rs = psmt.executeQuery();
-			
-			if(rs.next()){
-				phone = rs.getString("phone");
-				String[] phoneA = phone.split("-");
-				phone1 = phoneA[0];
-				phone2 = phoneA[1];
-				phone3 = phoneA[2];
+			try{
+				conn = DBManager.getConnection();
 				
-				String birth = rs.getString("birth");
-				String[] birthA = birth.split("년");
-				birth1 = birthA[0];
-				String[] birthA2 = birthA[1].split("월");
-				birth2 = birthA2[0];
-				String[] birthA3 = birthA2[1].split("일");
-				birth3 = birthA3[0];
+				String sql = "select * from member where midx=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1,midx);
 				
-				member.setEmail(rs.getString("email"));
-				member.setGrade(rs.getString("grade"));
-				member.setMembername(rs.getString("membername"));
-				member.setMemberid(rs.getString("memberid"));
-				member.setMidx(rs.getInt("midx"));
-				member.setEnterdate(rs.getString("enterdate"));
-				member.setDelyn(rs.getString("delyn"));
-				member.setBreakdate(rs.getString("breakdate"));
-				member.setOriginBreakdate(rs.getString("breakdate"));
+				rs = psmt.executeQuery();
+				
+				if(rs.next()){
+					phone = rs.getString("phone");
+					String[] phoneA = phone.split("-");
+					phone1 = phoneA[0];
+					phone2 = phoneA[1];
+					phone3 = phoneA[2];
+					
+					String birth = rs.getString("birth");
+					String[] birthA = birth.split("년");
+					birth1 = birthA[0];
+					String[] birthA2 = birthA[1].split("월");
+					birth2 = birthA2[0];
+					String[] birthA3 = birthA2[1].split("일");
+					birth3 = birthA3[0];
+					
+					member.setEmail(rs.getString("email"));
+					member.setGrade(rs.getString("grade"));
+					member.setMembername(rs.getString("membername"));
+					member.setMemberid(rs.getString("memberid"));
+					member.setMidx(rs.getInt("midx"));
+					member.setEnterdate(rs.getString("enterdate"));
+					member.setDelyn(rs.getString("delyn"));
+					member.setBreakdate(rs.getString("breakdate"));
+					member.setOriginBreakdate(rs.getString("breakdate"));
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				DBManager.close(psmt,conn,rs);
 			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(psmt,conn,rs);
-		}
 		
 		
 %>
@@ -102,6 +105,10 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<div>
 			<form name="modifyFrm">
 				<input type="hidden" name="midx" value="<%=midx %>">
@@ -145,14 +152,14 @@
 				</div>
 				<div class="border" id="birth">
 					<label for="grade"><span class="headSpan">회원 등급</span></label>
-					<label for="grade"><div id="gradeDiv"></label>
+					<label for="grade"><div id="gradeDiv">
 						<select id="grade" name="grade">
 							<option name="grade" value="G" 
-							<% if(member.getGrade().equals("G")){ out.print("selected"); } %>>일반 회원</option>
+							<% if(member.getGrade()!=null && member.getGrade().equals("G")){ out.print("selected"); } %>>일반 회원</option>
 							<option name="grade" value="A" 
-							<% if(member.getGrade().equals("A")){ out.print("selected"); } %>>관리자</option>
+							<% if(member.getGrade()!=null && member.getGrade().equals("A")){ out.print("selected"); } %>>관리자</option>
 						</select>
-					</div>
+					</div></label>
 				</div>
 				<div class="border">
 					<span class="headSpan">가입일</span>
@@ -184,5 +191,6 @@
 </body>
 </html>
 <%
+		}
 	}
 %>

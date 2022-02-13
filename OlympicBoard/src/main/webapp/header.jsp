@@ -39,5 +39,5 @@
 			</div>
 	<%	} 
 	%>
-	<h2><a href="<%=request.getContextPath() %>">게시판</a></h2>
+	<h2 id="top"><a href="<%=request.getContextPath() %>">게시판</a></h2>
 </header>

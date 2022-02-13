@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="org.json.simple.*" %>
+<%@ page import="java.net.URLEncoder" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String midx = request.getParameter("midx");
+	String bidx = request.getParameter("bidx");
 	String searchType = request.getParameter("searchType");
 	String searchValue = request.getParameter("searchValue");
 	String nowPage = request.getParameter("nowPage");
@@ -26,10 +30,7 @@
 	}
 	
 	Check check = new Check();
-	
-	Connection conn = null;
-	PreparedStatement psmt = null;
-	
+
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
@@ -37,14 +38,17 @@
 		if(!loginUser.getGrade().equals("A")){
 			response.sendRedirect(request.getContextPath());
 		}else{
-	
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			
 			try{
 				conn = DBManager.getConnection();
 				
-				String sql = "update member set delyn='N', breakdate=sysdate where midx=?";
+				String sql = "update board set bdelyn='N' where bidx=?";
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1,midx);
-						
+				psmt.setString(1,bidx);
+				
 				int result = psmt.executeUpdate();
 				
 				if(result > 0){
@@ -54,13 +58,14 @@
 				}
 				session.setAttribute("check",check);
 				
-				response.sendRedirect(request.getContextPath()+"/management/memberView.jsp?midx="+midx+"&searchValue="+searchValue+"&searchType="+searchType+"&nowPage="+nowPage);
+				response.sendRedirect(request.getContextPath()+"/management/manageBoardView.jsp?bidx="+bidx+"&searchValue="+searchValue+"&searchType="+searchType+"&nowPage="+nowPage);
 				
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
 				DBManager.close(psmt,conn);
 			}
+			
 		}
 	}
 %>

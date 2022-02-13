@@ -26,6 +26,10 @@
 	<%@ include file="/loginHeader.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<div>			
 			<div id="mainText">
 				회원님의 아이디는 <span id="id"><%=id %></span> 입니다.

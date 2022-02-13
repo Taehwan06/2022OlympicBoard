@@ -1,8 +1,28 @@
 @charset "UTF-8";
 section{
 	text-align: center;
-	padding: 50px 0px;
+	padding: 30px 0px 30px;
 	margin: auto;
+	position: relative;
+}
+#topButtonDiv{
+	height: 1px;
+	width: 720px;
+	margin: 0px;
+	padding: 0px;
+	text-align: right;
+	display: inline-block;
+}
+#topButton{
+	width: 40px;
+	height: 60px;
+	position: fixed;
+	bottom: 120px;
+	border-radius: 5px;
+}
+#topButton:hover{
+	cursor: pointer;
+	background: #B3E5FC;
 }
 a{
 	text-decoration: none;
@@ -23,6 +43,7 @@ section select{
 	height: 26px;
 	border: 1px solid gray;
 	border-radius: 5px;
+	cursor: pointer;
 }
 section>div>form>div{
 	border: 1px solid gray;
@@ -63,8 +84,9 @@ section input[name='searchSubmit']:hover{
 }
 .rowDiv:hover{
 	background: #E0E0E0;
-	color: #1B5E20;
+	color: blue;
 	font-weight: bold;
+	cursor: pointer;
 }
 .midxSpan{
 	width: 80px;

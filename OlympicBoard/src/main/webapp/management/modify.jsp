@@ -11,28 +11,32 @@
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	String nowPage = request.getParameter("nowPage");
+	
+	Board board = (Board)session.getAttribute("board");
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
+	}else{
+		if(!loginUser.getGrade().equals("A")){
+			response.sendRedirect(request.getContextPath());
+		}else{
+			
+			ListPageData listPageData = new ListPageData();
+			if(session.getAttribute("listPageData") != null){
+				listPageData = (ListPageData)session.getAttribute("listPageData");
+			}
+			
+			if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
+				searchType = listPageData.getSearchType();
+				searchValue = listPageData.getSearchValue();		
+			}	
+			
+			if(listPageData != null && listPageData.getNowPage() != null){		
+				nowPage = listPageData.getNowPage();
+			}
+		}
 	}
-	
-	Board board = (Board)session.getAttribute("board");
-	
-	ListPageData listPageData = new ListPageData();
-	if(session.getAttribute("listPageData") != null){
-		listPageData = (ListPageData)session.getAttribute("listPageData");
-	}
-	
-	if(listPageData != null && listPageData.getSearchType() != null && listPageData.getSearchValue() != null){
-		searchType = listPageData.getSearchType();
-		searchValue = listPageData.getSearchValue();		
-	}	
-	
-	if(listPageData != null && listPageData.getNowPage() != null){		
-		nowPage = listPageData.getNowPage();
-	}
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -47,12 +51,12 @@
 <script>
 	function modifyFn(){
 		document.modifyFrm.method = "post";
-		document.modifyFrm.action = "myModifyOk.jsp";
+		document.modifyFrm.action = "modifyOk.jsp";
 		document.modifyFrm.submit();
 	}
 
 	function cancelFn(){
-		location.href = "myview.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>&bidx=<%=bidx %>";
+		location.href = "manageBoardView.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>&bidx=<%=bidx %>";
 	}
 </script>
 </head>

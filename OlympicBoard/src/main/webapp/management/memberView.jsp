@@ -81,7 +81,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이 페이지</title>
+<title>회원 정보 조회</title>
 <link href="<%=request.getContextPath() %>/css/header.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/memberView.css" rel="stylesheet">
@@ -131,6 +131,10 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<div>		
 			<div>
 				<div class="border">

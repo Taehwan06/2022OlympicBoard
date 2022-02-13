@@ -34,82 +34,82 @@
 	}else{
 		if(!loginUser.getGrade().equals("A")){
 			response.sendRedirect(request.getContextPath());
-		}
-		
-		Notice notice = new Notice();
-		
-		int nowPageI = 1;
-		if(nowPage != null && !nowPage.equals("") && !nowPage.equals("null")){
-			nowPageI = Integer.parseInt(nowPage);
-		}
-		
-		ListPageData listPageData = new ListPageData();
-		listPageData.setSearchType(searchType);
-		listPageData.setSearchValue(searchValue);
-		listPageData.setNowPage(Integer.toString(nowPageI));
-		session.setAttribute("listPageData", listPageData);
-		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
-		
-		PagingUtil paging = null;
-		
-		try{
-			conn = DBManager.getConnection();
+		}else{
 			
-			String sql = "select count(*) as total from member ";
+			Notice notice = new Notice();
 			
-			if(searchValue != null && !searchValue.equals("")){
-				if(searchType.equals("memberid")){
-					sql += " where memberid like '%"+searchValue+"%' ";
-				}else if(searchType.equals("membername")){
-					sql += " where membername like '%"+searchValue+"%' ";
-				}else if(searchType.equals("memberidx")){
-					sql += " where midx = '"+searchValue+"' ";
-				}else if(searchType.equals("phone")){
-					sql += " where phone like '%"+searchValue+"%' ";
-				}else if(searchType.equals("email")){
-					sql += " where email like '%"+searchValue+"%' ";
+			int nowPageI = 1;
+			if(nowPage != null && !nowPage.equals("") && !nowPage.equals("null")){
+				nowPageI = Integer.parseInt(nowPage);
+			}
+			
+			ListPageData listPageData = new ListPageData();
+			listPageData.setSearchType(searchType);
+			listPageData.setSearchValue(searchValue);
+			listPageData.setNowPage(Integer.toString(nowPageI));
+			session.setAttribute("listPageData", listPageData);
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			
+			PagingUtil paging = null;
+			
+			try{
+				conn = DBManager.getConnection();
+				
+				String sql = "select count(*) as total from member ";
+				
+				if(searchValue != null && !searchValue.equals("")){
+					if(searchType.equals("memberid")){
+						sql += " where memberid like '%"+searchValue+"%' ";
+					}else if(searchType.equals("membername")){
+						sql += " where membername like '%"+searchValue+"%' ";
+					}else if(searchType.equals("memberidx")){
+						sql += " where midx = '"+searchValue+"' ";
+					}else if(searchType.equals("phone")){
+						sql += " where phone like '%"+searchValue+"%' ";
+					}else if(searchType.equals("email")){
+						sql += " where email like '%"+searchValue+"%' ";
+					}
 				}
-			}
-			
-			psmt = conn.prepareStatement(sql);
-			
-			rs = psmt.executeQuery();
-			
-			int total = 0;
-			
-			if(rs.next()){
-				total = rs.getInt("total");
-			}
-			
-			paging = new PagingUtil(total,nowPageI,10);
-			
-			sql = " select * from ";
-			sql += " (select rownum r , m.* from ";
-			sql += "(SELECT * FROM member ";
-			
-			if(searchValue != null && !searchValue.equals("")){
-				if(searchType.equals("memberid")){
-					sql += " where memberid like '%"+searchValue+"%' ";
-				}else if(searchType.equals("membername")){
-					sql += " where membername like '%"+searchValue+"%' ";
-				}else if(searchType.equals("memberidx")){
-					sql += " where midx = '"+searchValue+"' ";
-				}else if(searchType.equals("phone")){
-					sql += " where phone like '%"+searchValue+"%' ";
-				}else if(searchType.equals("email")){
-					sql += " where email like '%"+searchValue+"%' ";
-				}			
-			}
-			
-			sql += " order by midx ) m) ";
-			sql += " where r>="+paging.getStart()+" and r<="+paging.getEnd();
-			
-			psmt = conn.prepareStatement(sql);
-			
-			rs = psmt.executeQuery();				
+				
+				psmt = conn.prepareStatement(sql);
+				
+				rs = psmt.executeQuery();
+				
+				int total = 0;
+				
+				if(rs.next()){
+					total = rs.getInt("total");
+				}
+				
+				paging = new PagingUtil(total,nowPageI,10);
+				
+				sql = " select * from ";
+				sql += " (select rownum r , m.* from ";
+				sql += "(SELECT * FROM member ";
+				
+				if(searchValue != null && !searchValue.equals("")){
+					if(searchType.equals("memberid")){
+						sql += " where memberid like '%"+searchValue+"%' ";
+					}else if(searchType.equals("membername")){
+						sql += " where membername like '%"+searchValue+"%' ";
+					}else if(searchType.equals("memberidx")){
+						sql += " where midx = '"+searchValue+"' ";
+					}else if(searchType.equals("phone")){
+						sql += " where phone like '%"+searchValue+"%' ";
+					}else if(searchType.equals("email")){
+						sql += " where email like '%"+searchValue+"%' ";
+					}			
+				}
+				
+				sql += " order by midx ) m) ";
+				sql += " where r>="+paging.getStart()+" and r<="+paging.getEnd();
+				
+				psmt = conn.prepareStatement(sql);
+				
+				rs = psmt.executeQuery();				
 %>
 <!DOCTYPE html>
 <html>
@@ -131,6 +131,10 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<div>
 			<form name="searchFrm" action="management.jsp">
 				<select name="searchType">
@@ -168,7 +172,8 @@
 				</div>
 		<%	while(rs.next()){
 				notice.setMemberEnterdate(rs.getString("enterdate"));
-		%>		<div class="rowDiv" onclick="memberViewFn(<%=rs.getInt("midx") %>)">
+		%>		<div class="rowDiv" onclick="memberViewFn(<%=rs.getInt("midx") %>)" 
+				<% if(rs.getString("delyn").equals("Y")){ out.print("style='color:gray'"); } %>>
 					<span class="midxSpan"><%=rs.getInt("midx") %></span>
 					<span class="idSpan"><%=rs.getString("memberid") %></span>
 					<span class="nameSpan"><%=rs.getString("membername") %></span>
@@ -205,10 +210,11 @@
 </body>
 </html>
 <%
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(psmt,conn,rs);
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				DBManager.close(psmt,conn,rs);
+			}
 		}
 	}
 %>

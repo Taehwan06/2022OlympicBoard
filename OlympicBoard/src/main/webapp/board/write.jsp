@@ -56,6 +56,10 @@
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
 	<section>
+		<div id="topButtonDiv">
+			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
+			id="topButton" onclick="location.href='#top'">
+		</div>
 		<form id="writeFrm" name="writeFrm">			
 			<div class="box">
 				<label for="subject"><div id="subjectTop">제목</div></label>
