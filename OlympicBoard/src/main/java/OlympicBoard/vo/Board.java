@@ -16,8 +16,22 @@ public class Board {
 	private int bhit;
 	private int recnt;
 	private int up;
+	private String bimgsys;
+	private String bimgori;
 	
 	
+	public String getBimgsys() {
+		return bimgsys;
+	}
+	public void setBimgsys(String bimgsys) {
+		this.bimgsys = bimgsys;
+	}
+	public String getBimgori() {
+		return bimgori;
+	}
+	public void setBimgori(String bimgori) {
+		this.bimgori = bimgori;
+	}
 	public int getUp() {
 		return up;
 	}

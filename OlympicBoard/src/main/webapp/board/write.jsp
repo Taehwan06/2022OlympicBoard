@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="OlympicBoard.vo.*" %>
+<%@ page import="OlympicBoard.util.*" %>
 <%
 	String writer = "";
 
 	Check check = new Check();
-
+	
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		check.setLoginNull("null");
@@ -34,6 +35,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
 	function writeFn(){
+		$("#content").html($("#content2").html());
 		document.writeFrm.method = "post";
 		document.writeFrm.action = "writeOk.jsp";
 		document.writeFrm.submit();
@@ -43,11 +45,67 @@
 		location.href = "list.jsp?searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPage %>";
 	}
 	
-	function imgUp1Fn(){
-		document.imgUpfrm1.method = "post";
-		document.imgUpfrm1.enctype = "multipart/form-data";
-		document.imgUpfrm1.action = "imgUp1.jsp";
-		document.imgUpfrm1.submit();
+	function fileFrm1Fn(obj){
+		var form = $("#fileFrm1")[0];
+	    var formData = new FormData(form);
+	    $.ajax({
+			url: "fileFrm1.jsp",
+			type: "post",
+			data: formData,
+			enctype: "multipart/form-data",
+			contentType: false,
+			processData: false,
+			success: function(data){
+				var imgsys = data.trim();
+				setTimeout(() => sleep(), 1000);
+				function sleep(){
+					$("#content2").append(imgsys);
+				}
+				obj.style.display = "none";
+	        }
+	    });
+	}
+	
+	function fileFrm2Fn(obj){
+		var form = $("#fileFrm2")[0];
+	    var formData = new FormData(form);
+	    $.ajax({
+			url: "fileFrm2.jsp",
+			type: "post",
+			data: formData,
+			enctype: "multipart/form-data",
+			contentType: false,
+			processData: false,
+			success: function(data){
+				var imgsys = data.trim();
+				setTimeout(() => sleep(), 1000);
+				function sleep(){
+					$("#content2").append(imgsys);
+				}
+				obj.style.display = "none";
+	        }
+	    });
+	}
+	
+	function fileFrm3Fn(obj){
+		var form = $("#fileFrm3")[0];
+	    var formData = new FormData(form);
+	    $.ajax({
+			url: "fileFrm3.jsp",
+			type: "post",
+			data: formData,
+			enctype: "multipart/form-data",
+			contentType: false,
+			processData: false,
+			success: function(data){
+				var imgsys = data.trim();
+				setTimeout(() => sleep(), 1000);
+				function sleep(){
+					$("#content2").append(imgsys);
+				}
+				obj.style.display = "none";
+	        }
+	    });
 	}
 	
 </script>
@@ -75,9 +133,27 @@
 				<label for="content"><div id="contentTop">내용</div></label>
 				<textarea id="content" name="content" 
 				placeholder="내용을 입력하세요."></textarea>
+				<div id="content2" contentEditable="true" placeholder="내용을 입력하세요."></div>
 			</div>
 		</form>
-		
+		<form name="fileFrm1" id="fileFrm1" action="fileFrm1.jsp" method="post" enctype="multipart/form-data">
+			<div class="fileTop">첫 번째 이미지 추가하기
+				<input type="file" name="file1" id="file1">
+				<input type="button" name="submit1" id="submit1" value="등록" onclick="fileFrm1Fn(this)">
+			</div>			
+		</form>
+		<form name="fileFrm2" id="fileFrm2" action="fileFrm2.jsp" method="post" enctype="multipart/form-data">
+			<div class="fileTop">두 번째 이미지 추가하기
+				<input type="file" name="file2" id="file2">
+				<input type="button" name="submit2" id="submit2" value="등록" onclick="fileFrm2Fn(this)">
+			</div>			
+		</form>
+		<form name="fileFrm3" id="fileFrm3" action="fileFrm3.jsp" method="post" enctype="multipart/form-data">
+			<div class="fileTop">세 번째 이미지 추가하기
+				<input type="file" name="file3" id="file3">
+				<input type="button" name="submit3" id="submit3" value="등록" onclick="fileFrm3Fn(this)">
+			</div>			
+		</form>
 		<div id="buttonBox">
 			<input type="button" id="writeSubmit" name="writeSubmit" 
 			value="등록" onclick="writeFn()">
