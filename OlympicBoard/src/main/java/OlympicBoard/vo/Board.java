@@ -18,8 +18,36 @@ public class Board {
 	private int up;
 	private String bimgsys;
 	private String bimgori;
+	private String bimgsys2;
+	private String bimgori2;
+	private String bimgsys3;
+	private String bimgori3;
 	
 	
+	public String getBimgsys2() {
+		return bimgsys2;
+	}
+	public void setBimgsys2(String bimgsys2) {
+		this.bimgsys2 = bimgsys2;
+	}
+	public String getBimgori2() {
+		return bimgori2;
+	}
+	public void setBimgori2(String bimgori2) {
+		this.bimgori2 = bimgori2;
+	}
+	public String getBimgsys3() {
+		return bimgsys3;
+	}
+	public void setBimgsys3(String bimgsys3) {
+		this.bimgsys3 = bimgsys3;
+	}
+	public String getBimgori3() {
+		return bimgori3;
+	}
+	public void setBimgori3(String bimgori3) {
+		this.bimgori3 = bimgori3;
+	}
 	public String getBimgsys() {
 		return bimgsys;
 	}

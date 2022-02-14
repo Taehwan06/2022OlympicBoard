@@ -29,9 +29,9 @@
 				
 		systemName2 = "<img src='"+request.getContextPath()+"/upload/"+systemName+"'>";
 		
-		board.setBimgori(originName);
-		board.setBimgsys(systemName2);
-		session.setAttribute("board",board);
+		board.setBimgori2(originName);
+		board.setBimgsys2(systemName);
+		session.setAttribute("board2",board);
 		
 		out.print(systemName2);
 		

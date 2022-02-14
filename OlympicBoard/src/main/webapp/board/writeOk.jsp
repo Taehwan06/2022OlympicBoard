@@ -10,16 +10,62 @@
 
 	String subject = request.getParameter("subject");
 	String content = request.getParameter("content");
+	String bimgsys = null;
+	String bimgori = null;
+	String bimgsys2 = null;
+	String bimgori2 = null;
+	String bimgsys3 = null;
+	String bimgori3 = null;
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	Board board1 = (Board)session.getAttribute("board1");
+	Board board2 = (Board)session.getAttribute("board2");
+	Board board3 = (Board)session.getAttribute("board3");
+	if(board1 != null){
+		bimgsys = board1.getBimgsys();
+		bimgori = board1.getBimgori();
+	}
+	if(board2 != null){
+		bimgsys2 = board2.getBimgsys2();
+		bimgori2 = board2.getBimgori2();
+	}
+	if(board3 != null){
+		bimgsys3 = board3.getBimgsys3();
+		bimgori3 = board3.getBimgori3();
+	}
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	
 	try{
-		conn = DBManager.getConnection();		
-		String sql = "insert into board(bidx,bsubject,bcontent,bwriter,midx) "
-					+" values(bidx_seq.nextval,?,?,?,?)";
+		conn = DBManager.getConnection();
+		String sql = "";
+		
+		sql += "insert into board(bidx,bsubject,bcontent,bwriter,midx";
+		if(bimgsys != null && bimgori != null){
+			sql += ",bimgsys,bimgori";
+		}
+		if(bimgsys2 != null && bimgori2 != null){
+			sql += ",bimgsys2,bimgori2";
+		}
+		if(bimgsys3 != null && bimgori3 != null){
+			sql += ",bimgsys3,bimgori3";
+		}
+		
+		sql	+= ") values(bidx_seq.nextval,?,?,?,?";
+		if(bimgsys != null && bimgori != null){
+			sql += ",'"+bimgsys+"','"+bimgori+"'";
+		}
+		if(bimgsys2 != null && bimgori2 != null){
+			sql += ",'"+bimgsys2+"','"+bimgori2+"'";
+		}
+		if(bimgsys3 != null && bimgori3 != null){
+			sql += ",'"+bimgsys3+"','"+bimgori3+"'";
+		}
+		
+		sql += ")";
+		
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,subject);
 		psmt.setString(2,content);
