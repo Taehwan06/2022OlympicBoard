@@ -11,7 +11,10 @@
 	String searchTypeH = request.getParameter("searchType");
 	String searchValueH = request.getParameter("searchValue");
 %>
+<script>
+</script>
 <header>
+	<h2 id="top" onclick="location.href='<%=request.getContextPath() %>'"><img src="<%=request.getContextPath() %>/upload/headerback.png"></h2>
 	<%	if(m == null){
 	%>		<div>		
 				<input type="button" name="login" value="로그인" 
@@ -39,5 +42,5 @@
 			</div>
 	<%	} 
 	%>
-	<h2 id="top"><a href="<%=request.getContextPath() %>">게시판</a></h2>
+	
 </header>

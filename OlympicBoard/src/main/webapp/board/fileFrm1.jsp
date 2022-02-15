@@ -11,7 +11,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	final String saveFolder = "E:/workspace/upload";
+	final String saveFolder = "D:/workspace/upload";
 	final String encoding = "UTF-8";
 	final int maxSize = 100*1024*1024;
 	

@@ -19,7 +19,13 @@
 <link href="<%=request.getContextPath() %>/css/findId.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findId.js"></script>
-<script>	
+<script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+
 	<%	if(idCheck){			
 	%>		alert("일치하는 회원이 없습니다.");
 	<%	}

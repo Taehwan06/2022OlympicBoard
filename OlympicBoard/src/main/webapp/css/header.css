@@ -4,14 +4,27 @@
 	padding:0px;
 }
 body{
-	width: 800px;	
-	min-height: 800px;
+	min-height: 100vh;
 	margin: auto;
 }
 header{
+	width: 800px;
+	margin: auto;
 	height: 120px;			
 	text-align: center;
 	position: relative;
+}
+nav{
+	width: 800px;
+	margin: auto;
+}
+section{
+	width: 800px;
+	margin: auto;
+}
+footer{
+	width: 800px;
+	margin: auto;
 }
 header>div{
 	text-align: right;
@@ -35,13 +48,7 @@ header>div input:hover{
 	background-color: skyblue;
 	border-radius: 5px;
 }
-header>h2{
-	padding:40px;
-}
-header>h2>a{
-	text-decoration: none;
-	color: black;
-}
-header>h2>a:hover{
-	color: skyblue;
+#top{
+	padding-top: 9px;
+	cursor: pointer;
 }

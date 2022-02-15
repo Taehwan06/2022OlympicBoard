@@ -31,7 +31,16 @@
 <link href="<%=request.getContextPath() %>/css/index.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<style>
+
+</style>
 <script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+	
 	<%	if(withdraw == null){
 	%>	
 	<%	}else if(withdraw.equals("success")){

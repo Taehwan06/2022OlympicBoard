@@ -122,6 +122,12 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+
 	function memberViewFn(midx){
 		location.href = "memberView.jsp?nowPage=<%=paging.getNowPage() %>&midx="+midx+"&searchType=<%=searchType %>&searchValue=<%=searchValue %>"
 	}

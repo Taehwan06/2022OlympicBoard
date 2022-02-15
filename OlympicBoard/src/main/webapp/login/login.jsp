@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="OlympicBoard.vo.*"%>
+<%@ page import="org.json.simple.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	
 	String memberid = request.getParameter("memberid");
 	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
@@ -30,27 +31,48 @@
 <link href="<%=request.getContextPath() %>/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/login.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
 	<%	if(joinCheck == null){
 	%>		
-	<%	}else if(joinCheck.equals("success")){
+	<%	}else if(joinCheck.equals("success") && check.isJoinCheckFlag()){
+			check.setJoinCheckFlag(false);
+			session.setAttribute("check",check);
 	%>		alert("회원가입이 완료되었습니다.");
-	<%	}else if(joinCheck.equals("fail")){
+	<%	}else if(joinCheck.equals("fail") && check.isJoinCheckFlag()){
+			check.setJoinCheckFlag(false);
+			session.setAttribute("check",check);
 	%>		alert("회원가입에 실패했습니다.");
 	<%	}
 	%>
 	<%	if(loginCheck == null){
 	%>		
-	<%	}else if(loginCheck.equals("pass")){
+	<%	}else if(loginCheck.equals("pass") && check.isLoginCheckFlag()){
+			check.setLoginCheckFlag(false);
+			session.setAttribute("check",check);
 	%>		alert("비밀번호 오류!");
-	<%	}else if(loginCheck.equals("all")){
+	<%	}else if(loginCheck.equals("all") && check.isLoginCheckFlag()){
+			check.setLoginCheckFlag(false);
+			session.setAttribute("check",check);
 	%>		alert("등록된 사용자가 없습니다!");
 	<%	}
 	%>
-	<%	if(sendId){
+	<%	if(sendId && check.isSendIdFlag()){
+			check.setSendIdFlag(false);
+			session.setAttribute("check",check);
 	%>		alert("아이디를 회원님의 이메일로 발송했습니다.");
 	<%	}
-	%>	
+	%>
+	
+	function loginFn(){
+		$("#memberid2").val($("#memberid").val());
+		$("#memberpassword2").val($("#memberpassword").val());
+		$("#loginFrm")[0].reset();
+		document.loginFrm2.method = "post";
+		document.loginFrm2.action = "loginOk.jsp";
+		document.loginFrm2.submit();
+	}
+
 </script>
 <script src="<%=request.getContextPath()%>/js/login.js"></script>
 </head>
@@ -63,7 +85,11 @@
 			id="topButton" onclick="location.href='#top'">
 		</div>
 		<div>
-			<form name="loginFrm">
+			<form name="loginFrm2" id="loginFrm2">
+				<input type=hidden name="memberid2" id="memberid2">
+				<input type=hidden name="memberpassword2" id="memberpassword2">
+			</form>
+			<form name="loginFrm" id="loginFrm">
 				<input type="hidden" name="nowPage" value="<%=nowPage %>">
 				<input type="hidden" name="searchValue" value="<%=searchValue %>">
 				<input type="hidden" name="searchType" value="<%=searchType %>">
@@ -101,6 +127,3 @@
 	<%@ include file="/footer.jsp" %>
 </body>
 </html>
-<%
-	session.setAttribute("check",null);
-%>

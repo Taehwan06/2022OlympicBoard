@@ -18,6 +18,12 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findIdSuccess.js"></script>
 <script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+
 	var idAll = "<%=idAll%>";
 	var email = "<%=email%>";
 </script>

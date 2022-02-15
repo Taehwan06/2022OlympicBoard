@@ -18,7 +18,143 @@ public class Check {
 	private String loginNull;
 	private String restore;
 	
+	private boolean loginCheckFlag;
+	private boolean joinCheckFlag;	
+	private boolean idFlag;
+	private boolean idConfirmFlag;
+	private boolean idCheckFlag;
+	private boolean passCheckFlag;
+	private boolean sendIdFlag;
+	private boolean sendPassFlag;
+	private boolean memberModifyFlag;
+	private boolean withdrawFlag;
+	private boolean writeCheckFlag;
+	private boolean modifyCheckFlag;
+	private boolean deleteBoardCheckFlag;
+	private boolean loginNullFlag;
+	private boolean restoreFlag;
 	
+	
+	public boolean isLoginCheckFlag() {
+		return loginCheckFlag;
+	}
+
+	public void setLoginCheckFlag(boolean loginCheckFlag) {
+		this.loginCheckFlag = loginCheckFlag;
+	}
+
+	public boolean isJoinCheckFlag() {
+		return joinCheckFlag;
+	}
+
+	public void setJoinCheckFlag(boolean joinCheckFlag) {
+		this.joinCheckFlag = joinCheckFlag;
+	}
+
+	public boolean isIdFlag() {
+		return idFlag;
+	}
+
+	public void setIdFlag(boolean idFlag) {
+		this.idFlag = idFlag;
+	}
+
+	public boolean isIdConfirmFlag() {
+		return idConfirmFlag;
+	}
+
+	public void setIdConfirmFlag(boolean idConfirmFlag) {
+		this.idConfirmFlag = idConfirmFlag;
+	}
+
+	public boolean isIdCheckFlag() {
+		return idCheckFlag;
+	}
+
+	public void setIdCheckFlag(boolean idCheckFlag) {
+		this.idCheckFlag = idCheckFlag;
+	}
+
+	public boolean isPassCheckFlag() {
+		return passCheckFlag;
+	}
+
+	public void setPassCheckFlag(boolean passCheckFlag) {
+		this.passCheckFlag = passCheckFlag;
+	}
+
+	public boolean isSendIdFlag() {
+		return sendIdFlag;
+	}
+
+	public void setSendIdFlag(boolean sendIdFlag) {
+		this.sendIdFlag = sendIdFlag;
+	}
+
+	public boolean isSendPassFlag() {
+		return sendPassFlag;
+	}
+
+	public void setSendPassFlag(boolean sendPassFlag) {
+		this.sendPassFlag = sendPassFlag;
+	}
+
+	public boolean isMemberModifyFlag() {
+		return memberModifyFlag;
+	}
+
+	public void setMemberModifyFlag(boolean memberModifyFlag) {
+		this.memberModifyFlag = memberModifyFlag;
+	}
+
+	public boolean isWithdrawFlag() {
+		return withdrawFlag;
+	}
+
+	public void setWithdrawFlag(boolean withdrawFlag) {
+		this.withdrawFlag = withdrawFlag;
+	}
+
+	public boolean isWriteCheckFlag() {
+		return writeCheckFlag;
+	}
+
+	public void setWriteCheckFlag(boolean writeCheckFlag) {
+		this.writeCheckFlag = writeCheckFlag;
+	}
+
+	public boolean isModifyCheckFlag() {
+		return modifyCheckFlag;
+	}
+
+	public void setModifyCheckFlag(boolean modifyCheckFlag) {
+		this.modifyCheckFlag = modifyCheckFlag;
+	}
+
+	public boolean isDeleteBoardCheckFlag() {
+		return deleteBoardCheckFlag;
+	}
+
+	public void setDeleteBoardCheckFlag(boolean deleteBoardCheckFlag) {
+		this.deleteBoardCheckFlag = deleteBoardCheckFlag;
+	}
+
+	public boolean isLoginNullFlag() {
+		return loginNullFlag;
+	}
+
+	public void setLoginNullFlag(boolean loginNullFlag) {
+		this.loginNullFlag = loginNullFlag;
+	}
+
+	public boolean isRestoreFlag() {
+		return restoreFlag;
+	}
+
+	public void setRestoreFlag(boolean restoreFlag) {
+		this.restoreFlag = restoreFlag;
+	}
+
 	public String getRestore() {
 		return restore;
 	}

@@ -34,6 +34,15 @@ if(board != null){
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	body{
+		margin: auto;
+		background-image: url("<%=request.getContextPath() %>/upload/back3.png");
+	    background-repeat : no-repeat;
+	    background-size : contain;
+	    background-position: center bottom;
+	}
+</style>
 </head>
 <body>
 	bimgsys = <%=bimgsys %>;
@@ -42,5 +51,6 @@ if(board != null){
 	bimgori2 = <%=bimgori2 %>;
 	bimgsys3 = <%=bimgsys3 %>;
 	bimgori3 = <%=bimgori3 %>;
+	<img src="<%=request.getContextPath() %>/upload/back.png">
 </body>
 </html>

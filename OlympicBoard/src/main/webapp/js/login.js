@@ -9,11 +9,6 @@ function onBlurFn(obj){
 		span.style.visibility = "hidden";
 	}
 }
-function loginFn(){
-	document.loginFrm.method = "get";
-	document.loginFrm.action = "loginOk.jsp";	
-	document.loginFrm.submit();
-}
 function findIdFn(){
 	location.href="findId.jsp";
 }

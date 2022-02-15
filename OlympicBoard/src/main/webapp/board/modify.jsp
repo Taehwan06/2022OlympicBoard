@@ -45,6 +45,12 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+	
 	function modifyFn(){
 		document.modifyFrm.method = "post";
 		document.modifyFrm.action = "modifyOk.jsp";
@@ -79,10 +85,11 @@
 			<div class="box">
 				<label for="content"><div id="contentTop">내용</div></label>
 				<textarea id="content" name="content" 
-				placeholder="내용을 입력하세요."><%=board.getBcontent() %></textarea>
+				placeholder="내용을 입력하세요."></textarea>
+				<div id="content2" contentEditable="true" placeholder="내용을 입력하세요."><%=board.getBcontent() %></div>
 			</div>
 		</form>
-	
+		
 		<div id="buttonBox">
 			<input type="button" id="modifySubmit" name="modifySubmit" 
 			value="저장" onclick="modifyFn()">

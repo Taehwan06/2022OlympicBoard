@@ -42,15 +42,54 @@ section{
 	margin: 0px 0px 3px 20px;
 }
 #content{
-	width: 700px;
-	height: 400px;
+	display: none;
 	border: 1px solid gray;
 	border-radius: 10px;
 	font-size: 17px;
 	padding: 10px 15px;
 	resize: none;
 }
+#content2{
+	width: 700px;
+	height: 400px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	font-size: 17px;
+	padding: 10px 15px;
+	margin: auto;
+	text-align: left;
+}
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block;
+  color: gray;
+}
+#fileFrm1,#fileFrm2,#fileFrm3{
+	text-align: left;
+}
+.fileTop{
+	margin: 20px 0px 3px 60px;
+}
+#file1,#file2,#file3,#submit1,#submit2,#submit3{
+	margin-left: 20px;
+	height: 25px;
+	cursor: pointer;
+}
+#submit1,#submit2,#submit3{
+	width: 45px;
+}
+#fileDiv{
+	border: 1px solid gray;
+	border-radius: 10px;
+	display: inline-block;
+	margin: 3px 0px;
+	padding: 10px 20px;
+	width: 700px;
+	height: 60px;
+	text-align: left;
+}
 #buttonBox{
+	margin-top: 20px;
 	text-align: right;
 	margin-top: 10px;
 	margin-bottom: 50px;

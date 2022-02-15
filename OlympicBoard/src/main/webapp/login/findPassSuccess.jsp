@@ -10,6 +10,13 @@
 <link href="<%=request.getContextPath() %>/css/findPassSuccess.css" rel="stylesheet">
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/findPassSuccess.js"></script>
+<script>
+	$(window).bind("pageshow", function(event) {
+	    if (event.originalEvent.persisted) {
+	        document.location.reload();
+	    }
+	});
+</script>
 </head>
 <body>
 	<%@ include file="/loginHeader.jsp" %>

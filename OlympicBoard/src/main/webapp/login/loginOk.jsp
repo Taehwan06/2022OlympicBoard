@@ -4,13 +4,14 @@
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
 <%@ page import="java.net.URLEncoder" %>
+<%@ page import="org.json.simple.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 
 	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
 
-	String memberid = request.getParameter("memberid");
-	String memberpassword = request.getParameter("memberpassword");
+	String memberid = request.getParameter("memberid2");
+	String memberpassword = request.getParameter("memberpassword2");
 	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
 	String searchType = request.getParameter("searchType");
@@ -64,7 +65,9 @@
 			
 			session.setAttribute("loginUser",m);
 			check.setLoginCheck("ok");
+			check.setLoginCheckFlag(true);
 			session.setAttribute("check",check);
+			
 		}
 		
 		if(m != null){
@@ -90,10 +93,12 @@
 			
 			if(rs.next()){
 				check.setLoginCheck("pass");
+				check.setLoginCheckFlag(true);
 				session.setAttribute("check",check);
 				response.sendRedirect("login.jsp?memberid="+memberid+"&nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue);
 			}else{
 				check.setLoginCheck("all");
+				check.setLoginCheckFlag(true);
 				session.setAttribute("check",check);
 				response.sendRedirect("login.jsp?nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue);
 			}			
