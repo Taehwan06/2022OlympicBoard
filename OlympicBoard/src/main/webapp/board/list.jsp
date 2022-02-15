@@ -104,12 +104,6 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-	
 	<%	if(check != null){
 			if(check.getLoginNull() != null && check.getLoginNull().equals("null")){
 	%>			alert("로그인 후 이용 가능합니다.");

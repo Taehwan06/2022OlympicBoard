@@ -171,12 +171,6 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/view.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-	
 	<%	if(check != null){
 			if(check.getModifyCheck() != null && check.getModifyCheck().equals("success")){
 	%>			alert("수정이 완료되었습니다.");

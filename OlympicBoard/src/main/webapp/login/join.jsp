@@ -23,12 +23,6 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/join.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-
 	<%	if(idConfirm){
 	%>		alert("이미 존재하는 아이디 입니다. 다시 확인해주세요.");
 	<%	}

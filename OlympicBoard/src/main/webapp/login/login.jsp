@@ -127,3 +127,6 @@
 	<%@ include file="/footer.jsp" %>
 </body>
 </html>
+<%
+	session.setAttribute("check",null);
+%>

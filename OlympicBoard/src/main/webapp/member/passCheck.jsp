@@ -29,12 +29,6 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/passCheck.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-
 	var url = "<%=url %>";
 	<%	if(passCheck){
 	%>		alert("비밀번호 오류!");

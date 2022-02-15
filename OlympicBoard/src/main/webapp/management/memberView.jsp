@@ -88,12 +88,6 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/mypage.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-
 	<%	if(check != null && check.getWithdraw() != null && check.getWithdraw().equals("success")){
 	%>		alert("<%=member.getMemberid() %>님의 회원 강제 탈퇴가 완료되었습니다.");
 	<%	}else if(check != null && check.getWithdraw() != null && check.getWithdraw().equals("fail")){

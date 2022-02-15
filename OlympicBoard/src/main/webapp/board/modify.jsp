@@ -45,13 +45,8 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-	
 	function modifyFn(){
+		$("#content").html($("#content2").html());
 		document.modifyFrm.method = "post";
 		document.modifyFrm.action = "modifyOk.jsp";
 		document.modifyFrm.submit();

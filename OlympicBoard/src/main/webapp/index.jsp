@@ -20,6 +20,7 @@
 	if(check != null){		
 		withdraw = check.getWithdraw();
 	}
+
 %>
 <!DOCTYPE html>
 <html>
@@ -35,12 +36,6 @@
 
 </style>
 <script>
-	$(window).bind("pageshow", function(event) {
-	    if (event.originalEvent.persisted) {
-	        document.location.reload();
-	    }
-	});
-	
 	<%	if(withdraw == null){
 	%>	
 	<%	}else if(withdraw.equals("success")){

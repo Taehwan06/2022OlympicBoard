@@ -5,9 +5,9 @@
 <%@ page import="OlympicBoard.util.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	
 	String midx = request.getParameter("midx");
-
+	
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	
 	if(loginUser == null || !loginUser.getGrade().equals("A")){
