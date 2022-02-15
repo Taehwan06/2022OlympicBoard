@@ -213,7 +213,7 @@
 	}
 		
 	function reDeleteFn(ridx,obj){
-		var con = confirm("댓글을 삭제하시겠습니까?");		
+		var con = confirm("댓글을 삭제하시겠습니까?");
 		if(con){
 			$.ajax({
 				url: "replyDelete.jsp",
@@ -222,14 +222,52 @@
 				success: function(data){				
 					var result = data.trim();
 					if(result>0){
-						obj.style.display = "none";
 						obj.parentElement.lastElementChild.textContent = "삭제된 댓글입니다.";
 						obj.parentElement.lastElementChild.style.color = "gray";
+						obj.style.display = "none";
 						alert("댓글이 삭제되었습니다.");
 					}
 				}
 			});
 		}
+	}
+	
+	function reModifyFn(ridx,obj){
+		$(obj).prev().css("display","none");
+		$(obj).next().css("display","inline-block");
+		$(obj).next().next().css("display","inline-block");
+		$(obj).next().next().next().next().next().children().css("display","inline-block");
+		var text = $(obj).next().next().next().next().children().text();		
+		$(obj).next().next().next().next().next().children().text(text);
+		$(obj).next().next().next().next().css("display","none");
+		$(obj).css("display","none");
+	}
+	
+	function reSaveFn(ridx,obj){
+		$.ajax({
+			url: "replyModify.jsp",
+			type: "post",
+			data: $(obj).next().next().next().next().serialize(),
+			success: function(data){
+				var json = JSON.parse(data.trim());
+				$(obj).next().next().next().children().text(json[0].rcontent);
+				$(obj).next().next().next().css("display","inline-block");
+				$(obj).next().next().next().next().children().css("display","none");
+				$(obj).prev().css("display","inline-block");
+				$(obj).prev().prev().css("display","inline-block");
+				$(obj).next().css("display","none");
+				$(obj).css("display","none");
+			}
+		});
+	}
+	
+	function reCancelFn(ridx,obj){
+		$(obj).prev().css("display","none");
+		$(obj).prev().prev().css("display","inline-block");
+		$(obj).prev().prev().prev().css("display","inline-block");
+		$(obj).next().next().css("display","inline-block");
+		$(obj).next().next().next().children().css("display","none");
+		$(obj).css("display","none");
 	}
 	
 	function upFn(){
@@ -381,14 +419,21 @@
 		%>		<div id="reArea">					
 					<span id="rename"><%=r.getRwriter() %></span>
 					<span id="redate"><%=r.getRwdate() %></span>
-			<%	if(loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")){
-			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">						
+			<%	if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
+			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
+					<input type="button" value="수정" id="remodi" onclick="reModifyFn(<%=r.getRidx() %>,this)">
+					<input type="button" value="저장" id="resave" onclick="reSaveFn(<%=r.getRidx() %>,this)">
+					<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
 			<%	}
 			%>		<br>
 			<%	if(r.getRdelyn().equals("Y")){
 			%>		<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
 			<%	}else if(r.getRdelyn().equals("N")){
 			%>		<span id="recon"><pre><%=r.getRcontent() %></pre></span>
+					<form id="remodiFrm" name="remodiFrm">
+						<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
+						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
+					</form>
 			<%	}
 			%>	</div>
 		<%	}

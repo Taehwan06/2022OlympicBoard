@@ -154,7 +154,7 @@ section input{
 	font-size: 14px;
 	margin: 0px 20px;
 }
-#redel,#replyRestore{
+#redel,#remodi,#resave,#recan,#replyRestore{
 	border: 1px solid black;
 	border-radius: 5px;
 	background: white;
@@ -162,6 +162,10 @@ section input{
 	height: 18px;
 	font-size: 12px;
 	cursor: pointer;
+	margin-bottom: 3px;
+}
+#resave,#recan{
+	display: none;
 }
 #reArea{
 	width: 670px;
@@ -173,10 +177,22 @@ section input{
 	display: inline-block;
 	word-break: break-all;
 }
+#reModifyInsert{
+	width: 530px;
+	height: 40px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	padding: 3px 20px;
+	resize: none;
+	font-size: 14px;
+	display: none;
+	word-break: break-all;
+	margin: 0px 10px;
+}
 pre{
 	white-space: pre-wrap;
 }
-#reSubmitButton:hover,#redel:hover,#up:hover,#down:hover{
+#reSubmitButton:hover,#redel:hover,#remodi:hover,#resave:hover,#recan:hover,#up:hover,#down:hover{
 	background: #E0E0E0;
 	border: none;
 }

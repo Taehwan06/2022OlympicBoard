@@ -139,19 +139,19 @@
 		<form name="fileFrm1" id="fileFrm1" action="fileFrm1.jsp" method="post" enctype="multipart/form-data">
 			<div class="fileTop">첫 번째 이미지 추가하기
 				<input type="file" name="file1" id="file1">
-				<input type="button" name="submit1" id="submit1" value="등록" onclick="fileFrm1Fn(this)">
+				<input type="button" name="submit1" id="submit1" value="이미지 첨부" onclick="fileFrm1Fn(this)">
 			</div>			
 		</form>
 		<form name="fileFrm2" id="fileFrm2" action="fileFrm2.jsp" method="post" enctype="multipart/form-data">
 			<div class="fileTop">두 번째 이미지 추가하기
 				<input type="file" name="file2" id="file2">
-				<input type="button" name="submit2" id="submit2" value="등록" onclick="fileFrm2Fn(this)">
+				<input type="button" name="submit2" id="submit2" value="이미지 첨부" onclick="fileFrm2Fn(this)">
 			</div>			
 		</form>
 		<form name="fileFrm3" id="fileFrm3" action="fileFrm3.jsp" method="post" enctype="multipart/form-data">
 			<div class="fileTop">세 번째 이미지 추가하기
 				<input type="file" name="file3" id="file3">
-				<input type="button" name="submit3" id="submit3" value="등록" onclick="fileFrm3Fn(this)">
+				<input type="button" name="submit3" id="submit3" value="이미지 첨부" onclick="fileFrm3Fn(this)">
 			</div>			
 		</form>
 		<div id="buttonBox">
