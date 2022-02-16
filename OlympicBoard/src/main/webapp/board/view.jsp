@@ -15,6 +15,7 @@
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	int replyTotal = 0;
+	int oridx = 0;
 	
 	ListPageData listPageData = new ListPageData();
 	if(session.getAttribute("listPageData") != null){
@@ -132,7 +133,7 @@
 		sql = " select * from ";
 		sql += " (select rownum r , b.* from ";		
 		sql += "(select * from reply where bidx=? ";
-		sql += " order by ridx) b) ";
+		sql += " order by originridx, ridx) b) ";
 		sql += " where r>="+replyPaging.getStart()+" and r<="+replyPaging.getEnd();
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,bidx);
@@ -148,6 +149,7 @@
 			reply.setRwdate(rs.getString("rwdate"));
 			reply.setRcontent(rs.getString("rcontent"));
 			reply.setRdelyn(rs.getString("rdelyn"));
+			reply.setLvl(rs.getInt("lvl"));
 			
 			rList.add(reply);
 		}
@@ -255,8 +257,7 @@
 					html += "<textarea name='reModifyInsert' id='reModifyInsert'></textarea>";
 					html += "<input type='hidden' name='ridx' value='"+json[0].ridx+"'>";
 					html += "</form>";
-					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
-					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
+					
 					html += "</div>";
 					
 					$(obj).parent().parent().after(html);
@@ -494,9 +495,14 @@
 		%>		</form>
 			</div>
 			<div id="reBox">
-		<%	for(Reply r : rList){				
-		%>		<div class="reArea">					
-					<span id="rename"><%=r.getRwriter() %></span>
+		<%	for(Reply r : rList){
+		%>		<div class="reArea">
+		<%	if(r.getLvl()>0){
+				for(int i=0; i<r.getLvl(); i++){
+		%>			<span><img src='<%=request.getContextPath() %>/upload/replyImg5.png'></span>
+		<%		}
+			}
+		%>			<span id="rename"><%=r.getRwriter() %></span>
 					<span id="redate"><%=r.getRwdate() %></span>
 			<%	if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
 			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
@@ -513,8 +519,11 @@
 						<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
 						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
 					</form>
-					<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
-					<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
+			<%		if(r.getLvl()==0){
+			%>			<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
+			<%		}
+			%>					
 			<%	}
 			%>	</div>
 		<%	}

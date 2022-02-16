@@ -12,8 +12,15 @@ public class Reply {
 	private String rwriter;
 	private String rwdate;
 	private String rdelyn;
+	private int lvl;
 	
 	
+	public int getLvl() {
+		return lvl;
+	}
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
 	public String getRdelyn() {
 		return rdelyn;
 	}
