@@ -184,6 +184,7 @@
 	var sV = "<%=searchValue %>";
 	var bidx = "<%=bidx %>";
 	var nowPage = "<%=nowPage %>";
+	var url = "<%=request.getContextPath() %>";
 	
 	function reSubmitFn(obj){
 		var reVal = $(obj).prev().val();
@@ -195,11 +196,21 @@
 				success: function(data){
 					var json = JSON.parse(data.trim());
 					var html = "";
-					html += "<div id='reArea'>";
+					html += "<div class='reArea'>";
 					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
 					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
-					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'><br>";
+					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='수정' id='remodi' onclick='reModifyFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='저장' id='resave' onclick='reSaveFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='취소' id='recan' onclick='reCancelFn("+json[0].ridx+",this)'> ";
+					html += "<br>";
 					html += "<span id='recon'><pre>"+json[0].rcontent+"</pre></span>";
+					html += "<form id='remodiFrm' name='remodiFrm'>";
+					html += "<textarea name='reModifyInsert' id='reModifyInsert'></textarea>";
+					html += "<input type='hidden' name='ridx' value='"+json[0].ridx+"'>";
+					html += "</form>";
+					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
+					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
 					html += "</div>";
 					
 					$("#reBox").append(html);
@@ -218,25 +229,60 @@
 			$.ajax({
 				url: "reReplyInsert.jsp",
 				type: "post",
-				data: $("#reReSubmitFrm").serialize(),
+				data: $(obj).parent().serialize(),
 				success: function(data){
 					var json = JSON.parse(data.trim());
+					var lvl = json[0].lvl;
 					var html = "";
-					html += "<div id='reArea'>";
+					
+					html += "<div class='reArea'>";
+					
+					if(lvl > 0){
+						for(var i=0; i < lvl; i++){
+							html += "<span style='width:20px'><img src='"+url+"/upload/replyImg5.png'></span>";
+						}
+					}		
+					
 					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
 					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
-					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'><br>";
+					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='수정' id='remodi' onclick='reModifyFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='저장' id='resave' onclick='reSaveFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='취소' id='recan' onclick='reCancelFn("+json[0].ridx+",this)'> ";
+					html += "<br>";
 					html += "<span id='recon'><pre>"+json[0].rcontent+"</pre></span>";
+					html += "<form id='remodiFrm' name='remodiFrm'>";
+					html += "<textarea name='reModifyInsert' id='reModifyInsert'></textarea>";
+					html += "<input type='hidden' name='ridx' value='"+json[0].ridx+"'>";
+					html += "</form>";
+					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
+					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
 					html += "</div>";
 					
-					$("#reBox").append(html);
-					document.reSubmitFrm.reset();
+					$(obj).parent().parent().after(html);
+					$(obj).parent().prev().css("display","none");
+					$(obj).parent().prev().prev().css("display","inline-block");
+					$(obj).parent().remove();
 					alert("댓글이 등록되었습니다.");
 				}
 			});
 		}else{
 			alert("댓글 내용을 입력해주세요.");
 		}
+	}
+	
+	function reReplyFn(ridx,obj){
+		var html = "";
+		html += "<form id='reRsSubmitFrm' name='reReSubmitFrm'>";
+		html += "<input type='hidden' name='bidx' value='"+bidx+"'>";
+		html += "<input type='hidden' name='originridx' value='"+ridx+"'>";
+		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
+		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
+		html += "</from>";
+			
+		$(obj).parent().append(html);
+		$(obj).next().css("display","inline-block");
+		$(obj).css("display","none");
 	}
 		
 	function reDeleteFn(ridx,obj){
@@ -294,6 +340,12 @@
 		$(obj).prev().prev().prev().css("display","inline-block");
 		$(obj).next().next().css("display","inline-block");
 		$(obj).next().next().next().children().css("display","none");
+		$(obj).css("display","none");
+	}
+	
+	function reReCanFn(obj){
+		$(obj).next().remove();
+		$(obj).prev().css("display","inline-block");
 		$(obj).css("display","none");
 	}
 	
@@ -382,19 +434,6 @@
 		location.href="list.jsp?searchType="+sT+"&searchValue="+sV+"&nowPage="+nowPage;	
 	}
 	
-	function reReplyFn(ridx,obj){
-		var html = "";
-		html += "<form id='reRsSubmitFrm' name='reReSubmitFrm'>";
-		html += "<input type='hidden' name='bidx' value='<%=bidx %>'>";
-		html += "<input type='hidden' name='originridx' value='"+ridx+"'>";
-		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
-		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
-		html += "</from>";
-		
-			
-		$(obj).parent().append(html);
-	}
-	
 </script>
 </head>
 <body>
@@ -456,7 +495,7 @@
 			</div>
 			<div id="reBox">
 		<%	for(Reply r : rList){				
-		%>		<div id="reArea">					
+		%>		<div class="reArea">					
 					<span id="rename"><%=r.getRwriter() %></span>
 					<span id="redate"><%=r.getRwdate() %></span>
 			<%	if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
@@ -475,6 +514,7 @@
 						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
 					</form>
 					<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
+					<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
 			<%	}
 			%>	</div>
 		<%	}

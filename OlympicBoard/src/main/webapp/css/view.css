@@ -136,11 +136,17 @@ section input{
 }
 #reBox{
 	border-bottom: 1px solid gray;
+	width: 672px;
+	overflow: hidden;
 }
-#reArea{
+.reArea{
 	border-top: 1px solid gray;
 	text-align: left;
 	padding: 5px 15px;
+	width: 670px;
+	word-break: break-all;
+	display: inline-block;
+	overflow: hidden;
 }
 #rename,#redate,#recon{	
 	display: inline-block;
@@ -154,7 +160,7 @@ section input{
 	font-size: 14px;
 	margin: 0px 20px;
 }
-#redel,#remodi,#resave,#recan,#replyRestore,#reReply{
+#redel,#remodi,#resave,#recan,#replyRestore,#reReply,#reReCan{
 	border: 1px solid black;
 	border-radius: 5px;
 	background: white;
@@ -164,16 +170,13 @@ section input{
 	cursor: pointer;
 	margin-bottom: 3px;
 }
-#reReply{
+#reReply,#reReCan{
 	margin: 5px 0px 10px 20px;
 }
-#resave,#recan{
+#resave,#recan,#reReCan{
 	display: none;
 }
-#reArea{
-	width: 670px;
-	word-break: break-all;
-}
+
 #recon{
 	width: 670px;
 	font-size: 14px;
