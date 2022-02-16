@@ -26,7 +26,12 @@ section{
 }
 form{
 	margin-top: 100px;
-}		
+}
+#loginFrm2{
+	display: none;
+	margin: 0px;
+	padding: 0px;
+}
 .headSpan{
 	width: 80px;
 	height: 27px;

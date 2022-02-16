@@ -36,9 +36,14 @@
 <script>
 	function writeFn(){
 		$("#content").html($("#content2").html());
-		document.writeFrm.method = "post";
-		document.writeFrm.action = "writeOk.jsp";
-		document.writeFrm.submit();
+		if($("#subject").val() != null && $("#content").val() != null && $("#subject").val() != "" && $("#content").val() != ""){
+			document.writeFrm.method = "post";
+			document.writeFrm.action = "writeOk.jsp";
+			document.writeFrm.submit();
+		}else{
+			alert("제목과 내용을 입력해주세요.");
+		}
+		
 	}
 	
 	function cancelFn(){

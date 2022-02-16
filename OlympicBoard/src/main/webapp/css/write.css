@@ -75,7 +75,7 @@ section{
 	cursor: pointer;
 }
 #submit1,#submit2,#submit3{
-	width: 45px;
+	width: 100px;
 }
 #fileDiv{
 	border: 1px solid gray;

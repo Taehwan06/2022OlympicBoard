@@ -86,8 +86,8 @@
 		</div>
 		<div>
 			<form name="loginFrm2" id="loginFrm2">
-				<input type=hidden name="memberid2" id="memberid2">
-				<input type=hidden name="memberpassword2" id="memberpassword2">
+				<input type=text name="memberid2" id="memberid2">
+				<input type=password name="memberpassword2" id="memberpassword2">
 			</form>
 			<form name="loginFrm" id="loginFrm">
 				<input type="hidden" name="nowPage" value="<%=nowPage %>">

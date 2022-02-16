@@ -9,8 +9,8 @@
 <%@ page import="java.net.URLEncoder" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-
-	String bidx = request.getParameter("bidx");	
+	
+	String bidx = request.getParameter("bidx");
 	String nowPage = request.getParameter("nowPage");
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
@@ -111,6 +111,12 @@
 			board.setBcontent(rs.getString("bcontent"));
 			board.setBwdate(rs.getString("bwdate"));
 			board.setUp(rs.getInt("up"));
+			board.setBimgori(rs.getString("bimgori"));
+			board.setBimgsys(rs.getString("bimgsys"));
+			board.setBimgori2(rs.getString("bimgori2"));
+			board.setBimgsys2(rs.getString("bimgsys2"));
+			board.setBimgori3(rs.getString("bimgori3"));
+			board.setBimgsys3(rs.getString("bimgsys3"));
 			
 			session.setAttribute("board",board);
 			
@@ -462,6 +468,24 @@
 					</div>
 				</div>
 				<div id="contentDiv">
+			<%	if(board.getBimgori() != null && board.getBimgsys() != null){
+			%>		<div class="fileDiv">
+						첨부파일 : <%=board.getBimgori() %>
+					</div>
+			<%	}
+				if(board.getBimgori2() != null && board.getBimgsys2() != null){
+			%>		<div class="fileDiv">
+						첨부파일 : <%=board.getBimgori2() %>
+					</div>
+			<%	}
+				if(board.getBimgori3() != null && board.getBimgsys3() != null){
+			%>		<div class="fileDiv">
+						첨부파일 : <%=board.getBimgori3() %>
+					</div>
+			<%	}
+			%>
+					<div>
+					</div>
 					<pre><%=board.getBcontent() %></pre>
 				</div>
 				<div id="upAreaDiv" class="rowDiv">
