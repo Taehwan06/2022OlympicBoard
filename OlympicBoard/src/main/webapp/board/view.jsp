@@ -287,12 +287,12 @@
 		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
 		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
 		html += "</from>";
-			
+		
 		$(obj).parent().append(html);
 		$(obj).next().css("display","inline-block");
 		$(obj).css("display","none");
 	}
-		
+	
 	function reDeleteFn(ridx,obj){
 		var con = confirm("댓글을 삭제하시겠습니까?");
 		if(con){
@@ -303,9 +303,11 @@
 				success: function(data){				
 					var result = data.trim();
 					if(result>0){
-						obj.parentElement.lastElementChild.textContent = "삭제된 댓글입니다.";
-						obj.parentElement.lastElementChild.style.color = "gray";
-						obj.style.display = "none";
+						$(obj).next().next().next().next().next().children().text("삭제된 댓글입니다.");
+						$(obj).next().next().next().next().next().children().css("color","gray");
+						$(obj).next().next().next().next().next().next().next().css("display","none");
+						$(obj).next().css("display","none");
+						$(obj).css("display","none");
 						alert("댓글이 삭제되었습니다.");
 					}
 				}
@@ -318,6 +320,7 @@
 		$(obj).next().css("display","inline-block");
 		$(obj).next().next().css("display","inline-block");
 		$(obj).next().next().next().next().next().children().css("display","inline-block");
+		$(obj).next().next().next().next().next().next().css("display","none");
 		var text = $(obj).next().next().next().next().children().text();		
 		$(obj).next().next().next().next().next().children().text(text);
 		$(obj).next().next().next().next().css("display","none");
@@ -331,6 +334,7 @@
 			data: $(obj).next().next().next().next().serialize(),
 			success: function(data){
 				var json = JSON.parse(data.trim());
+				$(obj).next().next().next().next().next().css("display","inline-block");
 				$(obj).next().next().next().children().text(json[0].rcontent);
 				$(obj).next().next().next().css("display","inline-block");
 				$(obj).next().next().next().next().children().css("display","none");
@@ -343,6 +347,7 @@
 	}
 	
 	function reCancelFn(ridx,obj){
+		$(obj).next().next().next().next().css("display","inline-block");
 		$(obj).prev().css("display","none");
 		$(obj).prev().prev().css("display","inline-block");
 		$(obj).prev().prev().prev().css("display","inline-block");

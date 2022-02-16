@@ -37,19 +37,18 @@
 			originridx = rs.getInt("originridx");
 		}
 		
-		sql = "select min(depth) from reply where originridx=? and lvl=? and depth>?";
+		
+		
+		sql = "select max(depth) from reply where originridx=? and lvl=? ";
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1,originridx);
-		psmt.setInt(2,lvl);
-		psmt.setInt(3,depth);
+		psmt.setInt(2,(lvl+1));
 		rs = psmt.executeQuery();
 		
 		if(rs.next()){
-			if(rs.getInt("min(depth)") == 0){
-				nextdepth = 1;
-			}else{
-				nextdepth = rs.getInt("min(depth)")+1;
-			}
+			nextdepth = rs.getInt("max(depth)")+1;
+		}else{
+			nextdepth = depth + 1;
 		}
 		
 		sql = "update reply set depth=depth+1 where originridx=? and depth >= ?";
