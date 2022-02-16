@@ -139,7 +139,7 @@
 		sql = " select * from ";
 		sql += " (select rownum r , b.* from ";		
 		sql += "(select * from reply where bidx=? ";
-		sql += " order by originridx, ridx) b) ";
+		sql += " order by originridx, depth) b) ";
 		sql += " where r>="+replyPaging.getStart()+" and r<="+replyPaging.getEnd();
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,bidx);
@@ -263,7 +263,8 @@
 					html += "<textarea name='reModifyInsert' id='reModifyInsert'></textarea>";
 					html += "<input type='hidden' name='ridx' value='"+json[0].ridx+"'>";
 					html += "</form>";
-					
+					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
+					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
 					html += "</div>";
 					
 					$(obj).parent().parent().after(html);
@@ -282,7 +283,7 @@
 		var html = "";
 		html += "<form id='reRsSubmitFrm' name='reReSubmitFrm'>";
 		html += "<input type='hidden' name='bidx' value='"+bidx+"'>";
-		html += "<input type='hidden' name='originridx' value='"+ridx+"'>";
+		html += "<input type='hidden' name='parentridx' value='"+ridx+"'>";
 		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
 		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
 		html += "</from>";
@@ -543,11 +544,8 @@
 						<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
 						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
 					</form>
-			<%		if(r.getLvl()==0){
-			%>			<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
-						<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
-			<%		}
-			%>					
+					<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
+					<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
 			<%	}
 			%>	</div>
 		<%	}
