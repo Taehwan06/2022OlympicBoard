@@ -211,6 +211,33 @@
 			alert("댓글 내용을 입력해주세요.");
 		}
 	}
+	
+	function reReSubmitFn(obj){
+		var reVal = $(obj).prev().val();
+		if(reVal != null && reVal != ""){
+			$.ajax({
+				url: "reReplyInsert.jsp",
+				type: "post",
+				data: $("#reReSubmitFrm").serialize(),
+				success: function(data){
+					var json = JSON.parse(data.trim());
+					var html = "";
+					html += "<div id='reArea'>";
+					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
+					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
+					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'><br>";
+					html += "<span id='recon'><pre>"+json[0].rcontent+"</pre></span>";
+					html += "</div>";
+					
+					$("#reBox").append(html);
+					document.reSubmitFrm.reset();
+					alert("댓글이 등록되었습니다.");
+				}
+			});
+		}else{
+			alert("댓글 내용을 입력해주세요.");
+		}
+	}
 		
 	function reDeleteFn(ridx,obj){
 		var con = confirm("댓글을 삭제하시겠습니까?");
@@ -355,6 +382,19 @@
 		location.href="list.jsp?searchType="+sT+"&searchValue="+sV+"&nowPage="+nowPage;	
 	}
 	
+	function reReplyFn(ridx,obj){
+		var html = "";
+		html += "<form id='reRsSubmitFrm' name='reReSubmitFrm'>";
+		html += "<input type='hidden' name='bidx' value='<%=bidx %>'>";
+		html += "<input type='hidden' name='originridx' value='"+ridx+"'>";
+		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
+		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
+		html += "</from>";
+		
+			
+		$(obj).parent().append(html);
+	}
+	
 </script>
 </head>
 <body>
@@ -373,7 +413,7 @@
 				<div id="writerDiv" class="rowDiv">
 					<div id="leftDiv">
 						<span id="writerSpan" class="colSpan"><%=board.getBwriter() %></span>
-						<span id="wdateSpan" class="colSpan"><%=notice.getViewWritedate() %></span>
+						<span id="wdateSpan" class="colSpan"><%=board.getBwdate() %></span>
 					</div>
 					<div id="rightDiv">
 						조회수 <span id="hitSpan" class="colSpan"><%=board.getBhit() %></span>
@@ -402,8 +442,8 @@
 				<form id="reSubmitFrm" name="reSubmitFrm">
 					<input type="hidden" name="bidx" value="<%=bidx %>">
 		<%	if(loginUser == null){
-		%>			<textarea name="reInput" id="reInput" 
-					placeholder="댓글을 작성하려면 내용을 입력하세요"></textarea>
+		%>			<textarea name="reInput" id="reInput" readonly
+					>댓글을 작성하려면 로그인해주세요.</textarea>
 					<input type="button" name="reSubmitButton" id="reSubmitButton" 
 					value="등록">
 		<%	}else if(loginUser != null){
@@ -434,12 +474,13 @@
 						<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
 						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
 					</form>
+					<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
 			<%	}
 			%>	</div>
 		<%	}
 		%>	</div>
 			<div id="pagingArea">
-			<% 	if(replyPaging.getStartPage() > 1){	
+			<% 	if(replyPaging.getStartPage() > 1){
 			%>		<input type="button" class="backButton" value="이전" 
 					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getStartPage()-1%>&bidx=<%=bidx %>#pagingArea'">
 			<%	}
@@ -451,12 +492,12 @@
 			%>			<input type="button" class="numButton" value="<%=i%>" 
 						onclick="location.href='view.jsp?replyNowPage=<%=i%>&bidx=<%=bidx %>#pagingArea'">
 			<%		}
-				}						
+				}
 			 	if(replyPaging.getEndPage() != replyPaging.getLastPage()){
 			%>		<input type="button" class="nextButton" value="다음" 
 					onclick="location.href='view.jsp?replyNowPage=<%=replyPaging.getEndPage()+1%>&bidx=<%=bidx %>#pagingArea'">
 			<%	}
-			%>			
+			%>
 			</div>
 		</div>
 	</section>

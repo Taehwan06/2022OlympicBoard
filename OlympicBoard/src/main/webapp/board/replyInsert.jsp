@@ -19,7 +19,7 @@
 	try{
 		conn = DBManager.getConnection();	
 		
-		String sql = "insert into reply(ridx,rcontent,rwriter,bidx,midx) values(ridx_seq.nextval,?,?,?,?)";
+		String sql = "insert into reply(ridx,rcontent,rwriter,bidx,midx,originridx) values(ridx_seq.nextval,?,?,?,?,ridx_seq.nextval)";
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,reInput);
 		psmt.setString(2,loginUser.getMembername());

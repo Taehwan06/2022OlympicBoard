@@ -111,7 +111,7 @@ section input{
 	text-align: left;
 	position: relative;
 }
-#reInput{
+#reInput,#reReInput{
 	width: 530px;
 	height: 44px;
 	border: 1px solid gray;
@@ -119,11 +119,11 @@ section input{
 	padding: 3px 20px;
 	resize: none;
 }
-#reInput::placeholder{
+#reInput::placeholder,#reReInput::placeholder{
 	position: absolute;
 	top: 18px;
 }
-#reSubmitButton{
+#reSubmitButton,#reReSubmitButton{
 	width: 80px;
 	height: 50px;
 	margin-left: 20px;
@@ -154,7 +154,7 @@ section input{
 	font-size: 14px;
 	margin: 0px 20px;
 }
-#redel,#remodi,#resave,#recan,#replyRestore{
+#redel,#remodi,#resave,#recan,#replyRestore,#reReply{
 	border: 1px solid black;
 	border-radius: 5px;
 	background: white;
@@ -163,6 +163,9 @@ section input{
 	font-size: 12px;
 	cursor: pointer;
 	margin-bottom: 3px;
+}
+#reReply{
+	margin: 5px 0px 10px 20px;
 }
 #resave,#recan{
 	display: none;
@@ -192,7 +195,7 @@ section input{
 pre{
 	white-space: pre-wrap;
 }
-#reSubmitButton:hover,#redel:hover,#remodi:hover,#resave:hover,#recan:hover,#up:hover,#down:hover{
+#reSubmitButton:hover,#reReSubmitButton:hover,#redel:hover,#remodi:hover,#resave:hover,#recan:hover,#up:hover,#down:hover{
 	background: #E0E0E0;
 	border: none;
 }

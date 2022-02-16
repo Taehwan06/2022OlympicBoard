@@ -78,7 +78,7 @@
 				value="<%=board.getBwriter() %>" readonly>
 			</div>
 			<div class="box">
-				<label for="content"><div id="contentTop">내용</div></label>
+				<label for="content2"><div id="contentTop">내용</div></label>
 				<textarea id="content" name="content" 
 				placeholder="내용을 입력하세요."></textarea>
 				<div id="content2" contentEditable="true" placeholder="내용을 입력하세요."><%=board.getBcontent() %></div>

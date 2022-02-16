@@ -90,7 +90,7 @@ public class Board {
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
 	}
-	public String getBwdate() throws ParseException {
+	public String getBwdate() {
 		Date date = null;
 		try {
 			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bwdate);

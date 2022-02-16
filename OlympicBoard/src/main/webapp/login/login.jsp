@@ -69,7 +69,7 @@
 		$("#memberpassword2").val($("#memberpassword").val());
 		$("#loginFrm")[0].reset();
 		document.loginFrm2.method = "post";
-		document.loginFrm2.action = "loginOk.jsp";
+		document.loginFrm2.action = "loginOk.jsp?bidx=<%=bidx %>";
 		document.loginFrm2.submit();
 	}
 
