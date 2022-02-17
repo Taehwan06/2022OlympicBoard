@@ -84,6 +84,13 @@
 					board.setBwdate(rs.getString("bwdate"));
 					board.setUp(rs.getInt("up"));
 					board.setBdelyn(rs.getString("bdelyn"));
+					board.setBimgori(rs.getString("bimgori"));
+					board.setBimgsys(rs.getString("bimgsys"));
+					board.setBimgori2(rs.getString("bimgori2"));
+					board.setBimgsys2(rs.getString("bimgsys2"));
+					board.setBimgori3(rs.getString("bimgori3"));
+					board.setBimgsys3(rs.getString("bimgsys3"));
+					board.setBnotice(rs.getString("bnotice"));
 					
 					session.setAttribute("board",board);
 					
@@ -106,7 +113,7 @@
 				sql = " select * from ";
 				sql += " (select rownum r , b.* from ";		
 				sql += "(select * from reply where bidx=? ";
-				sql += " order by ridx) b) ";
+				sql += " order by originridx, depth) b) ";
 				sql += " where r>="+replyPaging.getStart()+" and r<="+replyPaging.getEnd();
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1,bidx);
@@ -122,6 +129,7 @@
 					reply.setRwdate(rs.getString("rwdate"));
 					reply.setRcontent(rs.getString("rcontent"));
 					reply.setRdelyn(rs.getString("rdelyn"));
+					reply.setLvl(rs.getInt("lvl"));
 					
 					rList.add(reply);
 				}
@@ -169,25 +177,46 @@
 	var bidx = "<%=bidx %>";
 	var nowPage = "<%=nowPage %>";
 	
-	function reSubmitFn(obj){
+	function reReSubmitFn(obj){
 		var reVal = $(obj).prev().val();
 		if(reVal != null && reVal != ""){
 			$.ajax({
-				url: "replyInsert.jsp",
+				url: "reReplyInsert.jsp",
 				type: "post",
-				data: $("#reSubmitFrm").serialize(),
+				data: $(obj).parent().serialize(),
 				success: function(data){
 					var json = JSON.parse(data.trim());
+					var lvl = json[0].lvl;
 					var html = "";
-					html += "<div id='reArea'>";
+					
+					html += "<div class='reArea'>";
+					
+					if(lvl > 0){
+						for(var i=0; i < lvl; i++){
+							html += "<span style='width:20px'><img src='"+url+"/upload/replyImg5.png'></span>";
+						}
+					}
+					
 					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
 					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
-					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'><br>";
+					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='수정' id='remodi' onclick='reModifyFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='저장' id='resave' onclick='reSaveFn("+json[0].ridx+",this)'> ";
+					html += "<input type='button' value='취소' id='recan' onclick='reCancelFn("+json[0].ridx+",this)'> ";
+					html += "<br>";
 					html += "<span id='recon'><pre>"+json[0].rcontent+"</pre></span>";
+					html += "<form id='remodiFrm' name='remodiFrm'>";
+					html += "<textarea name='reModifyInsert' id='reModifyInsert'></textarea>";
+					html += "<input type='hidden' name='ridx' value='"+json[0].ridx+"'>";
+					html += "</form>";
+					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
+					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
 					html += "</div>";
 					
-					$("#reBox").append(html);
-					document.reSubmitFrm.reset();
+					$(obj).parent().parent().after(html);
+					$(obj).parent().prev().css("display","none");
+					$(obj).parent().prev().prev().css("display","inline-block");
+					$(obj).parent().remove();
 					alert("댓글이 등록되었습니다.");
 				}
 			});
@@ -195,9 +224,23 @@
 			alert("댓글 내용을 입력해주세요.");
 		}
 	}
+	
+	function reReplyFn(ridx,obj){
+		var html = "";
+		html += "<form id='reRsSubmitFrm' name='reReSubmitFrm'>";
+		html += "<input type='hidden' name='bidx' value='"+bidx+"'>";
+		html += "<input type='hidden' name='parentridx' value='"+ridx+"'>";
+		html += "<textarea name='reReInput' id='reReInput' placeholder='댓글을 작성하려면 내용을 입력하세요'></textarea>";
+		html += "<input type='button' name='reReSubmitButton' id='reReSubmitButton' value='등록' onclick='reReSubmitFn(this)'>";
+		html += "</from>";
+		
+		$(obj).parent().append(html);
+		$(obj).next().css("display","inline-block");
+		$(obj).css("display","none");
+	}
 		
 	function reDeleteFn(ridx,obj){
-		var con = confirm("댓글을 삭제하시겠습니까?");		
+		var con = confirm("댓글을 삭제하시겠습니까?");
 		if(con){
 			$.ajax({
 				url: "replyDelete.jsp",
@@ -206,14 +249,63 @@
 				success: function(data){				
 					var result = data.trim();
 					if(result>0){
-						obj.style.display = "none";
-						obj.parentElement.lastElementChild.textContent = "삭제된 댓글입니다.";
-						obj.parentElement.lastElementChild.style.color = "gray";
+						$(obj).next().next().next().next().next().children().text("삭제된 댓글입니다.");
+						$(obj).next().next().next().next().next().children().css("color","gray");
+						$(obj).next().next().next().next().next().next().next().css("display","none");
+						$(obj).next().css("display","none");
+						$(obj).css("display","none");
 						alert("댓글이 삭제되었습니다.");
 					}
 				}
 			});
 		}
+	}
+	
+	function reModifyFn(ridx,obj){
+		$(obj).prev().css("display","none");
+		$(obj).next().css("display","inline-block");
+		$(obj).next().next().css("display","inline-block");
+		$(obj).next().next().next().next().next().children().css("display","inline-block");
+		$(obj).next().next().next().next().next().next().css("display","none");
+		var text = $(obj).next().next().next().next().children().text();		
+		$(obj).next().next().next().next().next().children().text(text);
+		$(obj).next().next().next().next().css("display","none");
+		$(obj).css("display","none");
+	}
+	
+	function reSaveFn(ridx,obj){
+		$.ajax({
+			url: "replyModify.jsp",
+			type: "post",
+			data: $(obj).next().next().next().next().serialize(),
+			success: function(data){
+				var json = JSON.parse(data.trim());
+				$(obj).next().next().next().next().next().css("display","inline-block");
+				$(obj).next().next().next().children().text(json[0].rcontent);
+				$(obj).next().next().next().css("display","inline-block");
+				$(obj).next().next().next().next().children().css("display","none");
+				$(obj).prev().css("display","inline-block");
+				$(obj).prev().prev().css("display","inline-block");
+				$(obj).next().css("display","none");
+				$(obj).css("display","none");
+			}
+		});
+	}
+	
+	function reCancelFn(ridx,obj){
+		$(obj).next().next().next().next().css("display","inline-block");
+		$(obj).prev().css("display","none");
+		$(obj).prev().prev().css("display","inline-block");
+		$(obj).prev().prev().prev().css("display","inline-block");
+		$(obj).next().next().css("display","inline-block");
+		$(obj).next().next().next().children().css("display","none");
+		$(obj).css("display","none");
+	}
+	
+	function reReCanFn(obj){
+		$(obj).next().remove();
+		$(obj).prev().css("display","inline-block");
+		$(obj).css("display","none");
 	}
 	
 	function replyRestoreFn(ridx,obj){
@@ -316,21 +408,44 @@
 		%>		</form>
 			</div>
 			<div id="reBox">
-		<%	for(Reply r : rList){				
-		%>		<div id="reArea">					
-					<span id="rename"><%=r.getRwriter() %></span>
-					<span id="redate"><%=r.getRwdate() %></span>
-			<%	if(r.getRdelyn().equals("N")){
-			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
-					<br>
-					<span id="recon"><pre><%=r.getRcontent() %></pre></span>
-			<%	}else if(r.getRdelyn().equals("Y")){
-			%>		<input type="button" value="복구" id="replyRestore" onclick="replyRestoreFn(<%=r.getRidx() %>,this)">
-					<br>
-					<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
-			<%	}
-			%>
+		<%	for(Reply r : rList){
+		%>		
+				<div class="reArea">
+		<%		if(r.getLvl()>0){
+					for(int i=0; i<r.getLvl()-1; i++){
+		%>				<span class="reSpanSpace"></span>
+		<%			}
+					for(int i=r.getLvl()-1; i<r.getLvl(); i++){
+		%>				<span class="reSpan">&#8627</span>
+		<%			}
+				}	
+		%>			<div class="reIn">
+						<span id="rename"><%=r.getRwriter() %></span>
+						<span id="redate"><%=r.getRwdate() %></span>
+		<%		if(r.getRdelyn().equals("N")){
+		%>				<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="수정" id="remodi" onclick="reModifyFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="저장" id="resave" onclick="reSaveFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
+		<%		}
+		%>		
+		<%		if(r.getRdelyn().equals("Y")){
+		%>				<input type="button" value="복구" id="replyRestore" onclick="replyRestoreFn(<%=r.getRidx() %>,this)">
+						<br>
+						<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
+		<%		}else if(r.getRdelyn().equals("N")){
+		%>				<br>
+						<span id="recon"><pre><%=r.getRcontent() %></pre></span>
+						<form id="remodiFrm" name="remodiFrm">
+							<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
+							<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
+						</form>
+						<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
+		<%		}
+		%>			</div>
 				</div>
+				
 		<%	}
 		%>	</div>
 			<div id="pagingArea">

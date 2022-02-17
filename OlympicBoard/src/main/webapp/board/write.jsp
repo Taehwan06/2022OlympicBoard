@@ -123,7 +123,17 @@
 			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
 			id="topButton" onclick="location.href='#top'">
 		</div>
-		<form id="writeFrm" name="writeFrm">			
+		<form id="writeFrm" name="writeFrm">
+	<%	if(loginUser.getGrade().equals("A")){
+	%>		<div class="noticeBox">
+				<label for="notice"><div id="noticeTop">게시글 종류</div></label>
+				<select id="notice" name="notice">
+					<option value="N">일반 게시글</option>
+					<option value="Y">공지사항</option>
+				</select>
+			</div>
+	<%	}
+	%>
 			<div class="box">
 				<label for="subject"><div id="subjectTop">제목</div></label>
 				<input type="text" id="subject" name="subject" 

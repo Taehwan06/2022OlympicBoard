@@ -15,6 +15,13 @@
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	String nowPage = request.getParameter("nowPage");
+	String notice = request.getParameter("notice");
+	
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	if(loginUser == null){
+		response.sendRedirect(request.getContextPath());
+	}
 	
 	ListPageData listPageData = new ListPageData();
 	if(session.getAttribute("listPageData") != null){
@@ -45,7 +52,13 @@
 	
 	try{
 		conn = DBManager.getConnection();
-		String sql = "update board set bsubject=?, bcontent=? where bidx=?";
+		String sql = "update board set bsubject=?, bcontent=? ";
+		
+		if(notice != null && (notice.equals("N") || notice.equals("Y"))){
+			sql += ",bnotice='"+notice+"' ";
+		}
+		
+		sql += " where bidx=?";
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,subject);
 		psmt.setString(2,content);

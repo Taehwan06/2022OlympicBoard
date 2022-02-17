@@ -60,8 +60,9 @@
 					}else if(searchType.equals("subjectContent")){
 						sql += " where bcontent like '%"+searchValue+"%' ";
 						sql += " or bsubject like '%"+searchValue+"%' ";
-					}			
+					}
 				}
+				sql += " order by bnotice desc";
 				
 				psmt = conn.prepareStatement(sql);
 				
@@ -92,8 +93,9 @@
 					}
 				}
 				
-				sql += " order by bidx desc ) b) ";
+				sql += " order by bidx desc, bnotice desc ) b) ";
 				sql += " where r>="+paging.getStart()+" and r<="+paging.getEnd();
+				sql += " order by bnotice desc";
 				
 				psmt = conn.prepareStatement(sql);
 				
@@ -162,12 +164,14 @@
 		%>		<div class="rowDiv" onclick="viewFn(<%=rs.getInt("bidx") %>)" 
 				<% if(rs.getString("bdelyn").equals("Y")){ out.print("style='color:gray'"); } %>>
 					<span class="bidxSpan"><%=rs.getInt("bidx") %></span>
-					<span class="subjectSpan">
+					<span class="subjectSpan" <% if(rs.getString("bnotice").equals("Y")){ out.print("style='color:red'"); } %>>
+						<%	if(rs.getString("bnotice").equals("Y")){ out.print("<b>[공지] "); } %>
 						<%=rs.getString("bsubject") %> 
 						<%	if(rs.getInt("recnt")>0){ 
 						%>		[<%=rs.getInt("recnt") %>]
 						<%	} 
 						%>
+						<%	if(rs.getString("bnotice").equals("Y")){ out.print("</b>"); } %>
 					</span>
 					<span class="writerSpan"><%=rs.getString("bwriter") %></span>
 					<span class="wdateSpan"><%=notice.getListWritedate() %></span>

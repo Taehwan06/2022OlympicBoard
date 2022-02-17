@@ -117,6 +117,7 @@
 			board.setBimgsys2(rs.getString("bimgsys2"));
 			board.setBimgori3(rs.getString("bimgori3"));
 			board.setBimgsys3(rs.getString("bimgsys3"));
+			board.setBnotice(rs.getString("bnotice"));
 			
 			session.setAttribute("board",board);
 			
@@ -540,11 +541,13 @@
 						<span id="rename"><%=r.getRwriter() %></span>
 						<span id="redate"><%=r.getRwdate() %></span>
 		<%		if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
+					if(r.getRdelyn().equals("N")){
 		%>				<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
 						<input type="button" value="수정" id="remodi" onclick="reModifyFn(<%=r.getRidx() %>,this)">
 						<input type="button" value="저장" id="resave" onclick="reSaveFn(<%=r.getRidx() %>,this)">
 						<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
-		<%		}
+		<%			}
+				}
 		%>				<br>
 		<%		if(r.getRdelyn().equals("Y")){
 		%>				<span id="recon" style="color:gray">삭제된 댓글입니다.</span>

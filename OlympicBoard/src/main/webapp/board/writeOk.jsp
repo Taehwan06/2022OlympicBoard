@@ -10,6 +10,7 @@
 
 	String subject = request.getParameter("subject");
 	String content = request.getParameter("content");
+	String notice = request.getParameter("notice");
 	String bimgsys = null;
 	String bimgori = null;
 	String bimgsys2 = null;
@@ -18,6 +19,10 @@
 	String bimgori3 = null;
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	if(loginUser == null){
+		response.sendRedirect(request.getContextPath());
+	}
 	
 	Board board1 = (Board)session.getAttribute("board1");
 	Board board2 = (Board)session.getAttribute("board2");
@@ -43,6 +48,10 @@
 		String sql = "";
 		
 		sql += "insert into board(bidx,bsubject,bcontent,bwriter,midx";
+		
+		if(notice != null && (notice.equals("N") || notice.equals("Y"))){
+			sql += ",bnotice";
+		}
 		if(bimgsys != null && bimgori != null){
 			sql += ",bimgsys,bimgori";
 		}
@@ -54,6 +63,10 @@
 		}
 		
 		sql	+= ") values(bidx_seq.nextval,?,?,?,?";
+		
+		if(notice != null && (notice.equals("N") || notice.equals("Y"))){
+			sql += ",'"+notice+"'";
+		}
 		if(bimgsys != null && bimgori != null){
 			sql += ",'"+bimgsys+"','"+bimgori+"'";
 		}

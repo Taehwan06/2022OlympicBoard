@@ -27,8 +27,27 @@ section{
 .box{
 	margin-top: 20px;
 }
-#subjectTop,#writerTop{
-	margin: 0px 0px 3px 20px;
+.noticeBox{
+	margin-top: 20px;
+	text-align: left;
+	display: inline-block;
+	width: 800px;
+}
+#notice{
+	margin: 0px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	width: 170px;
+	height: 30px;
+	font-size: 17px;
+	padding: 3px;
+	margin-left: 35px;
+	text-align: center;
+}
+#noticeTop,#subjectTop,#writerTop,#contentTop,#fileTop{
+	text-align: left;
+	margin-left: 60px;
+	margin-bottom: 3px;
 }
 #subject,#writer{
 	width: 700px;
