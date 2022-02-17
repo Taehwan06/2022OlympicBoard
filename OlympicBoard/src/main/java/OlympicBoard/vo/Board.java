@@ -22,8 +22,15 @@ public class Board {
 	private String bimgori2;
 	private String bimgsys3;
 	private String bimgori3;
+	private String originWdate;
 	
 	
+	public String getOriginWdate() {
+		return originWdate;
+	}
+	public void setOriginWdate(String originWdate) {
+		this.originWdate = originWdate;
+	}
 	public String getBimgsys2() {
 		return bimgsys2;
 	}

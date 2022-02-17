@@ -78,7 +78,7 @@ section input{
 	color: gray;
 	margin-bottom: 10px;
 }
-#contentDiv{
+.contentDiv{
 	width: 780px;
 	text-align: left;
 	padding: 20px 10px;

@@ -474,25 +474,24 @@
 						댓글 <span id="replySpan" class="colSpan"><%=replyTotal %></span>
 					</div>
 				</div>
-				<div id="contentDiv">
-			<%	if(board.getBimgori() != null && board.getBimgsys() != null){
-			%>		<div class="fileDiv">
+				<div class="contentDiv">
+		<%		if(board.getBimgori() != null && board.getBimgsys() != null){
+		%>			<div class="fileDiv">
 						첨부파일 : <%=board.getBimgori() %>
 					</div>
-			<%	}
+		<%		}
 				if(board.getBimgori2() != null && board.getBimgsys2() != null){
-			%>		<div class="fileDiv">
+		%>			<div class="fileDiv">
 						첨부파일 : <%=board.getBimgori2() %>
 					</div>
-			<%	}
+		<%		}
 				if(board.getBimgori3() != null && board.getBimgsys3() != null){
-			%>		<div class="fileDiv">
+		%>			<div class="fileDiv">
 						첨부파일 : <%=board.getBimgori3() %>
 					</div>
-			<%	}
-			%>
-					<div>
-					</div>
+		<%		}
+		%>		</div>
+				<div class="contentDiv">
 					<pre><%=board.getBcontent() %></pre>
 				</div>
 				<div id="upAreaDiv" class="rowDiv">
