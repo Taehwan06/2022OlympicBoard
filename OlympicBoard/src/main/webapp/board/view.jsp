@@ -249,7 +249,7 @@
 						for(var i=0; i < lvl; i++){
 							html += "<span style='width:20px'><img src='"+url+"/upload/replyImg5.png'></span>";
 						}
-					}		
+					}
 					
 					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
 					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
@@ -457,7 +457,7 @@
 			<img alt="화면 상단으로 이동하는 버튼입니다." src="<%=request.getContextPath() %>/upload/top.png"
 			id="topButton" onclick="location.href='#top'">
 		</div>
-		<div>
+		<div id="outDiv">
 			<div id="box">
 				<div id="subjectDiv" class="rowDiv">
 					<span id="subjectSpan" class="colSpan"><%=board.getBsubject() %></span>
@@ -527,13 +527,17 @@
 			<div id="reBox">
 		<%	for(Reply r : rList){
 		%>		
-					<div class="reArea">
+				<div class="reArea">
 		<%		if(r.getLvl()>0){
-					for(int i=0; i<r.getLvl(); i++){
-		%>				<span><img src='<%=request.getContextPath() %>/upload/replyImg5.png'></span>
+					for(int i=0; i<r.getLvl()-1; i++){
+		%>				<span class="reSpanSpace"></span>
 		<%			}
-				}
-		%>				<span id="rename"><%=r.getRwriter() %></span>
+					for(int i=r.getLvl()-1; i<r.getLvl(); i++){
+		%>				<span class="reSpan">&#8627</span>
+		<%			}
+				}	
+		%>			<div class="reIn">
+						<span id="rename"><%=r.getRwriter() %></span>
 						<span id="redate"><%=r.getRwdate() %></span>
 		<%		if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
 		%>				<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
@@ -554,6 +558,7 @@
 						<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
 		<%		}
 		%>			</div>
+				</div>
 				
 		<%	}
 		%>	</div>
