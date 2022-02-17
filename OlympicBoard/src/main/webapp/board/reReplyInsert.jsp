@@ -13,7 +13,7 @@
 	int lvl = 0;
 	int depth = 0;
 	int originridx = 0;
-	int nextdepth = 0;
+	int nextdepth = 3;
 	
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	
@@ -39,22 +39,44 @@
 		
 		
 		
-		sql = "select max(depth) from reply where originridx=? and lvl=? ";
+		sql = "select min(depth) from reply where originridx=? and lvl<=? and depth>?";
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1,originridx);
-		psmt.setInt(2,(lvl+1));
+		psmt.setInt(2,lvl);
+		psmt.setInt(3,depth);
 		rs = psmt.executeQuery();
 		
 		if(rs.next()){
-			nextdepth = rs.getInt("max(depth)")+1;
+			if(rs.getInt("min(depth)") == 0){
+				sql = "select max(depth) from reply where originridx=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1,originridx);
+				rs = psmt.executeQuery();
+				
+				if(rs.next()){
+					nextdepth = rs.getInt("max(depth)")+1;
+				}
+				
+			}else{
+				nextdepth = rs.getInt("min(depth)");
+			}
 		}else{
-			nextdepth = depth + 1;
+			
+			sql = "select max(depth) from reply where originridx=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1,originridx);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				nextdepth = rs.getInt("max(depth)")+1;
+			}
 		}
 		
 		sql = "update reply set depth=depth+1 where originridx=? and depth >= ?";
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1,originridx);
 		psmt.setInt(2,nextdepth);
+		psmt.executeUpdate();
 		
 		sql = "insert into reply(ridx,rcontent,rwriter,bidx,midx,originridx,lvl,depth) values(ridx_seq.nextval,?,?,?,?,?,?,?)";
 		psmt = conn.prepareStatement(sql);
@@ -64,7 +86,7 @@
 		psmt.setInt(4,loginUser.getMidx());
 		psmt.setInt(5,originridx);
 		psmt.setInt(6,(lvl+1));
-		psmt.setInt(7,(nextdepth));
+		psmt.setInt(7,nextdepth);
 		
 		psmt.executeUpdate();
 		

@@ -526,33 +526,35 @@
 			</div>
 			<div id="reBox">
 		<%	for(Reply r : rList){
-		%>		<div class="reArea">
-		<%	if(r.getLvl()>0){
-				for(int i=0; i<r.getLvl(); i++){
-		%>			<span><img src='<%=request.getContextPath() %>/upload/replyImg5.png'></span>
+		%>		
+					<div class="reArea">
+		<%		if(r.getLvl()>0){
+					for(int i=0; i<r.getLvl(); i++){
+		%>				<span><img src='<%=request.getContextPath() %>/upload/replyImg5.png'></span>
+		<%			}
+				}
+		%>				<span id="rename"><%=r.getRwriter() %></span>
+						<span id="redate"><%=r.getRwdate() %></span>
+		<%		if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
+		%>				<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="수정" id="remodi" onclick="reModifyFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="저장" id="resave" onclick="reSaveFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
 		<%		}
-			}
-		%>			<span id="rename"><%=r.getRwriter() %></span>
-					<span id="redate"><%=r.getRwdate() %></span>
-			<%	if((loginUser != null && loginUser.getMidx() == r.getMidx() && r.getRdelyn().equals("N")) || (loginUser != null && loginUser.getGrade().equals("A"))){
-			%>		<input type="button" value="삭제" id="redel" onclick="reDeleteFn(<%=r.getRidx() %>,this)">
-					<input type="button" value="수정" id="remodi" onclick="reModifyFn(<%=r.getRidx() %>,this)">
-					<input type="button" value="저장" id="resave" onclick="reSaveFn(<%=r.getRidx() %>,this)">
-					<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
-			<%	}
-			%>		<br>
-			<%	if(r.getRdelyn().equals("Y")){
-			%>		<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
-			<%	}else if(r.getRdelyn().equals("N")){
-			%>		<span id="recon"><pre><%=r.getRcontent() %></pre></span>
-					<form id="remodiFrm" name="remodiFrm">
-						<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
-						<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
-					</form>
-					<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
-					<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
-			<%	}
-			%>	</div>
+		%>				<br>
+		<%		if(r.getRdelyn().equals("Y")){
+		%>				<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
+		<%		}else if(r.getRdelyn().equals("N")){
+		%>				<span id="recon"><pre><%=r.getRcontent() %></pre></span>
+						<form id="remodiFrm" name="remodiFrm">
+							<textarea name="reModifyInsert" id="reModifyInsert"></textarea>
+							<input type="hidden" name="ridx" value="<%=r.getRidx() %>">
+						</form>
+						<input type="button" value="댓글" id="reReply" onclick="reReplyFn(<%=r.getRidx() %>,this)">
+						<input type="button" value="취소" id="reReCan" onclick="reReCanFn(this)">
+		<%		}
+		%>			</div>
+				
 		<%	}
 		%>	</div>
 			<div id="pagingArea">
