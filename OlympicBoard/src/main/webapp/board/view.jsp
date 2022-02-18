@@ -246,12 +246,13 @@
 					
 					html += "<div class='reArea'>";
 					
-					if(lvl > 0){
-						for(var i=0; i < lvl; i++){
-							html += "<span style='width:20px'><img src='"+url+"/upload/replyImg5.png'></span>";
-						}
-					}
 					
+							html += "<span class='reSpanSpace'></span>";
+						
+							html += "<span class='reSpan'><img src='"+url+"/upload/replyImg5.png'></span>";
+					
+					
+					html += "<div class='reIn'>";
 					html += "<span id='rename'>"+json[0].rwriter+"</span> ";
 					html += "<span id='redate'>"+json[0].rwdate+"</span> ";
 					html += "<input type='button' value='삭제' id='redel' onclick='reDeleteFn("+json[0].ridx+",this)'> ";
@@ -266,6 +267,7 @@
 					html += "</form>";
 					html += "<input type='button' value='댓글' id='reReply' onclick='reReplyFn("+json[0].ridx+",this)'>";
 					html += "<input type='button' value='취소' id='reReCan' onclick='reReCanFn(this)'>";
+					html += "</div>";
 					html += "</div>";
 					
 					$(obj).parent().parent().after(html);
@@ -533,7 +535,7 @@
 		%>				<span class="reSpanSpace"></span>
 		<%			}
 					for(int i=r.getLvl()-1; i<r.getLvl(); i++){
-		%>				<span class="reSpan">&#8627</span>
+		%>				<span class="reSpan"><img src='<%=request.getContextPath() %>/upload/replyImg5.png'></span>
 		<%			}
 				}	
 		%>			<div class="reIn">

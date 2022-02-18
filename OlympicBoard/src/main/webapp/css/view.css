@@ -157,7 +157,7 @@ section input{
 	overflow: hidden;
 }
 .reIn{
-	width: 670px;
+	width: 600px;
 	word-break: break-all;
 	display: inline-block;
 	overflow: hidden;
@@ -191,7 +191,7 @@ section input{
 	display: none;
 }
 .reSpanSpace{
-	width: 10px;
+	width: 15px;
 	display: inline-block;
 	vertical-align: top;
 	margin-right: 10px;
@@ -199,10 +199,10 @@ section input{
 .reSpan{
 	display: inline-block;
 	vertical-align: top;
-	margin-right: 10px;
+	margin-right: 0px;
 }
 #recon{
-	width: 660px;
+	width: 600px;
 	font-size: 14px;
 	display: inline-block;
 	margin-left: 0px;
