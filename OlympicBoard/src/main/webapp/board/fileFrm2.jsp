@@ -27,7 +27,7 @@
 		systemName = multi.getFilesystemName("file2");
 		originName = multi.getOriginalFileName("file2");
 				
-		systemName2 = "<img src='"+request.getContextPath()+"/upload/"+systemName+"'>";
+		systemName2 = "<img src='"+request.getContextPath()+"/upload/"+systemName+"' style='max-width:680px'>";
 		
 		board.setBimgori2(originName);
 		board.setBimgsys2(systemName);

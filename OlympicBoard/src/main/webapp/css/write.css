@@ -64,6 +64,14 @@ section{
 	font-size: 17px;
 	padding: 10px 15px;
 	resize: none;
+	overflow: auto;
+}
+#content img{
+	object-fit: cover;
+}
+#content2 img{
+	object-fit: cover;
+	
 }
 #content2{
 	width: 700px;
@@ -74,6 +82,7 @@ section{
 	padding: 10px 15px;
 	margin: auto;
 	text-align: left;
+	overflow: auto;
 }
 [contenteditable=true]:empty:before{
   content: attr(placeholder);
