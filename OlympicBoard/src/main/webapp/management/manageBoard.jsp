@@ -5,6 +5,12 @@
 <%@ page import="OlympicBoard.vo.*"%>
 <%@ page import="OlympicBoard.util.*"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
+%>
 <%	
 	request.setCharacterEncoding("UTF-8");
 	
@@ -233,7 +239,18 @@
 						<%	if(rs.getString("bnotice").equals("Y")){ out.print("</b>"); } %>
 					</span>
 					<span class="writerSpan"><%=rs.getString("bwriter") %></span>
-					<span class="wdateSpan"><%=notice.getListWritedate() %></span>
+					<span class="wdateSpan">
+				<%		notice.setSplitDate(rs.getString("bwdate"));
+						notice.setNowdate(sf.format(nowTime));
+						notice.setListWritedate(rs.getString("bwdate"));
+						notice.setListWritedate2(rs.getString("bwdate"));
+						if(notice.getSplitDate().equals(notice.getNowdate())){
+							out.print(notice.getListWritedate());
+						}else{
+							out.print(notice.getListWritedate2());
+						}
+				%>
+					</span>
 					<span class="hitSpan"><%=rs.getInt("bhit") %></span>
 					<span class="upSpan"><%=rs.getInt("up") %></span>
 					<span class="delSpan"><%=rs.getString("bdelyn") %></span>

@@ -11,7 +11,64 @@ public class Notice {
 	private String replyWritedate;
 	private String memberEnterdate;
 	private String memberViewEnterdate;
+	private String nowdate;
+	private String splitDate;
+	private String listWritedate2;
 	
+
+	public String getListWritedate2() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(listWritedate2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		String outdate = new SimpleDateFormat("MM-dd").format(date);
+		
+		return outdate;
+	}
+
+	public void setListWritedate2(String listWritedate2) {
+		this.listWritedate2 = listWritedate2;
+	}
+
+	public String getSplitDate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(splitDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		String outdate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+		
+		return outdate;
+	}
+
+	public void setSplitDate(String splitDate) {
+		this.splitDate = splitDate;
+	}
+
+	public String getNowdate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(nowdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		String outdate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+		
+		return outdate;
+	}
+
+	public void setNowdate(String nowdate) {
+		this.nowdate = nowdate;
+	}
 
 	public String getMemberViewEnterdate() {
 		Date date = null;
@@ -76,7 +133,7 @@ public class Notice {
 			e.printStackTrace();
 		}		
 		
-		String outdate = new SimpleDateFormat("MM-dd HH:mm").format(date);
+		String outdate = new SimpleDateFormat("HH:mm").format(date);
 		
 		return outdate;
 	}

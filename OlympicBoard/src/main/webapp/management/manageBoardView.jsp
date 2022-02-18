@@ -495,7 +495,7 @@
 			%>		<input type="button" class="nextButton" value="다음" 
 					onclick="location.href='manageBoardView.jsp?replyNowPage=<%=replyPaging.getEndPage()+1%>&bidx=<%=bidx %>#pagingArea'">
 			<%	}
-			%>			
+			%>
 			</div>
 		</div>
 	</section>
