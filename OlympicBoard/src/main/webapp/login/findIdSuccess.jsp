@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="OlympicBoard.vo.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String email = request.getParameter("email");
 	String idAll = request.getParameter("id");
 	String idSub = idAll.substring(3);
 	String id = "***"+idSub;
+	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
 %>
 <!DOCTYPE html>
 <html>

@@ -12,6 +12,11 @@
 	String searchType = request.getParameter("searchType");
 	String nowPage = request.getParameter("nowPage");
 	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
+	
 	Board board = (Board)session.getAttribute("board");
 
 	Member loginUser = (Member)session.getAttribute("loginUser");

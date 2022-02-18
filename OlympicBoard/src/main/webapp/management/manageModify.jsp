@@ -15,6 +15,11 @@
 	String birth3 = "";
 	String midx = request.getParameter("midx");
 	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
+	
 	Member member = new Member();
 
 	Member loginUser = (Member)session.getAttribute("loginUser");

@@ -23,8 +23,40 @@ public class Board {
 	private String bimgsys3;
 	private String bimgori3;
 	private String originWdate;
+	private String bmdate;
+	private String bddate;
 	
 	
+	public String getBmdate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bmdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		
+		return outdate;
+	}
+	public void setBmdate(String bmdate) {
+		this.bmdate = bmdate;
+	}
+	public String getBddate() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bddate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		
+		return outdate;
+	}
+	public void setBddate(String bddate) {
+		this.bddate = bddate;
+	}
 	public String getOriginWdate() {
 		return originWdate;
 	}

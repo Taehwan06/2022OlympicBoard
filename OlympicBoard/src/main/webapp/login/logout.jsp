@@ -24,7 +24,7 @@
 	}
 
 	ReUrl reurl = (ReUrl)session.getAttribute("ReUrl");
-	String url = reurl.getUrl()+"?bidx="+bidx+"&nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue;	
+	String url = reurl.getUrl()+"?bidx="+bidx+"&nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue;
 
 	session.setAttribute("loginUser",null);
 

@@ -24,7 +24,7 @@
 	}
 	
 	ReUrl reurl = new ReUrl();
-	String url = request.getRequestURL().toString();
+	String url = request.getContextPath();
 	reurl.setUrl(url);
 	session.setAttribute("ReUrl",reurl);
 	

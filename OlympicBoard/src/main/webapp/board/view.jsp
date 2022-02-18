@@ -118,6 +118,7 @@
 			board.setBimgori3(rs.getString("bimgori3"));
 			board.setBimgsys3(rs.getString("bimgsys3"));
 			board.setBnotice(rs.getString("bnotice"));
+			board.setBmdate(rs.getString("bmdate"));
 			
 			session.setAttribute("board",board);
 			
@@ -476,6 +477,12 @@
 						댓글 <span id="replySpan" class="colSpan"><%=replyTotal %></span>
 					</div>
 				</div>
+		<%	if(board.getBmdate() != null){
+		%>		<div class="modifyDiv">
+					<%=board.getBmdate() %>에 마지막으로 수정됨.
+				</div>
+		<%	}
+		%>		
 				<div class="contentDiv">
 		<%		if(board.getBimgori() != null && board.getBimgsys() != null){
 		%>			<div class="fileDiv">

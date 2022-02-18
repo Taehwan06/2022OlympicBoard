@@ -8,6 +8,11 @@
 	if(check != null){
 		passCheck = check.isPassCheck();
 	}
+	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
 %>
 <!DOCTYPE html>
 <html>

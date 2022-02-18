@@ -9,7 +9,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	ReUrl reurl = new ReUrl();
-	String url = request.getRequestURL().toString();
+	String url = request.getContextPath();
 	reurl.setUrl(url);
 	session.setAttribute("ReUrl",reurl);
 	
@@ -75,6 +75,7 @@
 					boardNotice.setRecnt(rs.getInt("recnt"));
 					boardNotice.setUp(rs.getInt("up"));
 					boardNotice.setOriginWdate(rs.getString("bwdate"));
+					boardNotice.setBmdate(rs.getString("bmdate"));
 					
 					boardNoticeA.add(boardNotice);
 				}

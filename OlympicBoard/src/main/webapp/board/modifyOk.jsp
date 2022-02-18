@@ -52,11 +52,7 @@
 	
 	try{
 		conn = DBManager.getConnection();
-		String sql = "update board set bsubject=?, bcontent=? ";
-		
-		if(notice != null && (notice.equals("N") || notice.equals("Y"))){
-			sql += ",bnotice='"+notice+"' ";
-		}
+		String sql = "update board set bsubject=?, bcontent=?, bmdate=sysdate ";
 		
 		sql += " where bidx=?";
 		psmt = conn.prepareStatement(sql);

@@ -11,6 +11,11 @@
 	String searchValue = request.getParameter("searchValue");
 	String nowPage = request.getParameter("nowPage");
 	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
+	
 	ListPageData listPageData = (ListPageData)session.getAttribute("listPageData");
 	if(listPageData != null){
 		searchType = listPageData.getSearchType();

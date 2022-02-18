@@ -10,6 +10,11 @@
 	
 	String email = "";
 	String phone = "";
+	
+	ReUrl reurl = new ReUrl();
+	String url = request.getRequestURL().toString();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
 
 	Check check = (Check)session.getAttribute("check");
 	if(check != null){

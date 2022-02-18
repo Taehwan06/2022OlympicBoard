@@ -12,6 +12,11 @@
 	String birth1 = "";
 	String birth2 = "";
 	String birth3 = "";
+	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){

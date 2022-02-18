@@ -78,6 +78,11 @@ section input{
 	color: gray;
 	margin-bottom: 10px;
 }
+.modifyDiv{
+	text-align: right;
+	color: gray;
+	margin-top: 10px;
+}
 .contentDiv{
 	width: 780px;
 	text-align: left;

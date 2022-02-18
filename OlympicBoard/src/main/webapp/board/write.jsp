@@ -7,6 +7,11 @@
 
 	Check check = new Check();
 	
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
+	
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		check.setLoginNull("null");

@@ -4,6 +4,11 @@
 <%@ page import="OlympicBoard.vo.*" %>
 <%@ page import="OlympicBoard.util.*" %>
 <%
+	ReUrl reurl = new ReUrl();
+	String url = request.getContextPath();
+	reurl.setUrl(url);
+	session.setAttribute("ReUrl",reurl);
+
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	if(loginUser == null){
 		response.sendRedirect(request.getContextPath());
