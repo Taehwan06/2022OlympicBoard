@@ -158,6 +158,7 @@
 			reply.setRcontent(rs.getString("rcontent"));
 			reply.setRdelyn(rs.getString("rdelyn"));
 			reply.setLvl(rs.getInt("lvl"));
+			reply.setRmdate(rs.getString("rmdate"));
 			
 			rList.add(reply);
 		}
@@ -477,7 +478,7 @@
 						댓글 <span id="replySpan" class="colSpan"><%=replyTotal %></span>
 					</div>
 				</div>
-		<%	if(board.getBmdate() != null){
+		<%	if(!board.getBmdate().equals("null")){
 		%>		<div class="modifyDiv">
 					<%=board.getBmdate() %>에 마지막으로 수정됨.
 				</div>
@@ -556,6 +557,9 @@
 						<input type="button" value="취소" id="recan" onclick="reCancelFn(<%=r.getRidx() %>,this)">
 		<%			}
 				}
+				if(!r.getRmdate().equals("null")){
+		%>				<span class="rmdate"><%=r.getRmdate() %>에 수정됨.</span>
+		<%		}
 		%>				<br>
 		<%		if(r.getRdelyn().equals("Y")){
 		%>				<span id="recon" style="color:gray">삭제된 댓글입니다.</span>

@@ -28,30 +28,38 @@ public class Board {
 	
 	
 	public String getBmdate() {
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bmdate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String outdate = "";
+		if(bmdate != null) {
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bmdate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		}else {
+			outdate = "null";
 		}
-		String outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-		
 		return outdate;
 	}
 	public void setBmdate(String bmdate) {
 		this.bmdate = bmdate;
 	}
 	public String getBddate() {
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bddate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String outdate = "";
+		if(bddate != null) {
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(bddate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		}else {
+			outdate = "null";
 		}
-		String outdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-		
 		return outdate;
 	}
 	public void setBddate(String bddate) {

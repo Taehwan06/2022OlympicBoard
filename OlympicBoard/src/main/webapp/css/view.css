@@ -167,6 +167,12 @@ section input{
 	display: inline-block;
 	overflow: hidden;
 }
+.rmdate{
+	display: inline-block;
+	font-size: 14px;
+	margin: 0px 20px;
+	color: gray;
+}
 #rename,#redate,#recon{	
 	display: inline-block;
 }

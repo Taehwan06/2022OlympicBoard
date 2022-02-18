@@ -17,7 +17,7 @@
 	try{
 		conn = DBManager.getConnection();
 		
-		String sql = "update reply set rcontent=? where ridx=?";
+		String sql = "update reply set rcontent=?, rmdate=sysdate where ridx=?";
 		
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,rcontent);

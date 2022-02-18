@@ -131,6 +131,7 @@
 					reply.setRcontent(rs.getString("rcontent"));
 					reply.setRdelyn(rs.getString("rdelyn"));
 					reply.setLvl(rs.getInt("lvl"));
+					reply.setRmdate(rs.getString("rmdate"));
 					
 					rList.add(reply);
 				}
@@ -458,6 +459,10 @@
 						<br>
 						<span id="recon" style="color:gray">삭제된 댓글입니다.</span>
 		<%		}else if(r.getRdelyn().equals("N")){
+		%>
+		<%		if(!r.getRmdate().equals("null")){
+		%>				<span class="rmdate"><%=r.getRmdate() %>에 수정됨.</span>
+		<%		}
 		%>				<br>
 						<span id="recon"><pre><%=r.getRcontent() %></pre></span>
 						<form id="remodiFrm" name="remodiFrm">
