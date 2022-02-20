@@ -55,7 +55,7 @@
 		}
 		session.setAttribute("check",check);
 		
-		response.sendRedirect(request.getContextPath()+"/member/mylist.jsp?searchValue="+searchValue+"&searchType="+searchType+"&nowPage="+nowPage);
+		response.sendRedirect(request.getContextPath()+"/member/mypage.jsp");
 		
 	}catch(Exception e){
 		e.printStackTrace();

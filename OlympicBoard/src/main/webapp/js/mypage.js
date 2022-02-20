@@ -1,7 +1,3 @@
-function mylistFn(){
-	location.href="mylist.jsp";
-}
-
 function modifyFn(){
 	location.href="passCheck.jsp?url=modify";
 }

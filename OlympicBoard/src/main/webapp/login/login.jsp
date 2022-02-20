@@ -33,33 +33,25 @@
 <link href="<%=request.getContextPath() %>/css/footer.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
-	<%	if(joinCheck == null){
-	%>		
-	<%	}else if(joinCheck.equals("success") && check.isJoinCheckFlag()){
-			check.setJoinCheckFlag(false);
-			session.setAttribute("check",check);
+	<%	if(joinCheck != null && joinCheck.equals("success")){
+			
 	%>		alert("회원가입이 완료되었습니다.");
-	<%	}else if(joinCheck.equals("fail") && check.isJoinCheckFlag()){
-			check.setJoinCheckFlag(false);
-			session.setAttribute("check",check);
+	<%	}else if(joinCheck != null && joinCheck.equals("fail")){
+			
 	%>		alert("회원가입에 실패했습니다.");
 	<%	}
 	%>
-	<%	if(loginCheck == null){
-	%>		
-	<%	}else if(loginCheck.equals("pass") && check.isLoginCheckFlag()){
-			check.setLoginCheckFlag(false);
-			session.setAttribute("check",check);
+	<%	if(loginCheck != null && loginCheck.equals("pass")){
+			
 	%>		alert("비밀번호 오류!");
-	<%	}else if(loginCheck.equals("all") && check.isLoginCheckFlag()){
-			check.setLoginCheckFlag(false);
-			session.setAttribute("check",check);
+	<%	}else if(loginCheck != null && loginCheck.equals("all")){
+			
 	%>		alert("등록된 사용자가 없습니다!");
 	<%	}
 	%>
-	<%	if(sendId && check.isSendIdFlag()){
-			check.setSendIdFlag(false);
-			session.setAttribute("check",check);
+	<%	if(check != null && sendId){
+			
+			
 	%>		alert("아이디를 회원님의 이메일로 발송했습니다.");
 	<%	}
 	%>

@@ -36,9 +36,9 @@ public class MailSend {
            
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
            
-            message.setSubject("[2022 Beijing] ¿äÃ»ÇÏ½Å È¸¿ø ¾ÆÀÌµğÀÔ´Ï´Ù.");
+            message.setSubject("[Beijing 2022] ìš”ì²­í•˜ì‹  íšŒì› ì•„ì´ë””ì…ë‹ˆë‹¤.");
 
-            message.setText("È¸¿ø´ÔÀÇ ¾ÆÀÌµğ´Â "+id+" ÀÔ´Ï´Ù.");
+            message.setText("ìš”ì²­í•˜ì‹  íšŒì›ë‹˜ì˜ ì•„ì´ë””ëŠ” "+id+" ì…ë‹ˆë‹¤.");
             
             Transport.send(message);
                    
@@ -73,9 +73,9 @@ public class MailSend {
            
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
            
-            message.setSubject("[2022 Beijing] ¿äÃ»ÇÏ½Å È¸¿ø ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù.");
+            message.setSubject("[Beijing 2022] ìš”ì²­í•˜ì‹  íšŒì› ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤.");
 
-            message.setText("È¸¿ø´ÔÀÇ ÀÓ½Ã ºñ¹Ğ¹øÈ£´Â "+pass+" ÀÔ´Ï´Ù. ·Î±×ÀÎ ÈÄ ¹İµå½Ã ºñ¹Ğ¹øÈ£¸¦ º¯°æÇØÁÖ¼¼¿ä.");
+            message.setText("ìš”ì²­í•˜ì‹  íšŒì›ë‹˜ì˜ ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ëŠ” "+pass+" ì…ë‹ˆë‹¤.	ë°˜ë“œì‹œ ë¡œê·¸ì¸ í›„ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•´ì£¼ì„¸ìš”.");
             
             Transport.send(message);
                    

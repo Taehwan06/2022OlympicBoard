@@ -87,6 +87,10 @@
 	%>		alert("회원 탈퇴가 실패했습니다.");
 	<%	}
 	%>
+	
+	function mylistFn(){
+		location.href="mylist.jsp?midx=<%=loginUser.getMidx() %>";
+	}
 </script>
 </head>
 <body>
@@ -128,7 +132,7 @@
 				<div class="border" onclick="mylistFn()">
 					<span>내가 작성한 글 보러가기</span>
 				</div><br>
-				<div class="border" onclick="modifyFn()()">
+				<div class="border" onclick="modifyFn()">
 					<span>회원정보 수정</span>
 				</div><br>
 				<div class="border" onclick="withdrawFn()">

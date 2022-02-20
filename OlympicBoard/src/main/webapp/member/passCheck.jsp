@@ -8,11 +8,6 @@
 	String pass = "";
 	boolean passCheck = false;
 	
-	ReUrl reurl = new ReUrl();
-	String url = request.getContextPath();
-	reurl.setUrl(url);
-	session.setAttribute("ReUrl",reurl);
-	
 	Check check = (Check)session.getAttribute("check");
 	if(check != null){
 		passCheck = check.isPassCheck();

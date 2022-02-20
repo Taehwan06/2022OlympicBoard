@@ -51,6 +51,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <script>
 	function modifyFn(){
+		$("#content").html($("#content2").html());
 		document.modifyFrm.method = "post";
 		document.modifyFrm.action = "myModifyOk.jsp";
 		document.modifyFrm.submit();
@@ -82,9 +83,10 @@
 				value="<%=board.getBwriter() %>" readonly>
 			</div>
 			<div class="box">
-				<label for="content"><div id="contentTop">내용</div></label>
+				<label for="content2"><div id="contentTop">내용</div></label>
 				<textarea id="content" name="content" 
-				placeholder="내용을 입력하세요."><%=board.getBcontent() %></textarea>
+				placeholder="내용을 입력하세요."></textarea>
+				<div id="content2" contentEditable="true" placeholder="내용을 입력하세요."><%=board.getBcontent() %></div>
 			</div>
 		</form>
 	
